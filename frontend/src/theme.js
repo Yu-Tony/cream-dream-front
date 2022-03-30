@@ -4,8 +4,8 @@ import { createTheme } from "@mui/material/styles";
 var theme = createTheme({
   palette: {
     primary: {
-      main: "#DE6D71",
-      dark: "#FA8466 ",
+      main: "#FA8466",
+      dark: "#DE6D71",
     },
     secondary: {
       main: "#FFEFB5",
@@ -32,7 +32,7 @@ var theme = createTheme({
             backgroundColor: "#644838",
             padding: "4px 8px 4px 8px",
             fontWeight: 500,
-            fontSize: "1rem",
+            fontSize: "1.15rem",
             height: "inherit",
             ":hover": {
               backgroundColor: "#DE6D71",

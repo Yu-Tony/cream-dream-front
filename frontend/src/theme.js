@@ -1,10 +1,11 @@
+import { deepmerge } from "@mui/utils";
 import { createTheme } from "@mui/material/styles";
 
-const theme = createTheme({
+var theme = createTheme({
   palette: {
     primary: {
-      main: "#DE6D71",
-      dark: "#FA8466 ",
+      main: "#FA8466",
+      dark: "#DE6D71",
     },
     secondary: {
       main: "#FFEFB5",
@@ -31,7 +32,7 @@ const theme = createTheme({
             backgroundColor: "#644838",
             padding: "4px 8px 4px 8px",
             fontWeight: 500,
-            fontSize: "1rem",
+            fontSize: "1.15rem",
             height: "inherit",
             ":hover": {
               backgroundColor: "#DE6D71",
@@ -43,4 +44,14 @@ const theme = createTheme({
   },
 });
 
+//Fuentes responsivas
+theme = deepmerge(theme, {
+  typography: {
+    h6: {
+      [theme.breakpoints.up("md")]: {
+        fontSize: "1.25rem",
+      },
+    },
+  },
+});
 export default theme;

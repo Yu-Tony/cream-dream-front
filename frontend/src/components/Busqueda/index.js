@@ -1,22 +1,17 @@
 import Categorias from "./Categorias";
 import BarraBusqueda from "./BarraBusqueda";
 import CardBusqueda from "./CardBusqueda";
+import { grid12All, drawerWidths } from "../../responsiveConst";
 
-import { Box, Grid, Icon, Divider, Button } from "@mui/material";
+import { Box, Grid, Icon, Divider, Button, Paper } from "@mui/material";
 
 import confetti from "../../assets/cakes/confetti.jpg";
 import vainilla from "../../assets/cakes/vainilla.jpg";
 import chocolate from "../../assets/cakes/chocolate.jpg";
 
-const boxStyle = {
-  bgcolor: "#ffeee6",
-  width: {
-    xs: "90vw",
-    sm: "60vw",
-    md: "50vw",
-    lg: "40vw",
-    xl: "35vw",
-  },
+const paperParentStyle = {
+  bgcolor: "background.main",
+  ...drawerWidths,
 };
 
 const dividerStyle = {
@@ -24,14 +19,6 @@ const dividerStyle = {
   margin: " 1.5rem 2rem",
   height: "0.09rem",
   borderRadius: "5px",
-};
-
-const gridSizeAll12 = {
-  xs: 12,
-  sm: 12,
-  md: 12,
-  lg: 12,
-  xl: 12,
 };
 
 const busquedaItems = [
@@ -64,11 +51,11 @@ const busquedaItems = [
 function Busqueda({ toggleDrawer }) {
   return (
     <>
-      <Box sx={boxStyle}>
+      <Paper sx={paperParentStyle}>
         <Box sx={{ bgcolor: "" }}>
           <Grid container spacing={0}>
             <Grid
-              {...gridSizeAll12}
+              {...grid12All}
               item
               sx={{ bgcolor: "transparent", padding: "0.5rem" }}
             >
@@ -78,7 +65,7 @@ function Busqueda({ toggleDrawer }) {
             </Grid>
 
             <Grid
-              {...gridSizeAll12}
+              {...grid12All}
               item
               sx={{
                 bgcolor: "",
@@ -96,18 +83,13 @@ function Busqueda({ toggleDrawer }) {
         <Box sx={{ padding: "0 1.5rem" }}>
           <Grid container spacing={2}>
             {busquedaItems.map((item) => (
-              <Grid
-                {...gridSizeAll12}
-                item
-                sx={{ padding: "0 0" }}
-                key={item.id}
-              >
+              <Grid {...grid12All} item sx={{ padding: "0 0" }} key={item.id}>
                 <CardBusqueda {...item} />
               </Grid>
             ))}
           </Grid>
         </Box>
-      </Box>
+      </Paper>
     </>
   );
 }

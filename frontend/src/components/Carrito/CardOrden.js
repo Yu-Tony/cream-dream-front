@@ -7,7 +7,7 @@ import {
   Grid,
 } from "@mui/material";
 
-import Contador from "./Contador";
+import Contador from "../Contador";
 import { grid12All } from "../../responsiveConst";
 
 const imgWidth = {

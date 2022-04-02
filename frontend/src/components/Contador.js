@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { Box, Typography, Icon, Button } from "@mui/material";
 
-import { clamp } from "../../utils";
+import { clamp } from "../utils";
 
 const iconStyle = {
   color: "primary.dark",

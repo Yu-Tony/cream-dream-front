@@ -8,11 +8,11 @@ import {
   ShoppingCartOutlined,
 } from "@mui/icons-material";
 //import { bgcolor, borderRadius, fontSize } from "@mui/system";
-import { Container, Typography } from "@mui/material";
+import { Container, Typography, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 
-export default function Navbar() {
-/*
+export default function Navbar({ toggleBusqueda, toggleCarrito }) {
+  /*
 
   OTRA FORMA DE HACERLO,PERO NO ME CONVENCIO
 
@@ -64,7 +64,7 @@ export default function Navbar() {
           justifyContent: "center",
         }}
       >
-        <Link to="/" style={{ textDecoration: "none" }}>
+        <Link to="/Sucursales" style={{ textDecoration: "none" }}>
           <Typography
             sx={{
               color: "#644838",
@@ -86,7 +86,7 @@ export default function Navbar() {
           justifyContent: "center",
         }}
       >
-        <Link to="/" style={{ textDecoration: "none" }}>
+        <Link to="/Menu" style={{ textDecoration: "none" }}>
           <Box
             sx={{
               border: 2,
@@ -142,7 +142,7 @@ export default function Navbar() {
           justifyContent: "center",
         }}
       >
-        <Link to="/" style={{ textDecoration: "none" }}>
+        <Link to="/Reservacion" style={{ textDecoration: "none" }}>
           <Box
             sx={{ border: 2, borderColor: "#644838", borderRadius: 16, mt: 1 }}
           >
@@ -191,11 +191,11 @@ export default function Navbar() {
           justifyContent: "center",
         }}
       >
-        <Link to="/">
+        <Button onClick={toggleBusqueda}>
           <Search
             sx={{ color: "#644838", fontFamily: "Outfit", fontSize: 50, m: 1 }}
           />
-        </Link>
+        </Button>
       </Box>
 
       <Box
@@ -205,11 +205,11 @@ export default function Navbar() {
           justifyContent: "center",
         }}
       >
-        <Link to="/">
+        <Button onClick={toggleCarrito}>
           <ShoppingCartOutlined
             sx={{ color: "#644838", fontFamily: "Outfit", fontSize: 50, m: 1 }}
           />
-        </Link>
+        </Button>
       </Box>
     </Box>
   );

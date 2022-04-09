@@ -17,6 +17,10 @@ import SanV from './images/SanV.jpg';
 import Navidad from './images/Navidad.jpg';
 import Halloween from './images/Halloween.jpg';
 import FlechaCD from './images/FlechaCD.png';
+import GalletasB from './images/GalletasBolitas.jpg';
+import PayG from './images/PayGalletas.jpg';
+import PastelPB from './images/PastelPB.jpg';
+import Cupcake from './images/CupcakeR.jpg';
 
 export default function Home(){
 
@@ -105,11 +109,11 @@ export default function Home(){
                         </Typography>
                     </Box>
                     <Box sx={{display:'flex', justifyContent:'end'}}>
-                        <Image src={FlechaCD} width="50%"/>
+                        <Image src={FlechaCD} duration={0} width="50%"/>
                     </Box>
                 </Grid>
                 <Grid item xs={6} sx={{height:560}}>
-                    <Image src={HomeImage} fit="cover"/>
+                    <Image src={HomeImage} duration={0} fit="cover"/>
                 </Grid>
             </Grid>
             <Box sx={{backgroundColor: 'background.main', pt: 7, pb:2}}>
@@ -154,7 +158,7 @@ export default function Home(){
                         </Box>
 
                         <Box sx={{height:"100%",  width:"92%", ml:5}}>
-                            <Image src={HamHuevo} fit="cover" />
+                            <Image src={HamHuevo} duration={0} fit="cover" />
                         </Box>
                     </Grid>
                     <Grid item xs={7} sx={{pl:1}}>
@@ -171,7 +175,7 @@ export default function Home(){
                                         <Image src={StarProm}  width='37%'/>
                                     </Box>
                                     <Card sx={{width:186, height:186, ml:3}}> 
-                                        <CardMedia component="img" image={CakeBolitas} fit="cover"/>
+                                        <Image src={CakeBolitas} duration={0} fit="cover"/>
                                     </Card>
                                 </Box>
                             </Grid>
@@ -180,12 +184,12 @@ export default function Home(){
                                     <Box sx={{position: 'absolute',  zIndex:20, width:200}}> 
                                         <Typography sx={{position: 'absolute', zIndex:40, ml:1.8, mt:2.5}} 
                                         style={TyStyProm}>
-                                            -30%
+                                            -35%
                                         </Typography>
                                         <Image src={StarProm}  width='37%'/>
                                     </Box>
                                     <Card sx={{width:186, height:186, ml:3}}> 
-                                        <CardMedia component="img" image={CakeBolitas} fit="cover"/>
+                                        <Image src={GalletasB} duration={0} fit="cover"/>
                                     </Card>
                                 </Box>
                             </Grid>
@@ -194,12 +198,12 @@ export default function Home(){
                                     <Box sx={{position: 'absolute',  zIndex:20, width:200}}> 
                                         <Typography sx={{position: 'absolute', zIndex:40, ml:1.8, mt:2.5}} 
                                         style={TyStyProm}>
-                                            -30%
+                                            -12%
                                         </Typography>
                                         <Image src={StarProm}  width='37%'/>
                                     </Box>
                                     <Card sx={{width:186, height:186, ml:3}}> 
-                                        <CardMedia component="img" image={CakeBolitas} fit="cover"/>
+                                        <Image src={PayG} duration={0} fit="cover"/>
                                     </Card>
                                 </Box>
                             </Grid>
@@ -210,12 +214,12 @@ export default function Home(){
                                     <Box sx={{position: 'absolute',  zIndex:20, width:200}}> 
                                         <Typography sx={{position: 'absolute', zIndex:40, ml:1.8, mt:2.5}} 
                                         style={TyStyProm}>
-                                            -30%
+                                            -15%
                                         </Typography>
                                         <Image src={StarProm}  width='37%'/>
                                     </Box>
                                     <Card sx={{width:186, height:186, ml:3}}> 
-                                        <CardMedia component="img" image={CakeBolitas} fit="cover"/>
+                                        <Image  src={HamHuevo} duration={0} fit="cover"/>
                                     </Card>
                                 </Box>
                             </Grid>
@@ -224,12 +228,12 @@ export default function Home(){
                                     <Box sx={{position: 'absolute',  zIndex:20, width:200}}> 
                                         <Typography sx={{position: 'absolute', zIndex:40, ml:1.8, mt:2.5}} 
                                         style={TyStyProm}>
-                                            -30%
+                                            -16%
                                         </Typography>
                                         <Image src={StarProm}  width='37%'/>
                                     </Box>
                                     <Card sx={{width:186, height:186, ml:3}}> 
-                                        <CardMedia component="img" image={CakeBolitas} fit="cover"/>
+                                        <Image src={PastelPB} duration={0} fit="cover"/>
                                     </Card>
                                 </Box>
                             </Grid>
@@ -238,12 +242,12 @@ export default function Home(){
                                     <Box sx={{position: 'absolute',  zIndex:20, width:200}}> 
                                         <Typography sx={{position: 'absolute', zIndex:40, ml:1.8, mt:2.5}} 
                                         style={TyStyProm}>
-                                            -30%
+                                            -10%
                                         </Typography>
                                         <Image src={StarProm}  width='37%'/>
                                     </Box>
                                     <Card sx={{width:186, height:186, ml:3}}> 
-                                        <CardMedia component="img" image={CakeBolitas} fit="cover"/>
+                                        <Image src={Cupcake} duration={0} fit="cover"/>
                                     </Card>
                                 </Box>
                             </Grid>

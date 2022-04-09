@@ -1,3 +1,7 @@
 .cardMenu{
-    box-shadow: 5px 5px 0px #EFD3C3;
+    box-shadow: 6px 6px 0px #EFD3C3;
+}
+
+.TyBtn:hover{
+    cursor: pointer;
 }

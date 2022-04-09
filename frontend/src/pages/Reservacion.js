@@ -19,7 +19,7 @@ import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import TimePicker from "@mui/lab/TimePicker";
-import QR from "./Images/QR.png"
+
 
 const theme = createTheme({
   palette: {

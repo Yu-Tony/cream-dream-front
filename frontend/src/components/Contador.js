@@ -10,7 +10,7 @@ const iconStyle = {
   fontWeight: "700",
 };
 
-function Contador() {
+function Contador({ bgcolor, justifyContent }) {
   const [piezas, setPiezas] = useState(1);
 
   const handleOnClick = (value) =>
@@ -18,9 +18,9 @@ function Contador() {
 
   return (
     <Box
-      sx={{ display: "flex", bgcolor: "" }}
-      alignItems="center"
-      justifyContent="end"
+      width="fit-content"
+      sx={{ display: "flex", bgcolor: bgcolor }}
+      justifyContent={justifyContent}
     >
       <Button onClick={() => handleOnClick(1)}>
         <Icon sx={iconStyle}>add</Icon>

@@ -38,7 +38,7 @@
 }
 
 .backgroundImage {
-  background-image: url("./pages/Images/Sucursales3.jpg");
+  background-image: url("./pages/images/Sucursales3.jpg");
   height: 500px;
   width: 100%;
   color: white;
@@ -89,7 +89,7 @@ background-color: #DE6D71;
 }
 
 .backgroundImageQR {
-  background-image: url("./pages/Images/QR.png");
+  background-image: url("./pages/images/QR.png");
   height: 640px;
   width: 640px;
   color: white;

@@ -11,7 +11,9 @@ import CardMedia from "@mui/material/CardMedia";
 import { CardActionArea } from "@mui/material";
 import Footer from "../components/Footer";
 
-
+import DescSucursal from "../components/DescSucursal";
+import useDrawer from "../hooks/useDrawer";
+import { createDrawer } from "../utils";
 
 const theme = createTheme({
   palette: {
@@ -19,8 +21,8 @@ const theme = createTheme({
       main: "#644838",
     },
     secondary: {
-        main: "#FFFFFF ",
-      },
+      main: "#FFFFFF ",
+    },
     background: {
       default: "#FEEEE5",
     },
@@ -30,15 +32,19 @@ const theme = createTheme({
   },
 });
 
+const SucursalDrawer = ({ toggle, isOpen }) =>
+  createDrawer(DescSucursal, toggle, isOpen);
+
 export default function Sucursales() {
+  const sucursalDrawer = useDrawer();
   return (
-    <ThemeProvider theme={theme}>
+    <>
+      <SucursalDrawer {...sucursalDrawer} />
       <CssBaseline />
       <div className="backgroundImage">
         <h3 className="text">Sucursales</h3>
       </div>
       <Box
-
         sx={{
           display: "flex",
           flexDirection: "row",
@@ -46,7 +52,10 @@ export default function Sucursales() {
           justifyContent: "center",
         }}
       >
-        <Card sx={{ width: "35%", m: 10, boxShadow: 15 }}>
+        <Card
+          sx={{ width: "35%", m: 10, boxShadow: 15 }}
+          onClick={sucursalDrawer.toggle}
+        >
           <CardActionArea>
             <CardMedia
               component="img"
@@ -133,7 +142,7 @@ export default function Sucursales() {
           </CardActionArea>
         </Card>
       </Box>
-      <Footer/>
-    </ThemeProvider>
+      <Footer />
+    </>
   );
 }

@@ -16,6 +16,21 @@ import FrappeC from './images/FrappeC.jpg';
 import Oolong from './images/Oolong.jpg';
 import FrappeCT from './images/FrappeCT.jpg';
 import FrappeT from './images/FrappeT.jpg';
+import HuevosDeli from './images/HuevosDeli.jpg';
+import HuevosD from './images/HuevosD.jpg';
+import Portobello from './images/Portobello.jpg';
+import Revolucionarios from './images/Revolucionarios.jpg';
+import OmeletteC from './images/OmeletteC.jpg';
+import RancherosQ from './images/RancherosQ.jpg';
+import ToastA from './images/ToastA.jpg';
+import BeyondS from './images/BeyondS.jpg';
+import PastaS from './images/PastaS.jpg';
+import PechugaN from './images/PechugaN.jpg';
+import BirthdayC from './images/BirthdayC.jpg';
+import CheesecakeV from './images/CheesecakeV.jpg';
+import PartyC from './images/PartyC.jpg';
+import CupcakeCP from './images/CupcakeCP.jpg';
+import CupcakeC from './images/CupcakeC.jpg';
 
 
 
@@ -60,26 +75,32 @@ export default function Home(){
                 <Box sx={{py:4,  display:'flex', justifyContent:'center'}}>
                     <Box sx={{mx:2}}>
                         <Typography id='Bebidas' style={TyStyProm} sx={{px:1, mx:1, display:'inline', borderBottom:3, borderColor:'primary.dark',
-                        textTransform: 'uppercase'}} className='TyBtn'>Bebidas</Typography>
+                        textTransform: 'uppercase' }} className='TyBtn'>Bebidas</Typography>
+
                         <Typography id='DesaAlmu' style={TyStyProm} sx={{px:1, mx:1, display:'inline', 
-                        textTransform: 'uppercase'}} className='TyBtn'>Desayunos y almuerzos</Typography>
+                        textTransform: 'uppercase'}} className='TyBtn'>
+                            Desayunos y almuerzos</Typography>
+
                         <Typography id='Comidas' style={TyStyProm} sx={{px:1, mx:1,display:'inline', 
                         textTransform: 'uppercase'}} className='TyBtn'>Comidas</Typography>
+
                         <Typography id='Postres' style={TyStyProm} sx={{px:1, mx:1, display:'inline', 
                         textTransform: 'uppercase'}} className='TyBtn'>Postres</Typography>
                     </Box>
                 </Box>
                 <Box>
-                    <Box id='BebidasM'>
+                    {/* BEBIDA */}
+                    <Container id='BebidasM' position={'absolute'}>
+                        <Box>
                     <Box id='Cafe' sx={{pb:3}}>
-                        <Box sx={{ml:12, mb:1}}>
+                        <Box sx={{ml:6, mb:1}}>
                             <Typography style={TyStyV5PD9} sx={{ textTransform: 'uppercase'}}>
                                 Café
                             </Typography>
                         </Box>
-                        <Box sx={{pb:4}}>
-                            <Grid container sx={{px:3}}>
-                                <Grid item xs={2} sx={{display:'flex', justifyContent:'center'}}>
+                        <Box sx={{pb:1}}>
+                            <Grid container>
+                                <Grid item xs={2} sx={{display:'flex', justifyContent:'center', mb:4}}>
                                     <Box>
                                         <Box sx={{position:'absolute', mt:28.5, width:165, display:'flex', justifyContent:'center'}}>
                                             <Button sx={{backgroundColor:'primary.main', border:1, borderColor:'text.primary', 
@@ -100,7 +121,7 @@ export default function Home(){
                                     </Box>
                                 </Grid>
 
-                                <Grid item xs={2} sx={{display:'flex', justifyContent:'center'}}>
+                                <Grid item xs={2} sx={{display:'flex', justifyContent:'center',  mb:4}}>
                                     <Box>
                                         <Box sx={{position:'absolute', mt:28.5, width:165, display:'flex', justifyContent:'center'}}>
                                             <Button sx={{backgroundColor:'primary.main', border:1, borderColor:'text.primary', 
@@ -122,7 +143,7 @@ export default function Home(){
                                     </Box>
                                 </Grid>
                                 
-                                <Grid item xs={2} sx={{display:'flex', justifyContent:'center'}}>
+                                <Grid item xs={2} sx={{display:'flex', justifyContent:'center', mb:4}}>
                                     <Box>
                                         <Box sx={{position:'absolute', mt:28.5, width:165, display:'flex', justifyContent:'center'}}>
                                             <Button sx={{backgroundColor:'primary.main', border:1, borderColor:'text.primary', 
@@ -144,7 +165,7 @@ export default function Home(){
                                     </Box>
                                 </Grid>
 
-                                <Grid item xs={2} sx={{display:'flex', justifyContent:'center'}}>
+                                <Grid item xs={2} sx={{display:'flex', justifyContent:'center', mb:4}}>
                                     <Box>
                                         <Box sx={{position:'absolute', mt:28.5, width:165, display:'flex', justifyContent:'center'}}>
                                             <Button sx={{backgroundColor:'primary.main', border:1, borderColor:'text.primary', 
@@ -172,14 +193,14 @@ export default function Home(){
                     
 
                     <Box id='Té'sx={{pb:3}}>
-                        <Box sx={{ml:12, mb:1}}>
+                        <Box sx={{ml:6, mb:1}}>
                             <Typography style={TyStyV5PD9} sx={{ textTransform: 'uppercase'}}>
                                 Té
                             </Typography>
                         </Box>
-                        <Box sx={{pb:4}}>
-                            <Grid container sx={{px:3}}>
-                                <Grid item xs={2} sx={{display:'flex', justifyContent:'center'}}>
+                        <Box sx={{pb:1}}>
+                            <Grid container>
+                                <Grid item xs={2} sx={{display:'flex', justifyContent:'center', mb:4}}>
                                     <Box>
                                         <Box sx={{position:'absolute', mt:28.5, width:165, display:'flex', justifyContent:'center'}}>
                                             <Button sx={{backgroundColor:'primary.main', border:1, borderColor:'text.primary', 
@@ -201,7 +222,7 @@ export default function Home(){
                                     </Box>
                                 </Grid>
 
-                                <Grid item xs={2} sx={{display:'flex', justifyContent:'center'}}>
+                                <Grid item xs={2} sx={{display:'flex', justifyContent:'center', mb:4}}>
                                     <Box>
                                         <Box sx={{position:'absolute', mt:28.5, width:165, display:'flex', justifyContent:'center'}}>
                                             <Button sx={{backgroundColor:'primary.main', border:1, borderColor:'text.primary', 
@@ -223,7 +244,7 @@ export default function Home(){
                                     </Box>
                                 </Grid>
                                 
-                                <Grid item xs={2} sx={{display:'flex', justifyContent:'center'}}>
+                                <Grid item xs={2} sx={{display:'flex', justifyContent:'center', mb:4}}>
                                     <Box>
                                         <Box sx={{position:'absolute', mt:28.5, width:165, display:'flex', justifyContent:'center'}}>
                                             <Button sx={{backgroundColor:'primary.main', border:1, borderColor:'text.primary', 
@@ -244,7 +265,7 @@ export default function Home(){
                                     </Box>
                                 </Grid>
 
-                                <Grid item xs={2} sx={{display:'flex', justifyContent:'center'}}>
+                                <Grid item xs={2} sx={{display:'flex', justifyContent:'center', mb:4}}>
                                     <Box>
                                         <Box sx={{position:'absolute', mt:28.5, width:165, display:'flex', justifyContent:'center'}}>
                                             <Button sx={{backgroundColor:'primary.main', border:1, borderColor:'text.primary', 
@@ -272,14 +293,14 @@ export default function Home(){
 
 
                     <Box id='Frappés'sx={{pb:3}}>
-                        <Box sx={{ml:12, mb:1}}>
+                        <Box sx={{ml:6, mb:1}}>
                             <Typography style={TyStyV5PD9} sx={{ textTransform: 'uppercase'}}>
                                 Frappés
                             </Typography>
                         </Box>
-                        <Box sx={{pb:4}}>
-                            <Grid container sx={{px:3}}>
-                                <Grid item xs={2} sx={{display:'flex', justifyContent:'center'}}>
+                        <Box sx={{pb:1}}>
+                            <Grid container>
+                                <Grid item xs={2} sx={{display:'flex', justifyContent:'center', mb:4}}>
                                     <Box>
                                         <Box sx={{position:'absolute', mt:28.5, width:165, display:'flex', justifyContent:'center'}}>
                                             <Button sx={{backgroundColor:'primary.main', border:1, borderColor:'text.primary', 
@@ -301,7 +322,7 @@ export default function Home(){
                                     </Box>
                                 </Grid>
 
-                                <Grid item xs={2} sx={{display:'flex', justifyContent:'center'}}>
+                                <Grid item xs={2} sx={{display:'flex', justifyContent:'center', mb:4}}>
                                     <Box>
                                         <Box sx={{position:'absolute', mt:28.5, width:165, display:'flex', justifyContent:'center'}}>
                                             <Button sx={{backgroundColor:'primary.main', border:1, borderColor:'text.primary', 
@@ -322,7 +343,7 @@ export default function Home(){
                                     </Box>
                                 </Grid>
                                 
-                                <Grid item xs={2} sx={{display:'flex', justifyContent:'center'}}>
+                                <Grid item xs={2} sx={{display:'flex', justifyContent:'center', mb:4}}>
                                     <Box>
                                         <Box sx={{position:'absolute', mt:28.5, width:165, display:'flex', justifyContent:'center'}}>
                                             <Button sx={{backgroundColor:'primary.main', border:1, borderColor:'text.primary', 
@@ -349,8 +370,424 @@ export default function Home(){
                         </Box>
                     </Box>
 
+                        </Box>
+                    </Container>
 
+
+                    {/* DESAYUNO */}
+                    <Container id='DesaYAlmuM' position={'absolute'}>
+                        <Box>
+                    <Box id='Huevo' sx={{pb:3}}>
+                        <Box sx={{ml:6, mb:1}}>
+                            <Typography style={TyStyV5PD9} sx={{ textTransform: 'uppercase'}}>
+                                Huevo
+                            </Typography>
+                        </Box>
+                        <Box sx={{pb:1}}>
+                            <Grid container>
+                                <Grid item xs={2} sx={{display:'flex', justifyContent:'center', mb:4}}>
+                                    <Box>
+                                        <Box sx={{position:'absolute', mt:28.5, width:165, display:'flex', justifyContent:'center'}}>
+                                            <Button sx={{backgroundColor:'primary.main', border:1, borderColor:'text.primary', 
+                                            py:0, px:2}} startIcon={<ShoppingCartOutlinedIcon />} style={TyStyD4SS9}
+                                            variant="contained">$96</Button>
+                                        </Box>
+
+                                        <Box sx={{backgroundColor:'secondary.secondary', borderRadius:1,  width:150, height:213,
+                                        textAlign:'center', px:1, py:1.5}} className='cardMenu'>
+                                            <Box sx={{width:'100%', display:'flex', justifyContent:'center'}}>
+                                                <Image src={HuevosDeli} fit='cover' duration={0} height={140} width={140}/>
+                                            </Box>
+                                            <Typography style={TyStyD5P9}>Huevos Deli</Typography>
+                                            <Typography style={TyStyD2P6} sx={{lineHeight:1.1}}>
+                                                Revueltos con salmon ahumado. Acompañados de un crujiente bagel,
+                                                queso crema y pepinillos.
+                                            </Typography>
+                                        </Box>
+                                    </Box>
+                                </Grid>
+
+                                <Grid item xs={2} sx={{display:'flex', justifyContent:'center',  mb:4}}>
+                                    <Box>
+                                        <Box sx={{position:'absolute', mt:28.5, width:165, display:'flex', justifyContent:'center'}}>
+                                            <Button sx={{backgroundColor:'primary.main', border:1, borderColor:'text.primary', 
+                                            py:0, px:2}} startIcon={<ShoppingCartOutlinedIcon />} style={TyStyD4SS9}
+                                            variant="contained">$110</Button>
+                                        </Box>
+
+                                        <Box sx={{backgroundColor:'secondary.secondary', borderRadius:1,  width:150, height:213,
+                                        textAlign:'center', px:1, py:1.5}} className='cardMenu'>
+                                            <Box sx={{width:'100%', display:'flex', justifyContent:'center'}}>
+                                                <Image src={HuevosD} fit='cover' duration={0} height={140} width={140}/>
+                                            </Box>
+                                            <Typography style={TyStyD5P9}>Huevos Dueto</Typography>
+                                            <Typography style={TyStyD2P6} sx={{lineHeight:1.1}}>
+                                                Tres tacos de huevo a la mexicana, cubiertos con salsa de frijol negro,
+                                                verde y queso.
+                                            </Typography>
+                                        </Box>
+                                    </Box>
+                                </Grid>
+                                
+                                <Grid item xs={2} sx={{display:'flex', justifyContent:'center', mb:4}}>
+                                    <Box>
+                                        <Box sx={{position:'absolute', mt:28.5, width:165, display:'flex', justifyContent:'center'}}>
+                                            <Button sx={{backgroundColor:'primary.main', border:1, borderColor:'text.primary', 
+                                            py:0, px:2}} startIcon={<ShoppingCartOutlinedIcon />} style={TyStyD4SS9}
+                                            variant="contained">$128</Button>
+                                        </Box>
+
+                                        <Box sx={{backgroundColor:'secondary.secondary', borderRadius:1,  width:150, height:213,
+                                        textAlign:'center', px:1, py:1.5}} className='cardMenu'>
+                                            <Box sx={{width:'100%', display:'flex', justifyContent:'center'}}>
+                                                <Image src={Portobello} fit='cover' duration={0} height={140} width={140}/>
+                                            </Box>
+                                            <Typography style={TyStyD5P9}>Portobello</Typography>
+                                            <Typography style={TyStyD2P6} sx={{lineHeight:1.1}}>
+                                                Huevos cocinados con hongos portobello, pesto de tomate y toque
+                                                de parmesano.
+                                            </Typography>
+                                        </Box>
+                                    </Box>
+                                </Grid>
+
+                                <Grid item xs={2} sx={{display:'flex', justifyContent:'center', mb:4}}>
+                                    <Box>
+                                        <Box sx={{position:'absolute', mt:28.5, width:165, display:'flex', justifyContent:'center'}}>
+                                            <Button sx={{backgroundColor:'primary.main', border:1, borderColor:'text.primary', 
+                                            py:0, px:2}} startIcon={<ShoppingCartOutlinedIcon />} style={TyStyD4SS9}
+                                            variant="contained">$96</Button>
+                                        </Box>
+
+                                        <Box sx={{backgroundColor:'secondary.secondary', borderRadius:1,  width:150, height:213,
+                                        textAlign:'center', px:1, py:1.5}} className='cardMenu'>
+                                            <Box sx={{width:'100%', display:'flex', justifyContent:'center'}}>
+                                                <Image src={Revolucionarios} fit='cover' duration={0} height={140} width={140}/>
+                                            </Box>
+                                            <Typography style={TyStyD5P9}>Revolucionarios</Typography>
+                                            <Typography style={TyStyD2P6} sx={{lineHeight:1.1}}>
+                                                2 huevos orgánicos estrellados sobre sopes de masa de nopal, bañados
+                                                en salsa.
+                                            </Typography>
+                                        </Box>
+                                    </Box>
+                                </Grid>
+
+                                <Grid item xs={2} sx={{display:'flex', justifyContent:'center', mb:4}}>
+                                    <Box>
+                                        <Box sx={{position:'absolute', mt:28.5, width:165, display:'flex', justifyContent:'center'}}>
+                                            <Button sx={{backgroundColor:'primary.main', border:1, borderColor:'text.primary', 
+                                            py:0, px:2}} startIcon={<ShoppingCartOutlinedIcon />} style={TyStyD4SS9}
+                                            variant="contained">$90</Button>
+                                        </Box>
+
+                                        <Box sx={{backgroundColor:'secondary.secondary', borderRadius:1,  width:150, height:213,
+                                        textAlign:'center', px:1, py:1.5}} className='cardMenu'>
+                                            <Box sx={{width:'100%', display:'flex', justifyContent:'center'}}>
+                                                <Image src={OmeletteC} fit='cover' duration={0} height={140} width={140}/>
+                                            </Box>
+                                            <Typography style={TyStyD5P9}>Omelette Caprese</Typography>
+                                            <Typography style={TyStyD2P6} sx={{lineHeight:1.1}}>
+                                                Queso mozzarella fresco, tomate deshidratado, jitomate y  un 
+                                                toque de pesto.
+                                            </Typography>
+                                        </Box>
+                                    </Box>
+                                </Grid>
+
+                                <Grid item xs={2} sx={{display:'flex', justifyContent:'center', mb:4}}>
+                                    <Box>
+                                        <Box sx={{position:'absolute', mt:28.5, width:165, display:'flex', justifyContent:'center'}}>
+                                            <Button sx={{backgroundColor:'primary.main', border:1, borderColor:'text.primary', 
+                                            py:0, px:2}} startIcon={<ShoppingCartOutlinedIcon />} style={TyStyD4SS9}
+                                            variant="contained">$134</Button>
+                                        </Box>
+
+                                        <Box sx={{backgroundColor:'secondary.secondary', borderRadius:1,  width:150, height:213,
+                                        textAlign:'center', px:1, py:1.5}} className='cardMenu'>
+                                            <Box sx={{width:'100%', display:'flex', justifyContent:'center'}}>
+                                                <Image src={RancherosQ} fit='cover' duration={0} height={140} width={140}/>
+                                            </Box>
+                                            <Typography style={TyStyD5P9}>Rancheros Quinoa</Typography>
+                                            <Typography style={TyStyD2P6} sx={{lineHeight:1.1}}>
+                                                Huevos estrellados con salsa roja sobre una base de quinoa, frijol,
+                                                kale, cilatro y aguacate.
+                                            </Typography>
+                                        </Box>
+                                    </Box>
+                                </Grid>
+
+                                <Grid item xs={2} sx={{display:'flex', justifyContent:'center', mb:4}}>
+                                    <Box>
+                                        <Box sx={{position:'absolute', mt:28.5, width:165, display:'flex', justifyContent:'center'}}>
+                                            <Button sx={{backgroundColor:'primary.main', border:1, borderColor:'text.primary', 
+                                            py:0, px:2}} startIcon={<ShoppingCartOutlinedIcon />} style={TyStyD4SS9}
+                                            variant="contained">$85</Button>
+                                        </Box>
+
+                                        <Box sx={{backgroundColor:'secondary.secondary', borderRadius:1,  width:150, height:213,
+                                        textAlign:'center', px:1, py:1.5}} className='cardMenu'>
+                                            <Box sx={{width:'100%', display:'flex', justifyContent:'center'}}>
+                                                <Image src={ToastA} fit='cover' duration={0} height={140} width={140}/>
+                                            </Box>
+                                            <Typography style={TyStyD5P9}>Toast de aguacate</Typography>
+                                            <Typography style={TyStyD2P6} sx={{lineHeight:1.1}}>
+                                                Dos rebanadas de pan ciabatta con aguacate, 
+                                                queso de cabra, jitomate y huevo.
+                                            </Typography>
+                                        </Box>
+                                    </Box>
+                                </Grid>
+
+                            </Grid>
+                        </Box>
                     </Box>
+
+                        </Box>
+                    </Container>
+
+
+                    {/* COMIDAS */}
+                    <Container id='ComidaM' position={'absolute'} >
+                        <Box>
+
+                    <Box id='Pastas'sx={{pb:3}}>
+                        <Box sx={{ml:6, mb:1}}>
+                            <Typography style={TyStyV5PD9} sx={{ textTransform: 'uppercase'}}>
+                                Pastas
+                            </Typography>
+                        </Box>
+                        <Box sx={{pb:1}}>
+                            <Grid container>
+                                <Grid item xs={2} sx={{display:'flex', justifyContent:'center', mb:4}}>
+                                    <Box>
+                                        <Box sx={{position:'absolute', mt:28.5, width:165, display:'flex', justifyContent:'center'}}>
+                                            <Button sx={{backgroundColor:'primary.main', border:1, borderColor:'text.primary', 
+                                            py:0, px:2}} startIcon={<ShoppingCartOutlinedIcon />} style={TyStyD4SS9}
+                                            variant="contained">$145</Button>
+                                        </Box>
+
+                                        <Box sx={{backgroundColor:'secondary.secondary', borderRadius:1,  width:150, height:213,
+                                        textAlign:'center', px:1, py:1.5}} className='cardMenu'>
+                                            <Box sx={{width:'100%', display:'flex', justifyContent:'center'}}>
+                                                <Image src={BeyondS} fit='cover' duration={0} height={140} width={140}/>
+                                            </Box>
+                                            <Typography style={TyStyD5P9}>Beyond Spaghetti</Typography>
+                                            <Typography style={TyStyD2P6} sx={{lineHeight:1.1}}>
+                                            Spaghetti con salsa pomodoro, calabaza italiana, champiñón y albondiguitas 
+                                            de Beyond Beef.
+                                            </Typography>
+                                        </Box>
+                                    </Box>
+                                </Grid>
+
+                                <Grid item xs={2} sx={{display:'flex', justifyContent:'center', mb:4}}>
+                                    <Box>
+                                        <Box sx={{position:'absolute', mt:28.5, width:165, display:'flex', justifyContent:'center'}}>
+                                            <Button sx={{backgroundColor:'primary.main', border:1, borderColor:'text.primary', 
+                                            py:0, px:2}} startIcon={<ShoppingCartOutlinedIcon />} style={TyStyD4SS9}
+                                            variant="contained">$125</Button>
+                                        </Box>
+
+                                        <Box sx={{backgroundColor:'secondary.secondary', borderRadius:1,  width:150, height:213,
+                                        textAlign:'center', px:1, py:1.5}} className='cardMenu'>
+                                            <Box sx={{width:'100%', display:'flex', justifyContent:'center'}}>
+                                                <Image src={PastaS} fit='cover' duration={0} height={140} width={140}/>
+                                            </Box>
+                                            <Typography style={TyStyD5P9}>Pasta salmón</Typography>
+                                            <Typography style={TyStyD2P6} sx={{lineHeight:1.1}}>
+                                            Fusilli con salsa cremosa de vino blanco, cilantro, habanero 
+                                            y salmón a la plancha.
+                                            </Typography>
+                                        </Box>
+                                    </Box>
+                                </Grid>
+
+                            </Grid>
+                        </Box>
+                    </Box>
+
+
+                    <Box id='Pollo'sx={{pb:3}}>
+                        <Box sx={{ml:6, mb:1}}>
+                            <Typography style={TyStyV5PD9} sx={{ textTransform: 'uppercase'}}>
+                                Pollo
+                            </Typography>
+                        </Box>
+                        <Box sx={{pb:1}}>
+                            <Grid container>
+                                <Grid item xs={2} sx={{display:'flex', justifyContent:'center', mb:4}}>
+                                    <Box>
+                                        <Box sx={{position:'absolute', mt:28.5, width:165, display:'flex', justifyContent:'center'}}>
+                                            <Button sx={{backgroundColor:'primary.main', border:1, borderColor:'text.primary', 
+                                            py:0, px:2}} startIcon={<ShoppingCartOutlinedIcon />} style={TyStyD4SS9}
+                                            variant="contained">$99</Button>
+                                        </Box>
+
+                                        <Box sx={{backgroundColor:'secondary.secondary', borderRadius:1,  width:150, height:213,
+                                        textAlign:'center', px:1, py:1.5}} className='cardMenu'>
+                                            <Box sx={{width:'100%', display:'flex', justifyContent:'center'}}>
+                                                <Image src={PechugaN} fit='cover' duration={0} height={140} width={140}/>
+                                            </Box>
+                                            <Typography style={TyStyD5P9}>Pechuga Napoli</Typography>
+                                            <Typography style={TyStyD2P6} sx={{lineHeight:1.1}}>
+                                            Rellena con queso mozzarella, espinaca, tomate deshidratado y albahaca. 
+                                            Pasta y espinaca.
+                                            </Typography>
+                                        </Box>
+                                    </Box>
+                                </Grid>
+
+                            </Grid>
+                        </Box>
+                    </Box>
+
+                        </Box>
+                    </Container>
+
+
+                    {/* POSTRES */}
+                    <Container id='PostresM' position={'absolute'} >
+                        <Box>
+
+                    <Box id='Pasteles'sx={{pb:3}}>
+                        <Box sx={{ml:6, mb:1}}>
+                            <Typography style={TyStyV5PD9} sx={{ textTransform: 'uppercase'}}>
+                                Pasteles
+                            </Typography>
+                        </Box>
+                        <Box sx={{pb:1}}>
+                            <Grid container>
+                                <Grid item xs={2} sx={{display:'flex', justifyContent:'center', mb:4}}>
+                                    <Box>
+                                        <Box sx={{position:'absolute', mt:28.5, width:165, display:'flex', justifyContent:'center'}}>
+                                            <Button sx={{backgroundColor:'primary.main', border:1, borderColor:'text.primary', 
+                                            py:0, px:2}} startIcon={<ShoppingCartOutlinedIcon />} style={TyStyD4SS9}
+                                            variant="contained">$260</Button>
+                                        </Box>
+
+                                        <Box sx={{backgroundColor:'secondary.secondary', borderRadius:1,  width:150, height:213,
+                                        textAlign:'center', px:1, py:1.5}} className='cardMenu'>
+                                            <Box sx={{width:'100%', display:'flex', justifyContent:'center'}}>
+                                                <Image src={BirthdayC} fit='cover' duration={0} height={140} width={140}/>
+                                            </Box>
+                                            <Typography style={TyStyD5P9}>Birthday Cake</Typography>
+                                            <Typography style={TyStyD2P6} sx={{lineHeight:1.1}}>
+                                            Tres niveles de pastel de vainilla con motas de arcoíris,
+                                            glaseado cremoso y migas.
+                                            </Typography>
+                                        </Box>
+                                    </Box>
+                                </Grid>
+
+                                <Grid item xs={2} sx={{display:'flex', justifyContent:'center', mb:4}}>
+                                    <Box>
+                                        <Box sx={{position:'absolute', mt:28.5, width:165, display:'flex', justifyContent:'center'}}>
+                                            <Button sx={{backgroundColor:'primary.main', border:1, borderColor:'text.primary', 
+                                            py:0, px:2}} startIcon={<ShoppingCartOutlinedIcon />} style={TyStyD4SS9}
+                                            variant="contained">$245</Button>
+                                        </Box>
+
+                                        <Box sx={{backgroundColor:'secondary.secondary', borderRadius:1,  width:150, height:213,
+                                        textAlign:'center', px:1, py:1.5}} className='cardMenu'>
+                                            <Box sx={{width:'100%', display:'flex', justifyContent:'center'}}>
+                                                <Image src={CheesecakeV} fit='cover' duration={0} height={140} width={140}/>
+                                            </Box>
+                                            <Typography style={TyStyD5P9}>Cheesecake Velvet</Typography>
+                                            <Typography style={TyStyD2P6} sx={{lineHeight:1.1}}>
+                                             Pastel de queso con capas y glaseado Red Velvet de doble chocolate, 
+                                             relleno de tarta de queso.
+                                            </Typography>
+                                        </Box>
+                                    </Box>
+                                </Grid>
+
+                                <Grid item xs={2} sx={{display:'flex', justifyContent:'center', mb:4}}>
+                                    <Box>
+                                        <Box sx={{position:'absolute', mt:28.5, width:165, display:'flex', justifyContent:'center'}}>
+                                            <Button sx={{backgroundColor:'primary.main', border:1, borderColor:'text.primary', 
+                                            py:0, px:2}} startIcon={<ShoppingCartOutlinedIcon />} style={TyStyD4SS9}
+                                            variant="contained">$270</Button>
+                                        </Box>
+
+                                        <Box sx={{backgroundColor:'secondary.secondary', borderRadius:1,  width:150, height:213,
+                                        textAlign:'center', px:1, py:1.5}} className='cardMenu'>
+                                            <Box sx={{width:'100%', display:'flex', justifyContent:'center'}}>
+                                                <Image src={PartyC} fit='cover' duration={0} height={140} width={140}/>
+                                            </Box>
+                                            <Typography style={TyStyD5P9}>Party Cake</Typography>
+                                            <Typography style={TyStyD2P6} sx={{lineHeight:1.1}}>
+                                                Pastel con capas de vainilla rosa, confeti y vainilla azul, cubiertas
+                                                con crema de mantequilla. 
+                                            </Typography>
+                                        </Box>
+                                    </Box>
+                                </Grid>
+
+                            </Grid>
+                        </Box>
+                    </Box>
+
+
+                    <Box id='Magdalenas'sx={{pb:3}}>
+                        <Box sx={{ml:6, mb:1}}>
+                            <Typography style={TyStyV5PD9} sx={{ textTransform: 'uppercase'}}>
+                            Magdalenas
+                            </Typography>
+                        </Box>
+                        <Box sx={{pb:1}}>
+                            <Grid container>
+                                <Grid item xs={2} sx={{display:'flex', justifyContent:'center', mb:4}}>
+                                    <Box>
+                                        <Box sx={{position:'absolute', mt:28.5, width:165, display:'flex', justifyContent:'center'}}>
+                                            <Button sx={{backgroundColor:'primary.main', border:1, borderColor:'text.primary', 
+                                            py:0, px:2}} startIcon={<ShoppingCartOutlinedIcon />} style={TyStyD4SS9}
+                                            variant="contained">$30</Button>
+                                        </Box>
+
+                                        <Box sx={{backgroundColor:'secondary.secondary', borderRadius:1,  width:150, height:213,
+                                        textAlign:'center', px:1, py:1.5}} className='cardMenu'>
+                                            <Box sx={{width:'100%', display:'flex', justifyContent:'center'}}>
+                                                <Image src={CupcakeCP} fit='cover' duration={0} height={140} width={140}/>
+                                            </Box>
+                                            <Typography style={TyStyD5P9}>Chocolate y Platano</Typography>
+                                            <Typography style={TyStyD2P6} sx={{lineHeight:1.1}}>
+                                            Pastel humedo de plátano cubierto con crema de chocolate.
+                                            </Typography>
+                                        </Box>
+                                    </Box>
+                                </Grid>
+
+                                <Grid item xs={2} sx={{display:'flex', justifyContent:'center', mb:4}}>
+                                    <Box>
+                                        <Box sx={{position:'absolute', mt:28.5, width:165, display:'flex', justifyContent:'center'}}>
+                                            <Button sx={{backgroundColor:'primary.main', border:1, borderColor:'text.primary', 
+                                            py:0, px:2}} startIcon={<ShoppingCartOutlinedIcon />} style={TyStyD4SS9}
+                                            variant="contained">$36</Button>
+                                        </Box>
+
+                                        <Box sx={{backgroundColor:'secondary.secondary', borderRadius:1,  width:150, height:213,
+                                        textAlign:'center', px:1, py:1.5}} className='cardMenu'>
+                                            <Box sx={{width:'100%', display:'flex', justifyContent:'center'}}>
+                                                <Image src={CupcakeC} fit='cover' duration={0} height={140} width={140}/>
+                                            </Box>
+                                            <Typography style={TyStyD5P9}>Caramelo</Typography>
+                                            <Typography style={TyStyD2P6} sx={{lineHeight:1.1}}>
+                                                Hecho con azucar morena y terminada con crema de mantquilla de merengue
+                                                acaramelado.
+                                            </Typography>
+                                        </Box>
+                                    </Box>
+                                </Grid>
+
+                            </Grid>
+                        </Box>
+                    </Box>
+
+                        </Box>
+                    </Container>
+
+
                 </Box>
             </Box>
         </ThemeProvider>

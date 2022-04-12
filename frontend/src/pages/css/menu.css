@@ -5,3 +5,9 @@
 .TyBtn:hover{
     cursor: pointer;
 }
+
+
+#ComidaM, #DesaYAlmuM, #PostresM{
+    visibility:hidden;
+    display: none;
+}

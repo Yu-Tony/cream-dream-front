@@ -63,7 +63,7 @@ const StyledTextField = withStyles((theme) => ({
     section: {
         padding: "3%",
         cursor: "pointer",
-        color: theme.palette.text.primary,
+        color: "#644838",
         "&:hover": {
          backgroundColor: "#FFEFB5"
          
@@ -119,11 +119,11 @@ const StyledTextField = withStyles((theme) => ({
       },
       links:
       {
-          color: theme.palette.text.primary,
-          "&:hover, &:focus, &:active, &:target": {
-            color: theme.palette.primary.main,
-            textDecoration: 'underline'
-          },
+        color: "#644838",
+        "&:hover, &:focus, &:active, &:target": {
+          color: "#FA8466",
+          textDecoration: 'underline'
+        },
   
       }
      

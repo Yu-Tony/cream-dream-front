@@ -1,0 +1,13 @@
+.cardMenu{
+    box-shadow: 6px 6px 0px #EFD3C3;
+}
+
+.TyBtn:hover{
+    cursor: pointer;
+}
+
+
+#ComidaM, #DesaYAlmuM, #PostresM{
+    visibility:hidden;
+    display: none;
+}

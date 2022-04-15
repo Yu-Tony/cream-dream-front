@@ -51,9 +51,6 @@ import theme from '../theme';
 
 
 const useStyles = makeStyles((theme) => ({
-    espacio: {
-      marginTop: theme.spacing(3),
-    },
     container: {
       backgroundColor: "rgb(50, 50, 50)",
     },
@@ -96,9 +93,9 @@ const useStyles = makeStyles((theme) => ({
     },
     links:
     {
-        color: theme.palette.text.primary,
+        color: "#644838",
         "&:hover, &:focus, &:active, &:target": {
-          color: theme.palette.primary.main,
+          color: "#FA8466",
           textDecoration: 'underline'
         },
 

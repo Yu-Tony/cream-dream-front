@@ -1,14 +1,11 @@
 import React from 'react';
-import { FormControl, TextField, FormLabel,  Grid, Button, Typography } from '@mui/material';
+import { FormControl, TextField, FormLabel,  Grid, Typography } from '@mui/material';
 
 import { withStyles, makeStyles } from '@mui/styles';
 
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-
 import { Box } from '@mui/system';
 
-import theme from '../theme';
-
+import Boton from "../components/Carrito/Boton";
 
 
   const StyledTextField = withStyles((theme) => ({
@@ -96,7 +93,8 @@ const useStyles = makeStyles((theme) => ({
         color: "#644838",
         "&:hover, &:focus, &:active, &:target": {
           color: "#FA8466",
-          textDecoration: 'underline'
+          textDecoration: 'underline',
+          cursor: "pointer",
         },
 
     }
@@ -128,18 +126,7 @@ export default function Session() {
         <StyledTextField type="password" id="passwordLogin" InputLabelProps={{ shrink: true }}  />
     </FormControl>
 
-    <Grid container spacing={0} direction="column" alignItems="center" justifyContent="center">
-      <Grid item >
-        <FormControl sx={{ m: 1 }} className={useStyles().button}>
-          <Button type='Submit' p={0} >     
-            <Box  className={useStyles().texto}>
-              Entrar
-              <Box className={useStyles().fondo}></Box>
-              </Box>   
-          </Button>
-        </FormControl>
-      </Grid>
-    </Grid>
+    <Boton bgcolor="secondary.main">Entrar</Boton>
 
 </form>;
   }
@@ -162,19 +149,8 @@ export default function Session() {
         <StyledTextField  id="nameSign" InputLabelProps={{ shrink: true }}  />
     </FormControl>
 
+    <Boton bgcolor="secondary.main">Registrarse</Boton>
    
-    <Grid container spacing={0} direction="column" alignItems="center" justifyContent="center">
-      <Grid item >
-        <FormControl sx={{ m: 1 }} className={useStyles().button}>
-          <Button type='Submit' p={0} >     
-            <Box  className={useStyles().texto}>
-              Registrarse
-              <Box className={useStyles().fondo}></Box>
-              </Box>   
-          </Button>
-        </FormControl>
-      </Grid>
-    </Grid>
  
 </form>;
   }
@@ -207,7 +183,7 @@ export default function Session() {
 
 
     return (
-        <ThemeProvider theme={theme}>
+    
         <Grid
             container
             spacing={0}
@@ -219,38 +195,30 @@ export default function Session() {
         >
 
 
-            <Box item xs={3} sx={{p:8,bgcolor: 'white', paddingTop: "60px", paddingBottom: "60px",  boxShadow: "-20px 20px #efd3c3"}}  >
+            <Box item xs={12} sx={{p:8,bgcolor: 'white', paddingTop: "60px", paddingBottom: "60px",  boxShadow: "-20px 20px #efd3c3"}}  >
 
-            <Grid container  textAlign={'center'} pb={"60px"}>
-                <Grid item xs={6} >
-
-                <a  className={useStyles().links} onClick={() => signUp()}>
-                    <Typography  variant="h4">REGISTRARSE</Typography>
-                </a>
           
-                </Grid>
-                <Grid item xs={6}>
-                    <a className={useStyles().links} onClick={() => login()}>
-                        <Typography variant="h4">INICIAR SESIÓN</Typography>
-                    </a>
-                    
-                </Grid>
-            </Grid>
+              <Grid container  textAlign={'center'} spacing={2} pb={"60px"}>
+                    <Grid item xs={12} sm={6}>
+                      <a  className={useStyles().links} onClick={() => signUp()}>
+                          <Typography  variant="h4">REGISTRARSE</Typography>
+                      </a>
+                    </Grid>
 
-            <Grid container >
-            {visible && <Login></Login>}
-            {sign && <SignUp></SignUp> }
-            </Grid>
+                    <Grid item  xs={12} sm={6}>
+                        <a className={useStyles().links} onClick={() => login()}>
+                            <Typography variant="h4">INICIAR SESIÓN</Typography>
+                        </a>
+                    </Grid>
+
+                </Grid>
+
+
+                <Grid container >
+                  {visible && <Login></Login>}
+                  {sign && <SignUp></SignUp> }
+                </Grid>
          
-      
-
-
-              
-           
-
-            
-
-
 
             </Box>                       
 
@@ -258,7 +226,7 @@ export default function Session() {
         </Grid>
 
 
-        </ThemeProvider>
+
 
 
     )

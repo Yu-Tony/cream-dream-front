@@ -1,14 +1,17 @@
 import React, { useState } from "react";
-import { ThemeProvider , withStyles, makeStyles , styled} from "@mui/styles"
+
+import { withStyles, makeStyles} from "@mui/styles"
 import { Button, Grid ,FormControl, TextField, FormLabel, Typography, InputAdornment, Select, MenuItem} from "@mui/material"
-import theme from '../theme';
+
 import { Box } from '@mui/system';
-import { IconButton } from '@mui/material';
+
 import { FileUploader } from "react-drag-drop-files";
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
+import Boton from "../components/Carrito/Boton";
 
+import { Hidden } from '@mui/material';
 
 const StyledTextField = withStyles((theme) => ({
     root: {
@@ -68,7 +71,7 @@ const StyledTextField = withStyles((theme) => ({
          
         }
       },
-      button: {
+     /* button: {
         padding: "0%",
         position: "relative",
         cursor: "pointer",
@@ -115,15 +118,18 @@ const StyledTextField = withStyles((theme) => ({
         width: "85%",
         height: "75%",
    
-      },
+      },*/
       links:
       {
         
           color: "#644838",
+          cursor: "pointer",
           "&:hover, &:focus, &:active, &:target": {
             color: "#FA8466",
-            textDecoration: 'underline'
-          },
+            textDecoration: 'underline',
+            cursor: "pointer"
+          
+          }
   
       }
      
@@ -140,39 +146,40 @@ export default function Create()
         return( <form>
             <Typography  variant="h4">AGREGAR COMIDA</Typography>
     
-            <Grid container  >
+            <Grid container>
+    
     
                 {/*NOMBRE DE LA COMIDA*/}
-                <Grid item xs={2}  p={"20px"} >
+                <Grid item xs={12}  xl={2} p={"10px"} >
                     <FormControl fullWidth sx={{ m: 1 }}>
                         <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Nombre</FormLabel>
                     </FormControl>
                 </Grid>
-                <Grid item xs={10}   p={"20px"} >
+                <Grid item xs={12} xl={10} p={"10px"} >
                     <FormControl fullWidth sx={{ m: 1 }}>
                         <StyledTextField id="nombreComida" InputLabelProps={{ shrink: true }}  />
                     </FormControl>
                 </Grid>
     
                 {/*DESCRIPCION DE LA COMIDA*/}
-                <Grid item xs={2}  p={"20px"} >
+                <Grid item xs={12} xl={2} p={"10px"} >
                     <FormControl fullWidth sx={{ m: 1 }}>
                         <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Descripción</FormLabel>
                     </FormControl>
                 </Grid>
-                <Grid item xs={10}   p={"20px"} >
+                <Grid item xs={12} xl={10} p={"10px"} >
                     <FormControl fullWidth sx={{ m: 1 }}>
                     <StyledTextField  multiline rows={2} maxRows={4} id="DescripcionComida" InputLabelProps={{ shrink: true }}  />
                     </FormControl>
                 </Grid>
     
                 {/*OPCIONES DE LA COMIDA*/}
-                <Grid item xs={2}  p={"20px"} >
+                <Grid item xs={12} xl={2} p={"10px"} >
                     <FormControl fullWidth sx={{ m: 1 }}>
-                        <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Opciones</FormLabel>
+                        <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Opción</FormLabel>
                     </FormControl>
                 </Grid>
-                <Grid item xs={10}   p={"20px"} >
+                <Grid item xs={12} xl={10} p={"10px"} >
                     <Grid container>
     
                         <Grid item xs={6}  p={"10px"}>
@@ -193,28 +200,30 @@ export default function Create()
                 </Grid>
     
                 {/*CATEGORIAS DE LA COMIDA*/}
-                <Grid item xs={2}  p={"20px"} >
+                <Grid item xs={12}  xl={2} p={"10px"} >
                     <FormControl fullWidth sx={{ m: 1 }}>
-                        <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Categorias</FormLabel>
+                        <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Categoría</FormLabel>
                     </FormControl>
                 </Grid>
-                <Grid item xs={10}   p={"20px"} >
+                <Grid item xs={12} xl={10} p={"10px"} >
                     <FormControl fullWidth sx={{ m: 1 }}>
-                        <StyledTextField    id="categoriasComida" InputLabelProps={{ shrink: true }}  InputProps={{endAdornment:<Button type='Submit' p={0} >     
+                  
+                        <StyledTextField  id="categoriasComida" InputLabelProps={{ shrink: true }}  InputProps={{endAdornment:<Button p={0} >     
                             <Box  className={useStyles().section}>
                             AGREGAR
                             <Box className={useStyles().fondo}></Box>
                             </Box>   
                         </Button>}} />
+
                     </FormControl>
                 </Grid>
     
-                <Grid item xs={2}  p={"20px"} >
+                <Grid item xs={12} xl={2} p={"10px"} >
                     <FormControl fullWidth sx={{ m: 1 }}>
-                        <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Imagenes</FormLabel>
+                        <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Imagen</FormLabel>
                     </FormControl>
                 </Grid>
-                <Grid item xs={10}   p={"20px"} >
+                <Grid item xs={12} lg={10} p={"10px"}  >
                     <FormControl fullWidth sx={{ m: 1 }}>
                     <FileUploader handleChange={handleChange}  multiple={true} name="file" types={fileTypes} />
                     <p>{file ? `File name: ${file[0].name}` : "no files uploaded yet"}</p>
@@ -223,25 +232,11 @@ export default function Create()
     
                 
     
-                <Grid container spacing={0} direction="column" alignItems="center" justifyContent="center">
-                    <Grid item >
-                        <FormControl sx={{ m: 1 }} className={useStyles().button}>
-                        <Button type='Submit' p={0} >     
-                            <Box  className={useStyles().texto}>
-                            Guardar
-                            <Box className={useStyles().fondoYellow}></Box>
-                            </Box>   
-                        </Button>
-                        </FormControl>
-                    </Grid>
-                </Grid>
+                <Boton bgcolor="secondary.main">Guardar</Boton>
     
             </Grid>
     
             </form>)
-       
-
-      
     }
 
     function comidas()
@@ -251,59 +246,33 @@ export default function Create()
         setMesa(false);
     }
 
-    const [empleado, setEmpleado] = React.useState(false);
-    function Empleado(props)
+    const [mesa, setMesa] = React.useState(false);
+    function Mesa(props)
     {
-        return(
-            <form>
-            <Typography  variant="h4">AGREGAR EMPLEADO</Typography>
+        return(  <form>
+            <Typography  variant="h4">AGREGAR MESA</Typography>
 
-            <Grid container   >
+            <Grid container>
 
-                {/*NOMBRE DE LA COMIDA*/}
-                <Grid item xs={2}  p={"20px"} >
+                {/*Numero de sillas*/ }
+                <Grid item xs={12} xl={2} p={"10px"}>
                     <FormControl fullWidth sx={{ m: 1 }}>
-                        <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Nombre</FormLabel>
+                        <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Sillas</FormLabel>
                     </FormControl>
                 </Grid>
-                <Grid item xs={10}   p={"20px"} >
+                <Grid item xs={12} xl={10} p={"10px"}>
                     <FormControl fullWidth sx={{ m: 1 }}>
-                        <StyledTextField id="nombreEmpleado" InputLabelProps={{ shrink: true }}  />
-                    </FormControl>
-                </Grid>
-
-                {/*DESCRIPCION DE LA COMIDA*/}
-                <Grid item xs={2}  p={"20px"} >
-                    <FormControl fullWidth sx={{ m: 1 }}>
-                        <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Correo</FormLabel>
-                    </FormControl>
-                </Grid>
-                <Grid item xs={10}   p={"20px"} >
-                    <FormControl fullWidth sx={{ m: 1 }}>
-                    <StyledTextField id="correoEmpleado" InputLabelProps={{ shrink: true }}  />
+                        <StyledTextField  InputProps={{startAdornment: <InputAdornment position="start"></InputAdornment>,}} type="number" id="numeroSillas" InputLabelProps={{ shrink: true }}  />
                     </FormControl>
                 </Grid>
 
-                {/*OPCIONES DE LA COMIDA*/}
-                <Grid item xs={2}  p={"20px"} >
-                    <FormControl fullWidth sx={{ m: 1 }}>
-                        <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Contraseña</FormLabel>
-                    </FormControl>
-                </Grid>
-                <Grid item xs={10}   p={"20px"} >
-                <FormControl fullWidth sx={{ m: 1 }}>
-                <StyledTextField type="password" id="passwordEmpleado" InputLabelProps={{ shrink: true }}  />
-                    </FormControl>
-            
-                </Grid>
-
-                {/*CATEGORIAS DE LA COMIDA*/}
-                <Grid item xs={2}  p={"20px"} >
+                {/*Sucursal de sillas */}
+                <Grid item xs={12} xl={2} p={"10px"} >
                     <FormControl fullWidth sx={{ m: 1 }}>
                         <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Sucursal</FormLabel>
                     </FormControl>
                 </Grid>
-                <Grid item xs={10}   p={"20px"} >
+                <Grid item xs={12} xl={10} p={"10px"} >
                     <FormControl fullWidth sx={{ m: 1 }}>
                     <Select
                         value={local}
@@ -321,12 +290,143 @@ export default function Create()
                     </FormControl>
                 </Grid>
 
-                <Grid item xs={2}  p={"20px"} >
+                {/*Empleado */}
+                <Grid item xs={12} xl={2} p={"10px"} >
+                    <FormControl fullWidth sx={{ m: 1 }}>
+                        <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Empleado</FormLabel>
+                    </FormControl>
+                </Grid>
+                <Grid item xs={12} xl={10} p={"10px"} >
+                    <FormControl fullWidth sx={{ m: 1 }}>
+                    <Select
+                        value={local}
+                        onChange={handleChangeSelect}
+                        displayEmpty
+                        inputProps={{ 'aria-label': 'Without label' }}
+                        >
+                        <MenuItem value="">
+                        <em>None</em>
+                        </MenuItem>
+                        <MenuItem value={10}>Ten</MenuItem>
+                        <MenuItem value={20}>Twenty</MenuItem>
+                        <MenuItem value={30}>Thirty</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Grid>
+
+                {/*Disponible Mesa */}
+                <Grid item  xs={12} xl={2} p={"10px"}  >
+                    <FormControl fullWidth sx={{ m: 1 }}>
+                        <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Disponible</FormLabel>
+                    </FormControl>
+                </Grid>
+                <Grid item  xs={12} xl={10} p={"10px"}  >
+                    <FormControl fullWidth sx={{ m: 1 }}>
+                        <ToggleButtonGroup
+                            color="primary"
+                            value={selected}
+                            exclusive
+                            onChange={handleAlignment}
+                            >
+                            <ToggleButton value="web">Si</ToggleButton>
+                            <ToggleButton value="android">No</ToggleButton>
+                        </ToggleButtonGroup>
+                    </FormControl>
+                </Grid>
+
+                <Boton bgcolor="secondary.main">Guardar</Boton>
+
+            </Grid>
+         
+        </form>)
+      
+    }
+
+    function mesas()
+    {
+        setComida(false);
+        setEmpleado(false);
+        setMesa(true);
+    }
+
+
+    const [empleado, setEmpleado] = React.useState(false);
+    function Empleado(props)
+    {
+        return(
+            <form>
+            <Typography  variant="h4">AGREGAR EMPLEADO</Typography>
+
+            <Grid container   >
+
+                {/*NOMBRE DE EMPLEADO*/}
+                <Grid item xs={12} xl={2} p={"10px"}>
+                    <FormControl fullWidth sx={{ m: 1 }}>
+                        <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Nombre</FormLabel>
+                    </FormControl>
+                </Grid>
+                <Grid item xs={12} xl={10} p={"10px"} >
+                    <FormControl fullWidth sx={{ m: 1 }}>
+                        <StyledTextField id="nombreEmpleado" InputLabelProps={{ shrink: true }}  />
+                    </FormControl>
+                </Grid>
+
+                {/*CORREO DE EMPLEADO*/}
+                <Grid item xs={12} xl={2} p={"10px"} >
+                    <FormControl fullWidth sx={{ m: 1 }}>
+                        <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Correo</FormLabel>
+                    </FormControl>
+                </Grid>
+                <Grid item xs={12} xl={10} p={"10px"} >
+                    <FormControl fullWidth sx={{ m: 1 }}>
+                    <StyledTextField id="correoEmpleado" InputLabelProps={{ shrink: true }}  />
+                    </FormControl>
+                </Grid>
+
+                {/*CONTRASENA DE EMPLEADO*/}
+                <Grid item xs={12} xl={2} p={"10px"} >
+                    <FormControl fullWidth sx={{ m: 1 }}>
+                        <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Contraseña</FormLabel>
+                    </FormControl>
+                </Grid>
+                <Grid item xs={12} xl={10} p={"10px"} >
+                <FormControl fullWidth sx={{ m: 1 }}>
+                <StyledTextField type="password" id="passwordEmpleado" InputLabelProps={{ shrink: true }}  />
+                    </FormControl>
+            
+                </Grid>
+
+                {/*SUCURSAL DE EMPLEADO*/}
+                <Grid item xs={12} xl={2} p={"10px"}>
+                    <FormControl fullWidth sx={{ m: 1 }}>
+                        <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Sucursal</FormLabel>
+                    </FormControl>
+                </Grid>
+                <Grid item xs={12} xl={10} p={"10px"} >
+                    <FormControl fullWidth sx={{ m: 1 }}>
+                    <Select
+                        value={local}
+                        onChange={handleChangeSelect}
+                        displayEmpty
+                        inputProps={{ 'aria-label': 'Without label' }}
+                        >
+                        <MenuItem value="">
+                        <em>None</em>
+                        </MenuItem>
+                        <MenuItem value={10}>Ten</MenuItem>
+                        <MenuItem value={20}>Twenty</MenuItem>
+                        <MenuItem value={30}>Thirty</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Grid>
+
+                {/*EMPLEADO ADMIN */}
+                <Grid item xs={12} xl={2} p={"10px"}>
                     <FormControl fullWidth sx={{ m: 1 }}>
                         <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Admin</FormLabel>
                     </FormControl>
                 </Grid>
-                <Grid item xs={10}   p={"20px"} >
+                <Grid item xs={12} xl={10} p={"10px"}>
                     <FormControl fullWidth sx={{ m: 1 }}>
                     <ToggleButtonGroup
                             color="primary"
@@ -342,18 +442,7 @@ export default function Create()
 
                 
 
-                <Grid container spacing={0} direction="column" alignItems="center" justifyContent="center">
-                    <Grid item >
-                        <FormControl sx={{ m: 1 }} className={useStyles().button}>
-                        <Button type='Submit' p={0} >     
-                            <Box  className={useStyles().texto}>
-                            Guardar
-                            <Box className={useStyles().fondoYellow}></Box>
-                            </Box>   
-                        </Button>
-                        </FormControl>
-                    </Grid>
-                </Grid>
+                <Boton bgcolor="secondary.main">Guardar</Boton>
 
             </Grid>
 
@@ -370,120 +459,6 @@ export default function Create()
         setMesa(false);
     }
 
-    const [mesa, setMesa] = React.useState(false);
-    function Mesa(props)
-    {
-        return(  <form>
-            <Typography  variant="h4">AGREGAR MESA</Typography>
-
-            <Grid container     >
-                <Grid item xs={2}  p={"20px"} >
-                    <FormControl fullWidth sx={{ m: 1 }}>
-                        <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Sillas</FormLabel>
-                    </FormControl>
-                </Grid>
-                <Grid item xs={10}   p={"20px"} >
-                    <FormControl fullWidth sx={{ m: 1 }}>
-                    <StyledTextField  InputProps={{startAdornment: <InputAdornment position="start"></InputAdornment>,}} type="number" id="numeroSillas" InputLabelProps={{ shrink: true }}  />
-
-                    </FormControl>
-                </Grid>
-            </Grid>
-
-            <Grid container    pb={"5px"} >
-                <Grid item xs={2}  p={"20px"} >
-                    <FormControl fullWidth sx={{ m: 1 }}>
-                        <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Sucursal</FormLabel>
-                    </FormControl>
-                </Grid>
-                <Grid item xs={10}   p={"20px"} >
-                    <FormControl fullWidth sx={{ m: 1 }}>
-                    <Select
-                        value={local}
-                        onChange={handleChangeSelect}
-                        displayEmpty
-                        inputProps={{ 'aria-label': 'Without label' }}
-                        >
-                        <MenuItem value="">
-                        <em>None</em>
-                        </MenuItem>
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
-                        </Select>
-                    </FormControl>
-                </Grid>
-            </Grid>
-
-            <Grid container    pb={"5px"} >
-                <Grid item xs={2}  p={"20px"} >
-                    <FormControl fullWidth sx={{ m: 1 }}>
-                        <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Empleado</FormLabel>
-                    </FormControl>
-                </Grid>
-                <Grid item xs={10}   p={"20px"} >
-                    <FormControl fullWidth sx={{ m: 1 }}>
-                    <Select
-                        value={local}
-                        onChange={handleChangeSelect}
-                        displayEmpty
-                        inputProps={{ 'aria-label': 'Without label' }}
-                        >
-                        <MenuItem value="">
-                        <em>None</em>
-                        </MenuItem>
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
-                        </Select>
-                    </FormControl>
-                </Grid>
-            </Grid>
-
-            <Grid container    pb={"5px"} >
-                <Grid item xs={2}  p={"20px"} >
-                    <FormControl fullWidth sx={{ m: 1 }}>
-                        <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Disponible</FormLabel>
-                    </FormControl>
-                </Grid>
-                <Grid item xs={10}   p={"20px"} >
-                    <FormControl fullWidth sx={{ m: 1 }}>
-                        <ToggleButtonGroup
-                            color="primary"
-                            value={selected}
-                            exclusive
-                            onChange={handleAlignment}
-                            >
-                            <ToggleButton value="web">Si</ToggleButton>
-                            <ToggleButton value="android">No</ToggleButton>
-                        </ToggleButtonGroup>
-                    </FormControl>
-                </Grid>
-            </Grid>
-
-
-            <Grid container spacing={0} direction="column" alignItems="center" justifyContent="center">
-                    <Grid item >
-                        <FormControl sx={{ m: 1 }} className={useStyles().button}>
-                        <Button type='Submit' p={0} >     
-                            <Box  className={useStyles().texto}>
-                            Guardar
-                            <Box className={useStyles().fondoYellow}></Box>
-                            </Box>   
-                        </Button>
-                        </FormControl>
-                    </Grid>
-            </Grid>
-        </form>)
-      
-    }
-
-    function mesas()
-    {
-        setComida(false);
-        setEmpleado(false);
-        setMesa(true);
-    }
 
     const [local, setLocal] = React.useState('');
 
@@ -508,71 +483,48 @@ export default function Create()
 
 
 
-        <ThemeProvider theme={theme}>
+
         <Grid
             container
             spacing={0}
             direction="column"
             alignItems="center"
             justifyContent="center"
-            style={{ minHeight: '100vh' }}
+            
             sx={{bgcolor: '#FEEEE5'}}  
         >
            
-             <Grid container >
-                <Grid item xs={2}  justifyContent="center"  direction="column" alignItems="center" className={useStyles().line} p={"20px"} >
+             <Grid container style={{ minHeight: '100vh' }} >
                  
-                    <Grid container >
-                        <Grid item xs={12}  justifyContent="center"  direction="column" alignItems="center" >
-                            <FormControl sx={{ m: 1 }} className={useStyles().button}>
-                                <Button  p={0} onClick={() => comidas()}>     
-                                    <Box  className={useStyles().texto}>
-                                    Comida
-                                    <Box className={useStyles().fondoOrange}></Box>
-                                    </Box>   
-                                </Button>
-                            </FormControl>
-                        </Grid>
+                <Grid item md={2} xs={12}>
+                 
+                    <Grid container direction="column"  justifyContent="center"  alignItems="center" p={"10px"}>
+        
+                        <Button  p={0} onClick={() => comidas()}>     
+                            <Boton bgcolor="primary.main">Comida</Boton>
+                        </Button>
+    
+
+                                    
+                        <Button  p={0} onClick={() => mesas()}>     
+                            <Boton bgcolor="primary.main">Mesa</Boton>
+                        </Button>
+                    
+                        
+                    
+                        <Button  p={0} onClick={() => empleados()}>     
+                            <Boton bgcolor="primary.main">Empleado</Boton>
+                        </Button>
                     </Grid>
 
-                    <Grid container >
-                        <Grid item xs={12}  justifyContent="center"  direction="column" alignItems="center" >
-                            <FormControl sx={{ m: 1 }} className={useStyles().button}>
-                                <Button  p={0} onClick={() => mesas()}>     
-                                    <Box  className={useStyles().texto}>
-                                    Mesa
-                                    <Box className={useStyles().fondoOrange}></Box>
-                                    </Box>   
-                                </Button>
-                            </FormControl>
-                        </Grid>
-                    </Grid>
-                            
-                    <Grid container >
-                        <Grid item xs={12}  justifyContent="center"  direction="column" alignItems="center" >              
-                            <FormControl sx={{ m: 1 }} className={useStyles().button}>
-                                <Button  p={0} onClick={() => empleados()}>     
-                                    <Box  className={useStyles().texto}>
-                                    Empleado
-                                    <Box className={useStyles().fondoOrange}></Box>
-                                    </Box>   
-                                </Button>
-                            </FormControl>
-                        </Grid>
-                    </Grid>
-
-             
-
-   
-              
-      
-          
                 </Grid>
 
-                <Grid item xs={2} p={"80px"}></Grid>
+                <Hidden mdDown implementation="css">
+                    <Grid item sm={2} p={"100px"}></Grid>
+                </Hidden>
 
-                <Grid item xs={6} p={"80px"}>
-                    <Box item xs={3} sx={{p:8,bgcolor: 'white', paddingTop: "60px", paddingBottom: "60px",  boxShadow: "-20px 20px #efd3c3"}}  >
+                <Grid item md={6} xs={12} p={"20px"}>
+                    <Box item sx={{p:8,bgcolor: 'white', paddingTop: "60px", paddingBottom: "60px",  boxShadow: "-20px 20px #efd3c3"}}  >
        
                     {comida && <Comida></Comida>}
                     {mesa && <Mesa></Mesa> }
@@ -597,7 +549,7 @@ export default function Create()
         </Grid>
 
 
-    </ThemeProvider>
+        
     )
 
 }

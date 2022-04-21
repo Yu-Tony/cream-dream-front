@@ -143,7 +143,8 @@ export default function Create()
     const [comida, setComida] = React.useState(true);
     function Comida(props) {
     
-        return( <form>
+        return( 
+        <form>
             <Typography  variant="h4">AGREGAR COMIDA</Typography>
     
             <Grid container>

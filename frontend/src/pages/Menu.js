@@ -2232,73 +2232,51 @@ export default function Menu() {
       <Grid  container spacing={0}  direction="column" sx={{ backgroundColor: "background.main"}}  >
         
         {/*Categorias */}
-        <Box sx={{ py: 4, display: "flex", justifyContent: "center" }}>
-          <Box sx={{ mx: 2 }}>
-            <Typography
+ 
+        <Grid container sx={{ py: 4, display: "flex", justifyContent: "center" }}>
+          <Grid item xs={6}  md={3} lg={2} sx={{ display: "flex", justifyContent: "center", mb: 2 }}>
+            <a 
+              href="#"
               id="Bebidas"
-              style={TyStyProm}
-              sx={{
-                px: 1,
-                mx: 1,
-                display: "inline",
-                borderBottom: 3,
-                borderColor: "primary.dark",
-                textTransform: "uppercase",
-              }}
               className="TyBtn"
               onClick={() => bebidaTrue()}
-              
             >
-              Bebidas
-            </Typography>
-
-            <Typography
-              id="DesaAlmu"
-              style={TyStyProm}
-              sx={{
-                px: 1,
-                mx: 1,
-                display: "inline",
-                textTransform: "uppercase",
-              }}
+              BEBIDAS
+            </a>
+          </Grid>
+          <Grid item xs={6} md={3} lg={2} sx={{ display: "flex", justifyContent: "center", mb: 2 }}>
+            <a 
+              href="#"
+              id="Desayunos"
               className="TyBtn"
               onClick={() => desayunoTrue()}
             >
-              Desayunos y almuerzos
-            </Typography>
-
-            <Typography
+              DESAYUNOS Y ALMUERZOS
+            </a>
+          </Grid>        
+          <Grid item xs={6} md={3} lg={2} sx={{ display: "flex", justifyContent: "center", mb: 2 }}>
+            <a 
+              href="#"
               id="Comidas"
-              style={TyStyProm}
-              sx={{
-                px: 1,
-                mx: 1,
-                display: "inline",
-                textTransform: "uppercase",
-              }}
               className="TyBtn"
               onClick={() => comidaTrue()}
             >
-              Comidas
-            </Typography>
+              COMIDAS
+            </a>
 
-            <Typography
+          </Grid>
+          <Grid item xs={6} md={3} lg={2} sx={{ display: "flex", justifyContent: "center", mb: 2 }}>
+    
+            <a
               id="Postres"
-              style={TyStyProm}
-              sx={{
-                px: 1,
-                mx: 1,
-                display: "inline",
-                textTransform: "uppercase",
-              }}
+              href="#"
               className="TyBtn"
               onClick={() => postresTrue()}
             >
-              Postres
-            </Typography>
-            
-          </Box>
-        </Box>
+              POSTRES
+            </a>
+          </Grid>
+        </Grid>
 
         {/*Contenido */}
         <Box style={{ minHeight: '100vh' }}>

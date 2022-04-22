@@ -6,3 +6,29 @@
     cursor: pointer;
 }
 
+a { 
+    text-decoration: none;
+    font-size: 130%;
+    color: #644838;
+    font-weight: 700;
+    margin: 1%;
+ }
+ 
+ a:hover {
+  text-decoration: underline;
+  text-decoration-color: #FA8466;
+  text-decoration-thickness: 20%;
+}
+
+a:active {
+    text-decoration: underline;
+    text-decoration-thickness: 20%;
+    text-decoration-color: #FA8466;
+  }
+
+  a:focus{
+    text-decoration-color: #FA8466;
+    text-decoration: underline;
+    text-decoration-thickness: 20%;
+   
+  }

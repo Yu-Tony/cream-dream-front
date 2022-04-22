@@ -24,30 +24,6 @@ import Cupcake from './images/CupcakeR.jpg';
 
 export default function Home(){
 
-    const theme = createTheme({
-        palette: {
-            primary: {
-                main: "#FA8466",
-                dark: "#DE6D71",
-        },
-            secondary: {
-            main: "#FFEFB5",
-            secondary: "#FFFFFF",
-        },
-        background: {
-            main: "#FEEEE5",
-            dark: "#EFD3C3",
-        },
-        text: {
-            primary: "#644838",
-            secondary: "#DE6D71",
-            tertiary: "#FA8466",
-        },
-        },
-        typography: {
-        fontFamily: "Outfit",
-        }
-    });
     
     const TyStyProm={ fontSize: 20, color:"#644838", fontWeight:700 };
 
@@ -94,7 +70,7 @@ export default function Home(){
 
 
     return(
-        <ThemeProvider theme={theme}>
+        <Box container>
             <Grid container >
                 <Grid item xs={6} sx={{backgroundColor: 'secondary.main', height:560,}}>
                     <Box sx={{ml: 10, mt:14}}>
@@ -518,6 +494,6 @@ export default function Home(){
                     </Box>
                 </Box>
             </Box>
-        </ThemeProvider>
+        </Box>
     );
 }

@@ -1,3 +1,4 @@
+  /*--------------------------IMPORTS--------------------- */
 import React from 'react';
 import { FormControl, TextField, FormLabel,  Grid, Typography } from '@mui/material';
 
@@ -7,7 +8,10 @@ import { Box } from '@mui/system';
 
 import Boton from "../components/Carrito/Boton";
 
+import "./css/menu.css";
 
+
+  {/*--------------------------THEME--------------------- */}
   const StyledTextField = withStyles((theme) => ({
     root: {
 //letra
@@ -94,7 +98,7 @@ const useStyles = makeStyles((theme) => ({
         "&:hover, &:focus, &:active, &:target": {
           color: "#FA8466",
           textDecoration: 'underline',
-          cursor: "pointer",
+          cursor: "pointer"
         },
 
     }
@@ -105,7 +109,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-
+{/*--------------------------INICIO LOGIN--------------------- */}
 export default function Session() {
 
   
@@ -200,13 +204,13 @@ export default function Session() {
           
               <Grid container  textAlign={'center'} spacing={2} pb={"60px"}>
                     <Grid item xs={12} sm={6}>
-                      <a  className={useStyles().links} onClick={() => signUp()}>
+                      <a href='#'  onClick={() => signUp()}>
                           <Typography  variant="h4">REGISTRARSE</Typography>
                       </a>
                     </Grid>
 
                     <Grid item  xs={12} sm={6}>
-                        <a className={useStyles().links} onClick={() => login()}>
+                        <a href='#' onClick={() => login()}>
                             <Typography variant="h4">INICIAR SESIÓN</Typography>
                         </a>
                     </Grid>

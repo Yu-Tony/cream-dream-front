@@ -9,6 +9,9 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import { FormControlLabel } from "@mui/material";
 
+import Boton from "../components/Carrito/Boton";
+
+import { Hidden } from '@mui/material';
 
 
 const StyledTextField = withStyles((theme) => ({
@@ -138,36 +141,61 @@ export default function Create()
     function Personal(props) {
     
         return( <form>
-            <Typography sx={{color: '#644838'}} variant="h4">Información Personal</Typography>
+
+<Typography sx={{color: '#644838'}} variant="h4">Información Personal</Typography>
+
+              <Grid container>
+
+          
     
-            <FormControl fullWidth sx={{ m: 1 }}>
-        <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Correo Electrónico</FormLabel>
-        <StyledTextField  id="emailSign" InputLabelProps={{ shrink: true }}  />
-    </FormControl>
-
-    <FormControl fullWidth sx={{ m: 1 }}>
-        <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Contraseña</FormLabel>
-        <StyledTextField type="password" id="passwordSign" InputLabelProps={{ shrink: true }}  />
-    </FormControl>
-
-    <FormControl fullWidth sx={{ m: 1 }}>
-        <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Nombre</FormLabel>
-        <StyledTextField  id="nameSign" InputLabelProps={{ shrink: true }}  />
-    </FormControl>
-
-   
-    <Grid container spacing={0} direction="column" alignItems="center" justifyContent="center">
-      <Grid item >
-        <FormControl sx={{ m: 1 }} className={useStyles().button}>
-            <Button type='Submit' p={0} >     
-                <Box  className={useStyles().texto}>
-                Guardar
-                <Box className={useStyles().fondoYellow}></Box>
-                </Box>   
-            </Button>
-         </FormControl>
-      </Grid>
+    <Grid item xs={12} xl={2} p={"10px"}>
+        <FormControl fullWidth sx={{ m: 1 }}>
+            <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Correo Electrónico</FormLabel>
+        </FormControl>
     </Grid>
+    <Grid item xs={12} xl={10} p={"10px"} >
+            <FormControl fullWidth sx={{ m: 1 }}>
+                <StyledTextField id="nombreComida" InputLabelProps={{ shrink: true }}  />
+            </FormControl>
+    </Grid>
+
+    
+    <Grid item xs={12} xl={2} p={"10px"}>
+        <FormControl fullWidth sx={{ m: 1 }}>
+        <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Contraseña</FormLabel>
+        </FormControl>
+    </Grid>
+    <Grid item xs={12} xl={10} p={"10px"} >
+            <FormControl fullWidth sx={{ m: 1 }}>
+            <StyledTextField type="password" id="passwordSign" InputLabelProps={{ shrink: true }}  />
+            </FormControl>
+    </Grid>
+
+
+    <Grid item xs={12} xl={2} p={"10px"}>
+        <FormControl fullWidth sx={{ m: 1 }}>
+        <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Nombre</FormLabel>
+        </FormControl>
+    </Grid>
+    <Grid item xs={12} xl={10} p={"10px"} >
+            <FormControl fullWidth sx={{ m: 1 }}>
+            <StyledTextField  id="nameSign" InputLabelProps={{ shrink: true }}  />
+            </FormControl>
+    </Grid>
+
+
+
+
+<Grid container spacing={0} direction="column" alignItems="center" justifyContent="center">
+<Grid item >
+    <Button  p={0} >     
+        <Boton bgcolor="secondary.main">Guardar</Boton>
+    </Button>
+</Grid>
+</Grid>
+
+              </Grid>
+
     
             </form>)
        
@@ -192,35 +220,35 @@ export default function Create()
             <Grid container   >
 
                 {/*NOMBRE DE LA COMIDA*/}
-                <Grid item xs={2}  p={"20px"} >
+                <Grid item xs={12} xl={2} p={"10px"}>
                     <FormControl fullWidth sx={{ m: 1 }}>
                         <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Pago</FormLabel>
                     </FormControl>
                 </Grid>
-                <Grid item xs={10}   p={"20px"} >
+                <Grid item xs={12} xl={10} p={"10px"}>
                     <FormControl fullWidth sx={{ m: 1 }}>
                     <RadioGroup
-        row
-        aria-labelledby="demo-row-radio-buttons-group-label"
-        name="row-radio-buttons-group"
-      >
-        <FormControlLabel value="tajeta" control={<Radio />} label="Tarjeta" />
-        <FormControlLabel value="paypal" control={<Radio />} label="Paypal" />
-        <FormControlLabel value="cupon" control={<Radio />} label="Cupon" />
-       
-      </RadioGroup>
-                    </FormControl>
+                        row
+                        aria-labelledby="demo-row-radio-buttons-group-label"
+                        name="row-radio-buttons-group"
+                    >
+                        <FormControlLabel value="tajeta" control={<Radio />} label="Tarjeta" />
+                        <FormControlLabel value="paypal" control={<Radio />} label="Paypal" />
+                        <FormControlLabel value="cupon" control={<Radio />} label="Cupon" />
+                    
+                    </RadioGroup>
+                                    </FormControl>
                 </Grid>
 
                          
 
                 {/*CATEGORIAS DE LA COMIDA*/}
-                <Grid item xs={2}  p={"20px"} >
+                <Grid item xs={12} xl={2} p={"10px"}>
                     <FormControl fullWidth sx={{ m: 1 }}>
                         <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Tipo</FormLabel>
                     </FormControl>
                 </Grid>
-                <Grid item xs={10}   p={"20px"} >
+                <Grid item xs={12} xl={10} p={"10px"}>
                     <FormControl fullWidth sx={{ m: 1 }}>
                     <Select
                         value={local}
@@ -238,12 +266,12 @@ export default function Create()
                     </FormControl>
                 </Grid>
 
-                <Grid item xs={2}  p={"20px"} >
+                <Grid item xs={12} xl={2} p={"10px"}>
                     <FormControl fullWidth sx={{ m: 1 }}>
                         <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Número</FormLabel>
                     </FormControl>
                 </Grid>
-                <Grid item xs={10}   p={"20px"} >
+                <Grid item xs={12} xl={10} p={"10px"}>
                     <FormControl fullWidth sx={{ m: 1 }}>
                     <StyledTextField  InputProps={{startAdornment: <InputAdornment position="start"></InputAdornment>,}} type="number" id="DescripcionComida" InputLabelProps={{ shrink: true }}  />
                     </FormControl>
@@ -252,12 +280,12 @@ export default function Create()
 
 
                 {/*DESCRIPCION DE LA COMIDA*/}
-                <Grid item xs={2}  p={"20px"} >
+                <Grid item xs={12} xl={2} p={"10px"}>
                     <FormControl fullWidth sx={{ m: 1 }}>
                         <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Nombre</FormLabel>
                     </FormControl>
                 </Grid>
-                <Grid item xs={10}   p={"20px"} >
+                <Grid item xs={12} xl={10} p={"10px"}>
                     <FormControl fullWidth sx={{ m: 1 }}>
                     <StyledTextField id="correoEmpleado" InputLabelProps={{ shrink: true }}  />
                     </FormControl>
@@ -267,18 +295,18 @@ export default function Create()
 
 
                 {/*OPCIONES DE LA COMIDA*/}
-                <Grid item xs={2}  p={"20px"} >
+                <Grid item xs={12} xl={2} p={"10px"}>
                     <FormControl fullWidth sx={{ m: 1 }}>
                         <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Valido hasta</FormLabel>
                     </FormControl>
                 </Grid>
-                <Grid item xs={10}   p={"20px"} >
+                <Grid item xs={12} xl={10} p={"10px"}>
                     <Grid container>
                         <Grid item xs={6}  p={"10px"}>
                             <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Mes</FormLabel>
                             <StyledTextField  InputProps={{startAdornment: <InputAdornment position="start"></InputAdornment>,}} type="number" id="DescripcionComida" InputLabelProps={{ shrink: true }}  />
                         </Grid>
-                        <Grid item xs={6}  p={"10px"} >
+                        <Grid item xs={6}  p={"10px"}>
                             <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Año</FormLabel>
                             <StyledTextField  InputProps={{startAdornment: <InputAdornment position="start"></InputAdornment>,}} type="number" id="DescripcionComida" InputLabelProps={{ shrink: true }}  />
                         </Grid>
@@ -286,12 +314,12 @@ export default function Create()
                 </Grid>
 
                 {/*DESCRIPCION DE LA COMIDA*/}
-                <Grid item xs={2}  p={"20px"} >
+                <Grid item xs={12} xl={2} p={"10px"}>
                     <FormControl fullWidth sx={{ m: 1 }}>
                         <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>CCV</FormLabel>
                     </FormControl>
                 </Grid>
-                <Grid item xs={10}   p={"20px"} >
+                <Grid item xs={12} xl={10} p={"10px"}>
                     <FormControl fullWidth sx={{ m: 1 }}>
                     <StyledTextField  id="nameSign" InputLabelProps={{ shrink: true }}  />
                     </FormControl>
@@ -300,14 +328,9 @@ export default function Create()
 
                 <Grid container spacing={0} direction="column" alignItems="center" justifyContent="center">
                     <Grid item >
-                        <FormControl sx={{ m: 1 }} className={useStyles().button}>
-                            <Button type='Submit' p={0} >     
-                                <Box  className={useStyles().texto}>
-                                Guardar
-                                <Box className={useStyles().fondoYellow}></Box>
-                                </Box>   
-                            </Button>
-                        </FormControl>
+                        <Button  p={0} >     
+                            <Boton bgcolor="secondary.main">Guardar</Boton>
+                        </Button>
                     </Grid>
                 </Grid>
 
@@ -364,60 +387,47 @@ export default function Create()
             sx={{bgcolor: '#FEEEE5'}}  
         >
            
-             <Grid container >
-                <Grid item xs={2}  justifyContent="center"  direction="column" alignItems="center" className={useStyles().line} p={"20px"} >
+           <Grid container style={{ minHeight: '100vh' }} >
                  
-                    <Grid container >
-                        <Grid item xs={12}  justifyContent="center"  direction="column" alignItems="center" >
-                            <FormControl sx={{ m: 1 }} className={useStyles().button}>
-                                <Button  p={0} onClick={() => personal()}>     
-                                    <Box  className={useStyles().texto}>
-                                    Información Personal
-                                    <Box className={useStyles().fondoOrange}></Box>
-                                    </Box>   
-                                </Button>
-                            </FormControl>
-                        </Grid>
-                    </Grid>
-
+                 <Grid item md={2} xs={12}>
                   
-                            
-                    <Grid container >
-                        <Grid item xs={12}  justifyContent="center"  direction="column" alignItems="center" >              
-                            <FormControl sx={{ m: 1 }} className={useStyles().button}>
-                                <Button  p={0} onClick={() => pago()}>     
-                                    <Box  className={useStyles().texto}>
-                                    Información de Pago
-                                    <Box className={useStyles().fondoOrange}></Box>
-                                    </Box>   
-                                </Button>
-                            </FormControl>
-                        </Grid>
-                    </Grid>
+                     <Grid container direction="column"  justifyContent="center"  alignItems="center" p={"10px"}>
+         
+                     <Button  p={0} onClick={() => personal()}>     
+                         <Boton bgcolor="primary.main">Informacion personal</Boton>
+                     </Button>
+ 
 
-             
+                                 
+                     <Button  p={0} onClick={() => pago()}>     
+                         <Boton bgcolor="primary.main">Información de Pago</Boton>
+                     </Button>
+                 
 
-   
-              
-      
           
                 </Grid>
 
-                <Grid item xs={2} p={"80px"}></Grid>
+             </Grid>
 
-                <Grid item xs={6} p={"80px"} >
-                    <Box item xs={3} sx={{p:8,bgcolor: 'white', paddingTop: "60px",  boxShadow: "-20px 20px #FA8466"}}  >
-       
-                    {infoPersonal && <Personal></Personal>}
-        
-                    {infoPago && <Pago></Pago>}
+             <Hidden mdDown implementation="css">
+                 <Grid item sm={2} p={"100px"}></Grid>
+             </Hidden>
 
-                      
-
-                    </Box>
-                </Grid>
 
  
+            <Grid item md={6} xs={12} p={"20px"}>
+                <Box item sx={{p:8,bgcolor: 'white', paddingTop: "60px", paddingBottom: "60px",  boxShadow: "-20px 20px #efd3c3"}}  >
+       
+                
+                {infoPersonal && <Personal></Personal>}
+        
+                {infoPago && <Pago></Pago>}
+
+                  
+
+                </Box>
+            </Grid>
+
 
 
 

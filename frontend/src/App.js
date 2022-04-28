@@ -8,6 +8,7 @@ import Sucursales from "./pages/Sucursales";
 import Navbar from "./components/Navbar";
 import Busqueda from "./components/Busqueda";
 import Carrito from "./components/Carrito";
+import Pago from "./pages/pago";
 
 import useDrawer from "./hooks/useDrawer";
 import { createDrawer } from "./utils";
@@ -15,6 +16,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import { Fragment } from "react";
 import { Routes, Route } from "react-router-dom";
+
 
 const BusquedaDrawer = ({ toggle, isOpen }) =>
   createDrawer(Busqueda, toggle, isOpen);
@@ -42,6 +44,7 @@ function App() {
         <Route exact path="/Profile" element={<Profile />} />
         <Route exact path="/Reservacion" element={<Reservacion />} />
         <Route exact path="/Sucursales" element={<Sucursales />} />
+        <Route exact path="/Pago" element={<Pago />} />
       </Routes>
     </ThemeProvider>
   );

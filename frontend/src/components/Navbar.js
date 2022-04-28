@@ -11,6 +11,9 @@ import {
 import { Container, Typography, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 
+import { Image } from "mui-image";
+import logoCD from "../pages/images/logoCD.png";
+
 export default function Navbar({ toggleBusqueda, toggleCarrito }) {
   /*
 
@@ -119,7 +122,8 @@ export default function Navbar({ toggleBusqueda, toggleCarrito }) {
         }}
       >
         <Link to="/" style={{ textDecoration: "none" }}>
-          <Typography
+         {/**
+          * <Typography
             sx={{
               color: "#FFFFFF",
               fontFamily: "Outfit",
@@ -132,6 +136,16 @@ export default function Navbar({ toggleBusqueda, toggleCarrito }) {
           >
             Cream Dream
           </Typography>
+          */}
+
+<Image
+                          src={logoCD}
+                          fit="cover"
+                          duration={0}
+                          height={70}
+                          width={150}
+                        />
+
         </Link>
       </Box>
 

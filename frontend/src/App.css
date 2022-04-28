@@ -53,7 +53,7 @@
   width: 100%;
   max-width: 100%;
   text-align: center;
-  font-size: 8em;
+  font-size: 8vw;
   text-transform: uppercase;
   font-weight: bold;
   color: white;
@@ -69,6 +69,7 @@
   -6px 10px 1px #DE6D71  ;
   
 }
+
 
 .class{
   box-shadow: 10px 10px 1px #EFD3C3 ;
@@ -100,3 +101,10 @@ background-color: #DE6D71;
   border: 2px solid #FFFFFF;
   border-radius: 10px;
 }
+
+@media only screen and (max-width: 900px) {
+  /* For desktop: */
+  .backgroundImage {  height: 300px;}
+
+}
+

@@ -142,57 +142,57 @@ export default function Create()
     
         return( <form>
 
-<Typography sx={{color: '#644838'}} variant="h4">Información Personal</Typography>
+        <Typography sx={{color: '#644838'}} variant="h4">Información Personal</Typography>
 
               <Grid container>
 
           
-    
-    <Grid item xs={12} xl={2} p={"10px"}>
-        <FormControl fullWidth sx={{ m: 1 }}>
-            <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Correo Electrónico</FormLabel>
-        </FormControl>
-    </Grid>
-    <Grid item xs={12} xl={10} p={"10px"} >
-            <FormControl fullWidth sx={{ m: 1 }}>
-                <StyledTextField id="nombreComida" InputLabelProps={{ shrink: true }}  />
-            </FormControl>
-    </Grid>
+            
+                <Grid item xs={12} xl={2} p={"10px"}>
+                    <FormControl fullWidth sx={{ m: 1 }}>
+                        <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Correo Electrónico</FormLabel>
+                    </FormControl>
+                </Grid>
+                <Grid item xs={12} xl={10} p={"10px"} >
+                        <FormControl fullWidth sx={{ m: 1 }}>
+                            <StyledTextField id="nombreComida" InputLabelProps={{ shrink: true }}  />
+                        </FormControl>
+                </Grid>
 
-    
-    <Grid item xs={12} xl={2} p={"10px"}>
-        <FormControl fullWidth sx={{ m: 1 }}>
-        <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Contraseña</FormLabel>
-        </FormControl>
-    </Grid>
-    <Grid item xs={12} xl={10} p={"10px"} >
-            <FormControl fullWidth sx={{ m: 1 }}>
-            <StyledTextField type="password" id="passwordSign" InputLabelProps={{ shrink: true }}  />
-            </FormControl>
-    </Grid>
-
-
-    <Grid item xs={12} xl={2} p={"10px"}>
-        <FormControl fullWidth sx={{ m: 1 }}>
-        <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Nombre</FormLabel>
-        </FormControl>
-    </Grid>
-    <Grid item xs={12} xl={10} p={"10px"} >
-            <FormControl fullWidth sx={{ m: 1 }}>
-            <StyledTextField  id="nameSign" InputLabelProps={{ shrink: true }}  />
-            </FormControl>
-    </Grid>
+                
+                <Grid item xs={12} xl={2} p={"10px"}>
+                    <FormControl fullWidth sx={{ m: 1 }}>
+                    <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Contraseña</FormLabel>
+                    </FormControl>
+                </Grid>
+                <Grid item xs={12} xl={10} p={"10px"} >
+                        <FormControl fullWidth sx={{ m: 1 }}>
+                        <StyledTextField type="password" id="passwordSign" InputLabelProps={{ shrink: true }}  />
+                        </FormControl>
+                </Grid>
 
 
+                <Grid item xs={12} xl={2} p={"10px"}>
+                    <FormControl fullWidth sx={{ m: 1 }}>
+                    <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Nombre</FormLabel>
+                    </FormControl>
+                </Grid>
+                <Grid item xs={12} xl={10} p={"10px"} >
+                        <FormControl fullWidth sx={{ m: 1 }}>
+                        <StyledTextField  id="nameSign" InputLabelProps={{ shrink: true }}  />
+                        </FormControl>
+                </Grid>
 
 
-<Grid container spacing={0} direction="column" alignItems="center" justifyContent="center">
-<Grid item >
-    <Button  p={0} >     
-        <Boton bgcolor="secondary.main">Guardar</Boton>
-    </Button>
-</Grid>
-</Grid>
+
+
+                <Grid container spacing={0} direction="column" alignItems="center" justifyContent="center">
+                <Grid item >
+                    <Button  p={0} >     
+                        <Boton bgcolor="secondary.main">Guardar</Boton>
+                    </Button>
+                </Grid>
+                </Grid>
 
               </Grid>
 
@@ -234,8 +234,7 @@ export default function Create()
                     >
                         <FormControlLabel value="tajeta" control={<Radio />} label="Tarjeta" />
                         <FormControlLabel value="paypal" control={<Radio />} label="Paypal" />
-                        <FormControlLabel value="cupon" control={<Radio />} label="Cupon" />
-                    
+                                          
                     </RadioGroup>
                                     </FormControl>
                 </Grid>
@@ -376,7 +375,7 @@ export default function Create()
 
 
 
-        <ThemeProvider theme={theme}>
+  
         <Grid
             container
             spacing={0}
@@ -440,8 +439,6 @@ export default function Create()
 
         </Grid>
 
-
-    </ThemeProvider>
     )
 
 }

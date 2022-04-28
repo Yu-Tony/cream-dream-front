@@ -21,6 +21,9 @@ var theme = createTheme({
   },
   typography: {
     fontFamily: "Outfit",
+    color: "#644838"
+
+
   },
   components: {
     MuiChip: {

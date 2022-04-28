@@ -492,7 +492,7 @@ export default function Create()
             alignItems="center"
             justifyContent="center"
             
-            sx={{bgcolor: '#FEEEE5'}}  
+            sx={{ backgroundColor: "background.main"}}  
         >
            
              <Grid container style={{ minHeight: '100vh' }} >

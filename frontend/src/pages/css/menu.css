@@ -41,6 +41,7 @@ a {
   text-decoration: underline;
   text-decoration-color: #FA8466;
   text-decoration-thickness: 20%;
+  color: #FA8466;
 }
 
 a:active {

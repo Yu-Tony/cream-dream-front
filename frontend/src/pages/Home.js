@@ -1,7 +1,7 @@
 import React from "react";
 import {Card, CardMedia, Typography, Link, Paper, Button, Box, Grid, ThemeProvider, createTheme, Container} from '@mui/material';
-import { zIndex } from '@mui/system';
-import Carousel from 'react-material-ui-carousel'
+import { width, zIndex } from '@mui/system';
+//import Carousel from 'react-material-ui-carousel'
 import Image from 'mui-image'
 
 import HomeImage from './images/HomeImageL.jpg';
@@ -20,6 +20,9 @@ import PayG from './images/PayGalletas.jpg';
 import PastelPB from './images/PastelPB.jpg';
 import Cupcake from './images/CupcakeR.jpg';
 
+import Carousel from 'react-grid-carousel';
+import CardContent from '@mui/material/CardContent';
+import CardActions from '@mui/material/CardActions';
 
 export default function Home(){
 
@@ -66,6 +69,7 @@ export default function Home(){
 }
 
 // RESOLVER
+
 
 
     return(
@@ -365,23 +369,38 @@ export default function Home(){
 
             {/* CUARTO */}
             <Grid container pt={10}>
-                <Grid item lg={12}>
+                <Grid item xl={12} lg={12}>
+
+
                     <Typography sx={{fontSize: 40, color:"text.primary", fontWeight:900, textAlign:'center', mb:3}}>
                         EVENTOS
                     </Typography>
 
 
-                    <Carousel sx={{height: 550}} fullHeightHover={false} navButtonsAlwaysVisible= 'true' 
-                    navButtonsProps={{ style: {backgroundColor: '#DE6D71'}} } >
+                 
 
-                        <Grid container sx={{px:10}}>
+                    <Carousel cols={4} rows={1} gap={10}  responsiveLayout={[
+                        {
+                            breakpoint: 1200,
+                            cols: 3
+                        },
+                        {
+                            breakpoint: 990,
+                            cols: 2
+                        },
+                        {
+                            breakpoint: 767,
+                            cols: 1,
+                            autoplay: 5000
+                        }
+                    ]} loop>
 
-                            <Grid item lg={3}>
-                                <Container>
-                                <Link href="#" underline="none">
-                                    <Box sx={{height: 500, width:270, position:'absolute', backgroundColor: 'primary.main',
-                                    alignContent:'center', display:'flex'}}>
-                                        <Box sx={{width:270, position:'absolute'}}>
+{/*
+                        <Carousel.Item>
+                            <Box sx={{ height: 500, width:270, position:'absolute', backgroundColor: 'primary.main',
+                            alignContent:'center', display:'flex'}}>
+
+                                <Box sx={{width:270, position:'absolute'}}>
                                             <Typography style={TyStyTP9} sx={{textAlign:'center', px:0.4,
                                             mt:3}}> 
                                                 CUMPLEAÑOS</Typography>
@@ -403,13 +422,14 @@ export default function Home(){
                                             mt:2}}> 
                                                 CLICK PARA MÁS
                                             </Typography>
-                                        </Box>
-                                        <Box sx={{height: 500, width:270, opacity:'8%'}}>
+                                </Box>
+
+                                <Box sx={{height: 500, width:270, opacity:'8%'}}>
                                             <Image src={BirthdayE} duration={0} fit="cover"/>
-                                        </Box>
-                                    </Box>
-                                    
-                                    <Box sx={{height: 500, width:270,  zIndex:10, "&:hover": {visibility:'hidden'}}}>
+                                </Box>
+                            </Box>
+                                
+                            <Box sx={{height: 500, width:270,  zIndex:10, "&:hover": {visibility:'hidden'}}}>
                                         <Typography style={TyStyTSS9} sx={{position:'absolute', zIndex:30,
                                             pl:1, pt:55.5, width:260}}> 
                                             CUMPLEAÑOS</Typography>
@@ -419,14 +439,13 @@ export default function Home(){
                                         <Box sx={{height: 500, width:270}}>
                                             <Image src={BirthdayE} duration={0} fit="cover"/>
                                         </Box>
-                                    </Box>
-                                </Link>
-                                </Container>
-                            </Grid>
-                            <Grid item lg={3}>
-                                <Container>
-                                <Link href="#" underline="none">
-                                    <Box sx={{height: 500, width:270, position:'absolute', backgroundColor: 'primary.main',
+                            </Box>
+
+                        </Carousel.Item>
+                        
+
+                        <Carousel.Item>
+                            <Box sx={{height: 500, width:270, position:'absolute', backgroundColor: 'primary.main',
                                     alignContent:'center', display:'flex'}}>
                                         <Box sx={{width:270, position:'absolute'}}>
                                             <Typography style={TyStyTP9} sx={{textAlign:'center', px:0.4,
@@ -455,26 +474,23 @@ export default function Home(){
                                         <Box sx={{height: 500, width:270, opacity:'8%'}}>
                                             <Image src={SanV} duration={0} fit="cover"/>
                                         </Box>
-                                    </Box>
+                            </Box>
                                     
-                                    <Box sx={{height: 500, width:270,  zIndex:10, "&:hover": {visibility:'hidden'}}}>
-                                        <Typography style={TyStyTSS9} sx={{position:'absolute', zIndex:30,
-                                            pl:1, pt:55.5, width:260}}> 
-                                            SAN VALENTIN</Typography>
-                                        <Typography style={TyStyTP9} sx={{position:'absolute', zIndex:20, pl:1.5,
-                                            pt:56, width:260}}> 
-                                            SAN VALENTIN</Typography>
-                                        <Box sx={{height: 500, width:270}}>
-                                            <Image src={SanV} duration={0} fit="cover"/>
-                                        </Box>
-                                    </Box>
-                                </Link>
-                                </Container>
-                            </Grid>
-                            <Grid item lg={3}>
-                                <Container>
-                                <Link href="#" underline="none">
-                                    <Box sx={{height: 500, width:270, position:'absolute', backgroundColor: 'primary.main',
+                            <Box sx={{height: 500, width:270,  zIndex:10, "&:hover": {visibility:'hidden'}}}>
+                                <Typography style={TyStyTSS9} sx={{position:'absolute', zIndex:30,
+                                    pl:1, pt:55.5, width:260}}> 
+                                    SAN VALENTIN</Typography>
+                                <Typography style={TyStyTP9} sx={{position:'absolute', zIndex:20, pl:1.5,
+                                    pt:56, width:260}}> 
+                                    SAN VALENTIN</Typography>
+                                <Box sx={{height: 500, width:270}}>
+                                    <Image src={SanV} duration={0} fit="cover"/>
+                                </Box>
+                            </Box>
+                        </Carousel.Item>
+/////////////
+                        <Carousel.Item>
+                                <Box sx={{height: 500, width:270, position:'absolute', backgroundColor: 'primary.main',
                                     alignContent:'center', display:'flex'}}>
                                         <Box sx={{width:270, position:'absolute'}}>
                                             <Typography style={TyStyTP9} sx={{textAlign:'center', px:0.4,
@@ -503,26 +519,23 @@ export default function Home(){
                                         <Box sx={{height: 500, width:270, opacity:'8%'}}>
                                             <Image src={Navidad} duration={0} fit="cover"/>
                                         </Box>
-                                    </Box>
+                                </Box>
                                     
-                                    <Box sx={{height: 500, width:270,  zIndex:10, "&:hover": {visibility:'hidden'}}}>
-                                        <Typography style={TyStyTSS9} sx={{position:'absolute', zIndex:30,
-                                            pl:1, pt:55.5, width:260}}> 
-                                            NAVIDAD</Typography>
-                                        <Typography style={TyStyTP9} sx={{position:'absolute', zIndex:20, pl:1.5,
-                                            pt:56, width:260}}> 
-                                            NAVIDAD</Typography>
-                                        <Box sx={{height: 500, width:270}}>
-                                            <Image src={Navidad} duration={0} fit="cover"/>
-                                        </Box>
+                                <Box sx={{height: 500, width:270,  zIndex:10, "&:hover": {visibility:'hidden'}}}>
+                                    <Typography style={TyStyTSS9} sx={{position:'absolute', zIndex:30,
+                                        pl:1, pt:55.5, width:260}}> 
+                                        NAVIDAD</Typography>
+                                    <Typography style={TyStyTP9} sx={{position:'absolute', zIndex:20, pl:1.5,
+                                        pt:56, width:260}}> 
+                                        NAVIDAD</Typography>
+                                    <Box sx={{height: 500, width:270}}>
+                                        <Image src={Navidad} duration={0} fit="cover"/>
                                     </Box>
-                                </Link>
-                                </Container>
-                            </Grid>
-                            <Grid item lg={3}>
-                                <Container>
-                                <Link href="#" underline="none">
-                                    <Box sx={{height: 500, width:270, position:'absolute', backgroundColor: 'primary.main',
+                                </Box>
+                        </Carousel.Item>
+
+                        <Carousel.Item>
+                            <Box sx={{height: 500, width:270, position:'absolute', backgroundColor: 'primary.main',
                                     alignContent:'center', display:'flex'}}>
                                         <Box sx={{width:270, position:'absolute'}}>
                                             <Typography style={TyStyTP9} sx={{textAlign:'center', px:0.4,
@@ -549,9 +562,9 @@ export default function Home(){
                                         <Box sx={{height: 500, width:270, opacity:'8%'}}>
                                             <Image src={Halloween} duration={0} fit="cover"/>
                                         </Box>
-                                    </Box>
-                                    
-                                    <Box sx={{height: 500, width:270,  zIndex:10, "&:hover": {visibility:'hidden'}}}>
+                            </Box>
+                            
+                            <Box sx={{height: 500, width:270,  zIndex:10, "&:hover": {visibility:'hidden'}}}>
                                         <Typography style={TyStyTSS9} sx={{position:'absolute', zIndex:30,
                                             pl:1, pt:55.5, width:260}}> 
                                             HALLOWEEN</Typography>
@@ -561,14 +574,246 @@ export default function Home(){
                                         <Box sx={{height: 500, width:270}}>
                                             <Image src={Halloween} duration={0} fit="cover"/>
                                         </Box>
+                            </Box>
+                        </Carousel.Item>
+                      
+
+ */}
+                      
+
+            
+
+
+                        <Carousel.Item>
+                            <Card>
+                                <CardContent>
+
+                                    <Box  sx={{position:'absolute', backgroundColor: 'primary.main', alignContent:'center'}}>
+                                            <Box sx={{width:270, position:'absolute'}}>
+                                                <Typography style={TyStyTP9} sx={{textAlign:'center', px:0.4,
+                                                mt:3}}> 
+                                                    SAN VALENTIN</Typography>
+                                                <Typography style={TyStyTtSS9} sx={{textAlign:'center',  px:0.4,
+                                                lineHeight:1, mt:1}}> 
+                                                    COOCKIES CORAZÓN </Typography>
+                                                <Typography style={TyStyVP9} sx={{textAlign:'center',  px:0.4, 
+                                                lineHeight:1, mt:2}}> 
+                                                    Transmite lo que sientes. Galletas sabor vainilla
+                                                    con una bonita variedad de decoraciones y mensajes hechos con 
+                                                    glasa casera de la receta tradicional de CreamDream. Tres tipos 
+                                                    tamaños.
+                                                </Typography>
+                                                <Typography style={TyStyVSS9} sx={{textAlign:'center',  px:0.4, 
+                                                mt:3, lineHeight:1}}> 
+                                                    Docena de galletas envueltas individualmente a 
+                                                    <span style={TyStyVSM9}> $260</span>
+                                                </Typography>
+                                                <Typography style={TyStyQSS9} sx={{textAlign:'center',  px:0.4, 
+                                                mt:2}}> 
+                                                    CLICK PARA MÁS
+                                                </Typography>
+                                            </Box>
+                                            <Box sx={{height: 500, width:270, opacity:'8%'}}>
+                                                <Image src={SanV} duration={0} fit="cover"/>
+                                            </Box>
                                     </Box>
-                                </Link>
-                                </Container>
-                            </Grid>
 
-                        </Grid>
 
+                                    <Box sx={{"&:hover": {visibility:'hidden'}}}>
+                                        <Typography style={TyStyTSS9} sx={{position:'absolute', zIndex:30,
+                                            pl:1, pt:55.5, width:260}}> 
+                                            SAN VALENTIN</Typography>
+                                        <Typography style={TyStyTP9} sx={{position:'absolute', zIndex:20, pl:1.5,
+                                            pt:56, width:260}}> 
+                                            SAN VALENTIN</Typography>
+                                        <Box sx={{height: 500}}>
+                                            <Image src={SanV} duration={0} fit="cover"/>
+                                        </Box>
+                                    </Box>
+                                </CardContent>
+                                <CardActions>
+                                    <Button size="small">Learn More</Button>
+                                </CardActions>
+                            </Card>
+                        </Carousel.Item>
+
+                        <Carousel.Item>
+                            <Card>
+                                <CardContent>
+
+                                    <Box  sx={{position:'absolute', backgroundColor: 'primary.main', alignContent:'center'}}>
+
+                                        <Box sx={{width:270, position:'absolute'}}>
+                                                    <Typography style={TyStyTP9} sx={{textAlign:'center', px:0.4,
+                                                    mt:3}}> 
+                                                        CUMPLEAÑOS</Typography>
+                                                    <Typography style={TyStyTtSS9} sx={{textAlign:'center',  px:0.4,
+                                                    lineHeight:1, mt:1}}> 
+                                                        CAKE BIRTHDAY</Typography>
+                                                    <Typography style={TyStyVP9} sx={{textAlign:'center',  px:0.4, 
+                                                    lineHeight:1, mt:2}}> 
+                                                        Paquete feliz para juntarse con familia y amigos. Velas, pastel, cubiertos
+                                                        y un pequeño cañon de confetti incluido, todo lo necesario para
+                                                        festejar.
+                                                    </Typography>
+                                                    <Typography style={TyStyVSS9} sx={{textAlign:'center',  px:0.4, 
+                                                    mt:3, lineHeight:1}}> 
+                                                        Pastel para 20 personas con extras incluidos a <span 
+                                                        style={TyStyVSM9}>$940</span>
+                                                    </Typography>
+                                                    <Typography style={TyStyQSS9} sx={{textAlign:'center',  px:0.4, 
+                                                    mt:2}}> 
+                                                        CLICK PARA MÁS
+                                                    </Typography>
+                                        </Box>
+
+                                        <Box sx={{height: 500, width:270, opacity:'8%'}}>
+                                                    <Image src={BirthdayE} duration={0} fit="cover"/>
+                                        </Box>
+                                    </Box>
+                                        
+                                    <Box sx={{height: 500, zIndex:10, "&:hover": {visibility:'hidden'}}}>
+                                                <Typography style={TyStyTSS9} sx={{position:'absolute', zIndex:30,
+                                                    pl:1, pt:55.5, width:260}}> 
+                                                    CUMPLEAÑOS</Typography>
+                                                <Typography style={TyStyTP9} sx={{position:'absolute', zIndex:20, pl:1.5,
+                                                    pt:56, width:260}}> 
+                                                    CUMPLEAÑOS</Typography>
+                                                <Box sx={{height: 500,}}>
+                                                    <Image src={BirthdayE} duration={0} fit="cover"/>
+                                                </Box>
+                                    </Box>
+
+                                </CardContent>
+                                <CardActions>
+                                    <Button size="small">Learn More</Button>
+                                </CardActions>
+                            </Card>
+                        </Carousel.Item>
+
+                        <Carousel.Item>
+                            <Card>
+                                <CardContent>
+
+                                    <Box  sx={{position:'absolute', backgroundColor: 'primary.main', alignContent:'center'}}>
+                                            <Box sx={{width:270, position:'absolute'}}>
+                                                <Typography style={TyStyTP9} sx={{textAlign:'center', px:0.4,
+                                                mt:3}}> 
+                                                    NAVIDAD</Typography>
+                                                <Typography style={TyStyTtSS9} sx={{textAlign:'center',  px:0.4,
+                                                lineHeight:1, mt:1}}> 
+                                                    CHOCOLATE CHIPS COOCKIES</Typography>
+                                                <Typography style={TyStyVP9} sx={{textAlign:'center',  px:0.4, 
+                                                lineHeight:1, mt:2}}> 
+                                                    A veces la respuesta correcta para un regalo son galletas con
+                                                    chispas de chocolate. Galleta crujientes con un delicioso sabor 
+                                                    a mantequilla, chispas de chocolate semidulces y una ligera base
+                                                    malvadisco.
+                                                </Typography>
+                                                <Typography style={TyStyVSS9} sx={{textAlign:'center',  px:0.4, 
+                                                mt:3, lineHeight:1}}> 
+                                                    Bolsa con 8 galletas a
+                                                    <span style={TyStyVSM9}> $100</span>
+                                                </Typography>
+                                                <Typography style={TyStyQSS9} sx={{textAlign:'center',  px:0.4, 
+                                                mt:2}}> 
+                                                    CLICK PARA MÁS
+                                                </Typography>
+                                            </Box>
+                                            <Box sx={{height: 500, width:270, opacity:'8%'}}>
+                                                <Image src={Navidad} duration={0} fit="cover"/>
+                                            </Box>
+                                    </Box>
+                                        
+                                    <Box sx={{height: 500,  zIndex:10, "&:hover": {visibility:'hidden'}}}>
+                                        <Typography style={TyStyTSS9} sx={{position:'absolute', zIndex:30,
+                                            pl:1, pt:55.5, width:260}}> 
+                                            NAVIDAD</Typography>
+                                        <Typography style={TyStyTP9} sx={{position:'absolute', zIndex:20, pl:1.5,
+                                            pt:56, width:260}}> 
+                                            NAVIDAD</Typography>
+                                        <Box sx={{height: 500}}>
+                                            <Image src={Navidad} duration={0} fit="cover"/>
+                                        </Box>
+                                    </Box>
+
+                                </CardContent>
+                                <CardActions>
+                                    <Button size="small">Learn More</Button>
+                                </CardActions>
+                            </Card>
+                        </Carousel.Item>
+
+                        <Carousel.Item>
+                            <Card>
+                                <CardContent>
+
+                                    <Box  sx={{position:'absolute', backgroundColor: 'primary.main', alignContent:'center'}}>
+                                    <Box sx={{width:270, position:'absolute'}}>
+                                            <Typography style={TyStyTP9} sx={{textAlign:'center', px:0.4,
+                                            mt:3}}> 
+                                                HALLOWEEN</Typography>
+                                            <Typography style={TyStyTtSS9} sx={{textAlign:'center',  px:0.4,
+                                            lineHeight:1, mt:1}}> 
+                                                Marshmallow Ghost Brownies</Typography>
+                                            <Typography style={TyStyVP9} sx={{textAlign:'center',  px:0.4, 
+                                            lineHeight:1, mt:2}}> 
+                                                Fantasmalmente adorables. Brownies rellenos de chocolate
+                                                liquido y nuez picada, decoración de malvadisco con escencia 
+                                                de vainilla, su sabor te seguira hasta la muerte. 
+                                            </Typography>
+                                            <Typography style={TyStyVSS9} sx={{textAlign:'center',  px:0.4, 
+                                            mt:3, lineHeight:1}}> 
+                                                30 rebanadas a <span style={TyStyVSM9}>$390</span>
+                                            </Typography>
+                                            <Typography style={TyStyQSS9} sx={{textAlign:'center',  px:0.4, 
+                                            mt:2}}> 
+                                                CLICK PARA MÁS
+                                            </Typography>
+                                        </Box>
+                                        <Box sx={{height: 500, width:270, opacity:'8%'}}>
+                                            <Image src={Halloween} duration={0} fit="cover"/>
+                                        </Box>
+                            </Box>
+                            
+                            <Box sx={{height: 500,  zIndex:10, "&:hover": {visibility:'hidden'}}}>
+                                        <Typography style={TyStyTSS9} sx={{position:'absolute', zIndex:30,
+                                            pl:1, pt:55.5, width:260}}> 
+                                            HALLOWEEN</Typography>
+                                        <Typography style={TyStyTP9} sx={{position:'absolute', zIndex:20, pl:1.5,
+                                            pt:56, width:260}}> 
+                                            HALLOWEEN</Typography>
+                                        <Box sx={{height: 500}}>
+                                            <Image src={Halloween} duration={0} fit="cover"/>
+                                        </Box>
+                            </Box>
+
+                                </CardContent>
+                                <CardActions>
+                                    <Button size="small">Learn More</Button>
+                                </CardActions>
+                            </Card>
+                        </Carousel.Item>
+
+                        
+
+                        <Carousel.Item>
+                        <img width="100%" src={SanV}/>
+                        </Carousel.Item>
+
+                        <Carousel.Item>
+                        <img width="100%" src={Navidad}/>
+                        </Carousel.Item>
+
+                        <Carousel.Item>
+                        <img width="100%" src={SanV}/>
+                        </Carousel.Item>
+                      
+
+             
                     </Carousel>
+
+                                        
 
                 </Grid>
             </Grid>

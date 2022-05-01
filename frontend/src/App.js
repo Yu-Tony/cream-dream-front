@@ -16,6 +16,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import { Fragment } from "react";
 import { Routes, Route } from "react-router-dom";
+import Reportes from "./pages/reportes";
 
 
 const BusquedaDrawer = ({ toggle, isOpen }) =>
@@ -42,6 +43,7 @@ function App() {
         <Route exact path="/Login" element={<Login />} />
         <Route exact path="/Create" element={<Create />} />
         <Route exact path="/Profile" element={<Profile />} />
+        <Route exact path="/Reportes" element={<Reportes />} />
         <Route exact path="/Reservacion" element={<Reservacion />} />
         <Route exact path="/Sucursales" element={<Sucursales />} />
         <Route exact path="/Pago" element={<Pago />} />

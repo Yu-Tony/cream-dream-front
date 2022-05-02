@@ -201,7 +201,7 @@ export default function Reportes()
                 </Grid>
 
 <Grid container pt={5}>
-    <Grid item lg={12}>
+    <Grid item  xs={12} lg={12}>
         <Paper>
         <Chart
         data={data}

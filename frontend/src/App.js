@@ -9,6 +9,7 @@ import Navbar from "./components/Navbar";
 import Busqueda from "./components/Busqueda";
 import Carrito from "./components/Carrito";
 import Pago from "./pages/pago";
+import QrLector from "./pages/QrLector";
 
 import useDrawer from "./hooks/useDrawer";
 import { createDrawer } from "./utils";
@@ -47,6 +48,7 @@ function App() {
         <Route exact path="/Reservacion" element={<Reservacion />} />
         <Route exact path="/Sucursales" element={<Sucursales />} />
         <Route exact path="/Pago" element={<Pago />} />
+        <Route exact path="/QrLector" element={<QrLector/>} />
       </Routes>
     </ThemeProvider>
   );

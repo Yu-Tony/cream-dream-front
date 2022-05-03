@@ -28,7 +28,7 @@ import MenuItem from '@mui/material/MenuItem';
 
 const pages = ['Sucursales', 'Menu', 'Reservacion', 'Ayuda', 'Buscar', 'Carrito'];
 const pages2 = ['Buscar', 'Carrito'];
-const settings = ['Perfil', 'Reportes', 'QR', 'Salir'];
+const settings = ['Perfil', 'Reportes', 'QrLector', 'Salir'];
 
 export default function Navbar({ toggleBusqueda, toggleCarrito }) {
   

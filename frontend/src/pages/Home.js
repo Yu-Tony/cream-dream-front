@@ -1,7 +1,6 @@
+  /*--------------------------IMPORTS--------------------- */
 import React from "react";
-import {Card, CardMedia, Typography, Link, Paper, Button, Box, Grid, ThemeProvider, createTheme, Container} from '@mui/material';
-import { width, zIndex } from '@mui/system';
-//import Carousel from 'react-material-ui-carousel'
+import {Card, Typography, Paper, Button, Box, Grid} from '@mui/material';
 import Image from 'mui-image'
 
 import HomeImage from './images/HomeImageL.jpg';
@@ -27,7 +26,7 @@ import CardActions from '@mui/material/CardActions';
 
 export default function Home(){
 
-    
+     /*--------------------------STYLE--------------------- */ 
     const TyStyProm={ fontSize: 20, color:"#644838", fontWeight:700 };
 
     const TyStyVP3={fontSize: 20, color:"#644838", fontWeight:300};
@@ -45,7 +44,7 @@ export default function Home(){
 
 
 
-// RESOLVER 
+  /*--------------------------FUNCIONES--------------------- */
     
     var items = [
         {
@@ -72,7 +71,7 @@ export default function Home(){
 // RESOLVER
 const [isShown, setIsShown] = React.useState(null);
 
-
+  /*--------------------------RETURN--------------------- */
     return(
         <Grid container
         spacing={0}
@@ -81,7 +80,7 @@ const [isShown, setIsShown] = React.useState(null);
         style={{ minHeight: '100vh' }}
         sx={{bgcolor: 'background.main'}}  >
 
-            {/* PRIMERO */}
+            {/* PRIMERO HEADER */}
             <Grid container >
                
                 <Grid item xs={12} sm={12} md={7} lg={6} sx={{backgroundColor: 'secondary.main', height:650}}>
@@ -117,7 +116,7 @@ const [isShown, setIsShown] = React.useState(null);
                 </Grid>
             </Grid>
 
-            {/* SEGUNDO */}
+            {/* SEGUNDO PROMOCIONES*/}
             <Grid container pt={10}>
 
                 {/* Texto arriba */}
@@ -307,7 +306,7 @@ const [isShown, setIsShown] = React.useState(null);
                 </Grid>
             </Grid>
 
-            {/* TERCERO */}
+            {/* TERCERO SOBRE NOSOTROS*/}
             <Grid container>
                 <Grid item xs={'none'} sm={1}></Grid>
 
@@ -368,7 +367,7 @@ const [isShown, setIsShown] = React.useState(null);
                 <Grid item xs={'none'} sm={1}></Grid>
             </Grid>
 
-            {/* CUARTO */}
+            {/* CUARTO EVENTOS*/}
             <Grid container pt={10}>
                 <Grid item xl={12} lg={12}>
 
@@ -721,7 +720,7 @@ const [isShown, setIsShown] = React.useState(null);
                 </Grid>
             </Grid>
 
-            {/* QUINTO */}
+            {/* QUINTO*/}
             <Grid container py={10}>
                 <Grid item lg={12}>
                     <Typography sx={{textAlign: 'center', lineHeight:0.1}} style={TyStyV3P5}>

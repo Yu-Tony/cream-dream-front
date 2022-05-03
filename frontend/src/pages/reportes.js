@@ -1,13 +1,7 @@
-import React, { useState } from "react";
-import {  withStyles, makeStyles } from "@mui/styles"
-import { Button, Grid ,FormControl, TextField, FormLabel, Typography, InputAdornment, Select, MenuItem} from "@mui/material"
-import { Box } from '@mui/system';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import { FormControlLabel } from "@mui/material";
-
+  /*--------------------------IMPORTS--------------------- */
+import React from "react";
+import { Button, Grid ,FormControl,Typography, Select, MenuItem} from "@mui/material"
 import Boton from "../components/Carrito/Boton";
-
 import Paper from '@mui/material/Paper';
 import {
     ArgumentAxis,
@@ -16,6 +10,7 @@ import {
     LineSeries,
   } from '@devexpress/dx-react-chart-material-ui';
 
+  {/* DATOS PARA LA GRAFICAS */}
   const data = [
     { argument: 1, value: 10 },
     { argument: 2, value: 20 },
@@ -26,6 +21,9 @@ import {
 export default function Reportes()
 {
 
+      /*--------------------------FUNCIONES--------------------- */
+
+      {/* MES */}
     const [month, setMonth] = React.useState('');
 
     const handleChangeMonth = (event) => {
@@ -34,7 +32,7 @@ export default function Reportes()
 
     const monthList = ['ENERO', 'FEBRERO', 'MARZO', 'ABRIL', 'MAYO', 'JUNIO', 'JULIO', 'AGOSTO', 'SEPTIEMBRE', 'OCTUBRE', 'NOVIEMBRE', 'DICIEMBRE'];
     
-
+    {/* AÑO */}
     const [year, setYear] = React.useState('');
 
     const handleChangeYear = (event) => {
@@ -42,6 +40,7 @@ export default function Reportes()
     };
     const yearList = ['2019','2020', '2021', '2022'];
 
+    {/* TIPO DE REPORTE */}
     const [report, setReport] = React.useState('');
 
     const handleChangeReport = (event) => {
@@ -50,11 +49,10 @@ export default function Reportes()
 
     const reportList = ['Platillo más vendido','Sucursal con más ventas', 'Venta de empleados'];
 
+
+      /*--------------------------RETURN--------------------- */
     return (
 
-
-
-  
         <Grid
             container
             spacing={0}
@@ -66,13 +64,14 @@ export default function Reportes()
             p={5} 
         >
            
-           <Grid container >
+            <Grid container >
       
-            
+            {/*TITULO */}
                 <Grid item lg={12} p={0}>
                     <Typography  variant="h1" class="title">REPORTES</Typography>
                 </Grid>
                 
+                {/*FILTROS */}
                 <Grid container>
                     <Grid item xs={12} sm={6} md={4} lg={3}>
                         <Typography> Mes:</Typography>
@@ -98,16 +97,16 @@ export default function Reportes()
                             inputProps={{ 'aria-label': 'Without label' }}
                         >
                         
-                        {monthList.map((name) => (
-                            <MenuItem
-                            key={name}
-                            value={name}
+                            {monthList.map((name) => (
+                                <MenuItem
+                                key={name}
+                                value={name}
+                                
+                                >
+                                {name}
+                                </MenuItem>
+                            ))}
                             
-                            >
-                            {name}
-                            </MenuItem>
-                        ))}
-                        
                         </Select>
 
                         
@@ -200,29 +199,25 @@ export default function Reportes()
                     </Grid>
                 </Grid>
 
-<Grid container pt={5}>
-    <Grid item  xs={12} lg={12}>
-        <Paper>
-        <Chart
-        data={data}
-        >
-        <ArgumentAxis />
-        <ValueAxis />
+                {/*CHART */}
+                <Grid container pt={5}>
+                    <Grid item  xs={12} lg={12}>
+                        <Paper>
+                        <Chart
+                        data={data}
+                        >
+                        <ArgumentAxis />
+                        <ValueAxis />
 
-        <LineSeries valueField="value" argumentField="argument" />
-        </Chart>
-    </Paper>
-    </Grid>
-</Grid>
+                        <LineSeries valueField="value" argumentField="argument" />
+                        </Chart>
+                    </Paper>
+                    </Grid>
+                </Grid>
 
 
 
             </Grid>
-       
-
-     
-
-
 
         </Grid>
 

@@ -1,3 +1,4 @@
+  /*--------------------------IMPORTS--------------------- */
 import React, { useState } from "react";
 import {  withStyles, makeStyles } from "@mui/styles"
 import { Button, Grid ,FormControl, TextField, FormLabel, Typography, InputAdornment, Select, MenuItem} from "@mui/material"
@@ -10,7 +11,7 @@ import Boton from "../components/Carrito/Boton";
 
 import { Hidden } from '@mui/material';
 
-
+  /*--------------------------STYLES--------------------- */
 const StyledTextField = withStyles((theme) => ({
     root: {
 //letra
@@ -134,10 +135,15 @@ const StyledTextField = withStyles((theme) => ({
 export default function Perfil()
 {
 
+      /*--------------------------FUNCIONES--------------------- */
+
+      {/*INFORMACION PERSONAL */}
     const [infoPersonal, setInfoPersonal] = React.useState(true);
     function Personal(props) {
     
-        return( <form>
+          /*--------------------------RETURN--------------------- */
+        return( 
+        <form>
 
         <Typography sx={{color: '#644838'}} variant="h4">Información Personal</Typography>
 
@@ -207,6 +213,7 @@ export default function Perfil()
 
     }
 
+      {/*PAGO */}
     const [infoPago, setInfoPago] = React.useState(false);
     function Pago(props)
     {
@@ -351,11 +358,6 @@ export default function Perfil()
 
     const [local, setLocal] = React.useState('');
 
-    const fileTypes = ["JPG", "PNG", "GIF"];
-    const [file, setFile] = useState(null);
-    const handleChange = (file) => {
-      setFile(file);
-    };
 
     const handleChangeSelect = (event) => {
         setLocal(event.target.value);
@@ -368,11 +370,11 @@ export default function Perfil()
       setSelected(newAlignment);
     };
 
+      /*--------------------------RETURN--------------------- */
+
+
     return (
 
-
-
-  
         <Grid
             container
             spacing={0}
@@ -383,57 +385,49 @@ export default function Perfil()
             sx={{bgcolor: '#FEEEE5'}}  
         >
            
-           <Grid container style={{ minHeight: '100vh' }} >
+          
+            <Grid container style={{ minHeight: '100vh' }} >
                  
-                 <Grid item md={2} xs={12}>
+                {/* OPCIONES */}
+                <Grid item md={2} xs={12}>
                   
-                     <Grid container direction="column"  justifyContent="center"  alignItems="center" p={"10px"}>
+                    <Grid container direction="column"  justifyContent="center"  alignItems="center" p={"10px"}>
          
-                     <Button  p={0} onClick={() => personal()}>     
-                         <Boton bgcolor="primary.main">Informacion personal</Boton>
-                     </Button>
- 
+                        <Button  p={0} onClick={() => personal()}>     
+                            <Boton bgcolor="primary.main">Informacion personal</Boton>
+                        </Button>
+    
 
-                                 
-                     <Button  p={0} onClick={() => pago()}>     
-                         <Boton bgcolor="primary.main">Información de Pago</Boton>
-                     </Button>
+                                    
+                        <Button  p={0} onClick={() => pago()}>     
+                            <Boton bgcolor="primary.main">Información de Pago</Boton>
+                        </Button>
                  
 
           
+                    </Grid>
+
                 </Grid>
 
-             </Grid>
-
-             <Hidden mdDown implementation="css">
-                 <Grid item sm={2} p={"100px"}></Grid>
-             </Hidden>
-
-
- 
-            <Grid item md={6} xs={12} p={"20px"}>
-                <Box item sx={{p:8,bgcolor: 'white', paddingTop: "60px", paddingBottom: "60px",  boxShadow: "-20px 20px #efd3c3"}}  >
-       
-                
-                {infoPersonal && <Personal></Personal>}
-        
-                {infoPago && <Pago></Pago>}
-
-                  
-
-                </Box>
-            </Grid>
+                {/* ESPACIO */}
+                <Hidden mdDown implementation="css">
+                    <Grid item sm={2} p={"100px"}></Grid>
+                </Hidden>
 
 
+                {/* CONTENIDO */}
+                <Grid item md={6} xs={12} p={"20px"}>
+                    <Box item sx={{p:8,bgcolor: 'white', paddingTop: "60px", paddingBottom: "60px",  boxShadow: "-20px 20px #efd3c3"}}  >
+                    
+                    {infoPersonal && <Personal></Personal>}
+            
+                    {infoPago && <Pago></Pago>}
 
+                    </Box>
+                </Grid>
 
             </Grid>
        
-
-     
-
-
-
         </Grid>
 
     )

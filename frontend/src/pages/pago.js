@@ -1,3 +1,4 @@
+  /*--------------------------IMPORTS--------------------- */
 import React from "react";
 
 import { Divider, Slider, Select } from '@mui/material';
@@ -14,6 +15,7 @@ import Boton from "../components/Carrito/Boton";
 
 import "./css/menu.css";
 
+  /*--------------------------Marcas para slider--------------------- */
 const marks = [
     {
       value: 0,
@@ -39,6 +41,8 @@ export default function Pago()
     const handleChange = (event) => {
         setNumeroPersonas(event.target.value);
     };
+
+      /*--------------------------RETURN--------------------- */
 
     return (
         <Grid

@@ -1,15 +1,10 @@
   /*--------------------------IMPORTS--------------------- */
 import React from "react";
 import {
-  Card,
-  CardMedia,
   Typography,
-  Link,
-  Paper,
   Button,
   Box,
   Grid,
-  ThemeProvider,
   createTheme,
   Container,
 } from "@mui/material";

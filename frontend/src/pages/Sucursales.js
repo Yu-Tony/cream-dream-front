@@ -1,8 +1,9 @@
+  /*--------------------------IMPORTS--------------------- */
 import React from "react";
 import "../App.css";
 
 import { Box, CssBaseline, Typography } from "@mui/material";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+import {  createTheme } from "@mui/material/styles";
 import Santiago from "./images/Santiago.jpg";
 import Serena from "./images/Serena.jpg";
 import Cumbres from "./images/Cumbres.jpeg";
@@ -17,6 +18,8 @@ import DescSucursal from "../components/DescSucursal";
 import useDrawer from "../hooks/useDrawer";
 import { createDrawer } from "../utils";
 
+
+  /*--------------------------STYLE--------------------- */
 const theme = createTheme({
   palette: {
     primary: {
@@ -34,11 +37,14 @@ const theme = createTheme({
   },
 });
 
+  /*--------------------------FUNCIONES--------------------- */
 const SucursalDrawer = ({ toggle, isOpen }) =>
   createDrawer(DescSucursal, toggle, isOpen);
 
 export default function Sucursales() {
   const sucursalDrawer = useDrawer();
+
+    /*--------------------------RETURN--------------------- */
   return (
     <>
       <SucursalDrawer {...sucursalDrawer} />
@@ -51,17 +57,17 @@ export default function Sucursales() {
             direction="column"
             alignItems="center"
             justifyContent="center"
-            
             sx={{ backgroundColor: "background.main"}}  
         >
 
-<div className="backgroundImage">
-         
-         <h3 className="text">Sucursales</h3>
-      </div>
+          {/* TITULO */}
+          <div className="backgroundImage">
+            
+            <h3 className="text">Sucursales</h3>
+          </div>
 
           
-           
+           {/* CARDS */}
           <Grid container>
           
             <Grid item xs={12} md={6} sx={{ display: "flex", justifyContent: "center" , p: 5}}>
@@ -170,25 +176,6 @@ export default function Sucursales() {
           
         </Grid>
 
- 
-
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          flexWrap: "Wrap",
-          justifyContent: "center",
-        }}
-      >
-      
-
-
-        
-
-        <Card sx={{ width: "35%", m: 10, boxShadow: 15 }}>
-       
-        </Card>
-      </Box>
       <Footer />
     </>
   );

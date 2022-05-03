@@ -1,3 +1,4 @@
+  /*--------------------------IMPORTS--------------------- */
 import React, { useState } from "react";
 import "../App.css";
 import {
@@ -14,14 +15,16 @@ import {
   Modal,
   Grid
 } from "@mui/material";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { createTheme } from "@mui/material/styles";
 import { MenuItem } from "@mui/material/";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import TimePicker from "@mui/lab/TimePicker";
 
+import QRCode from 'qrcode.react';
 
+  /*--------------------------STYLE--------------------- */
 const theme = createTheme({
   palette: {
     primary: {
@@ -39,15 +42,30 @@ const theme = createTheme({
   },
 });
 
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+
+  bgcolor: "background.paper",
+  boxShadow: 24,
+};
+
+
 export default function Reservacion() {
   
-  const [Reservacion, setReservacion] = useState({
+    /*--------------------------FUNCIONES--------------------- */
+  {/* Arreglo de reservacion */}
+    const [Reservacion, setReservacion] = useState({
     Personas: null,
     Fecha: null,
     Hora: null,
     Sucursal: "",
   });
 
+ {/*Ventanas modales */}
   const [open, setOpen] = React.useState(false);
   const handleClose = () => setOpen(false);
 
@@ -63,19 +81,7 @@ export default function Reservacion() {
     setOpen(true);
   };
 
-
-
-
-  const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-
-    bgcolor: "background.paper",
-    boxShadow: 24,
-  };
-
+ {/* Handle cambios */}
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -101,6 +107,25 @@ export default function Reservacion() {
     });
   };
 
+ {/* Descargar QR */}
+  const downloadQRCode = () => {
+    const qrCodeURL = document.getElementById('qrCodeEl')
+      .toDataURL("image/png")
+      .replace("image/png", "image/octet-stream");
+    console.log(qrCodeURL)
+    let aEl = document.createElement("a");
+    aEl.href = qrCodeURL;
+    aEl.download = "QR_Code.png";
+    document.body.appendChild(aEl);
+    aEl.click();
+    document.body.removeChild(aEl);
+
+    handleCloseQR();
+  }
+ 
+
+
+ /*--------------------------RETURN--------------------- */
   return (
 
     
@@ -108,9 +133,11 @@ export default function Reservacion() {
       <CssBaseline />
 
 
-          <Grid container sx={{bgcolor: 'secondary.main'}} mt={10}   alignItems="center" justifyContent="center" >
-
-            <Grid item lg={'none'} sm={12} px={10}></Grid>
+          <Grid container sx={{backgroundColor: 'secondary.main'}} mt={10}   alignItems="center" justifyContent="center" >
+           {/* ESPACIO */}
+            <Grid item lg={0} sm={12} px={10}></Grid>
+          
+           {/* TEXTO */}
             <Grid item xs={12} md={5} lg={6} px={10}>
               <Typography variant="h3" color="text.primary" sx={{ fontWeight: "bold" }}>
                 HAZ TU <br />
@@ -134,6 +161,8 @@ export default function Reservacion() {
            
             </Grid>
 
+
+            {/* RESERVACION */}
 
             <Grid item xs={12} md={7} lg={5} px={6}> 
               <Grid container sx={{ bgcolor: "#FFFFFF", mt: 5, mb: 5, p:5, borderRadius: 1 }}>
@@ -242,7 +271,7 @@ export default function Reservacion() {
      
       
     
-        
+      {/* MODAL DE ESPACIOS DISPONIBLES */}
       <Modal open={open}   style={{display:'flex',alignItems:'center',justifyContent:'center'}} >
           <Box sx={style}>
             
@@ -334,6 +363,7 @@ export default function Reservacion() {
           </Box>
       </Modal>
 
+      {/* MODAL DE QR */}
       <Modal open={openQR} >
           <Box sx={style}>
 
@@ -368,8 +398,21 @@ export default function Reservacion() {
                   justifyContent: "center",
                   }}>
                     
-                <div className="backgroundImageQR">
+                <div >
 
+              
+                    <div className="HpQrcode">
+                      <QRCode
+                      id="qrCodeEl"
+                      value={`Personas: ${Reservacion.Personas}, Fecha: ${Reservacion.Fecha}, Hora: ${Reservacion.Hora}, Sucursal: ${Reservacion.Sucursal}`}
+                      size={290}
+                      level={"H"}
+                      includeMargin={true}
+                    /></div>
+      
+
+               
+                
                 </div>
                 </Box>
               </Box>
@@ -382,6 +425,9 @@ export default function Reservacion() {
                   
                 }}
               >
+
+
+
                 <Button
                   variant="contained"
                   sx={{
@@ -394,7 +440,7 @@ export default function Reservacion() {
                     borderColor: "#644838",
                     border: 2,
                   }}
-                  onClick={handleCloseQR}
+                  type="button" onClick={downloadQRCode}
                 >
                   <Typography
                     variant="h5"
@@ -403,6 +449,8 @@ export default function Reservacion() {
                     DESCARGAR QR
                   </Typography>
                 </Button>
+
+  
               </Box>
 
             </Container>

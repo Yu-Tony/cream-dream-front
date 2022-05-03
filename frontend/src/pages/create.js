@@ -1,18 +1,15 @@
+  /*--------------------------IMPORTS--------------------- */
 import React, { useState } from "react";
 
 import { withStyles, makeStyles} from "@mui/styles"
-import { Button, Grid ,FormControl, TextField, FormLabel, Typography, InputAdornment, Select, MenuItem} from "@mui/material"
-
+import { Button, Grid ,FormControl, TextField, FormLabel, Typography, InputAdornment, Select, MenuItem, Hidden} from "@mui/material"
 import { Box } from '@mui/system';
-
 import { FileUploader } from "react-drag-drop-files";
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-
 import Boton from "../components/Carrito/Boton";
 
-import { Hidden } from '@mui/material';
-
+  /*--------------------------STYLES--------------------- */
 const StyledTextField = withStyles((theme) => ({
     root: {
 //letra
@@ -71,54 +68,6 @@ const StyledTextField = withStyles((theme) => ({
          
         }
       },
-     /* button: {
-        padding: "0%",
-        position: "relative",
-        cursor: "pointer",
-        borderColor:"#644838",
-        borderWidth: 2,
-        borderStyle: 'solid',
-        zIndex: "1000",
-        "&:hover": {
-          "& $fondoOrange, $fondoYellow":
-          {
-            top: "5px",
-            right: "10px"
-          }
-         
-        }
-      },
-      texto:{
-        padding: "10px 30px",
-        borderColor:"#644838",
-        borderWidth: 2,
-        borderStyle: 'solid',
-        color: "rgb(58, 36, 36)",
-        borderRadius: "5px",
-       
-      },
-      fondoYellow:{
-        zIndex: "-1000",
-        position: 'absolute',
-        top: "15px",
-        right: "-1px",
-        borderRadius: 'inherit',
-        backgroundColor:  "#FFEFB5",
-        width: "85%",
-        height: "75%",
-   
-      },
-      fondoOrange:{
-        zIndex: "-1000",
-        position: 'absolute',
-        top: "15px",
-        right: "-1px",
-        borderRadius: 'inherit',
-        backgroundColor:  "#FA8466",
-        width: "85%",
-        height: "75%",
-   
-      },*/
       links:
       {
         
@@ -140,6 +89,7 @@ const StyledTextField = withStyles((theme) => ({
 export default function Create()
 {
 
+      /*--------------------------FUNCIONES--------------------- */
     const [comida, setComida] = React.useState(true);
     function Comida(props) {
     
@@ -480,6 +430,7 @@ export default function Create()
       setSelected(newAlignment);
     };
 
+      /*--------------------------RETURN--------------------- */
     return (
 
 

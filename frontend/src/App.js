@@ -2,7 +2,7 @@ import Home from "./pages/Home";
 import Menu from "./pages/Menu";
 import Login from "./pages/login";
 import Create from "./pages/create";
-import Profile from "./pages/profile";
+import Perfil from "./pages/Perfil";
 import Reservacion from "./pages/Reservacion";
 import Sucursales from "./pages/Sucursales";
 import Navbar from "./components/Navbar";
@@ -42,7 +42,7 @@ function App() {
         <Route exact path="/Menu" element={<Menu />} />
         <Route exact path="/Login" element={<Login />} />
         <Route exact path="/Create" element={<Create />} />
-        <Route exact path="/Profile" element={<Profile />} />
+        <Route exact path="/Perfil" element={<Perfil />} />
         <Route exact path="/Reportes" element={<Reportes />} />
         <Route exact path="/Reservacion" element={<Reservacion />} />
         <Route exact path="/Sucursales" element={<Sucursales />} />

@@ -131,7 +131,7 @@ const StyledTextField = withStyles((theme) => ({
 
 
 
-export default function Create()
+export default function Perfil()
 {
 
     const [infoPersonal, setInfoPersonal] = React.useState(true);

@@ -5,6 +5,8 @@ import {
   Typography,
   CardMedia,
   Grid,
+  Icon,
+  Button
 } from "@mui/material";
 
 import Contador from "../Contador";
@@ -13,19 +15,20 @@ import { grid12All } from "../../responsiveConst";
 const imgWidth = {
   width: {
     xs: "90px",
-    sm: "100%",
-    md: "50%",
-    lg: "70%",
-    xl: "70%",
+    sm: "20%",
+    md: "40%",
+    lg: "40%",
+    xl: "50%",
   },
 };
 
 const precioRespo = { xs: 3, sm: 3, md: 6, lg: 6, xl: 6 };
 const contadorRespo = { xs: 9, sm: 9, md: 6, lg: 6, xl: 6 };
 
-function CardOrden({ imagen, nombre, tipo, precio }) {
+function CardOrden({ imagen, nombre, tipo, precio, borrar }) {
   return (
     <Card sx={{ display: "flex", margin: "0 0rem", bgcolor: "" }}>
+      
       <CardMedia
         component="img"
         sx={{
@@ -36,11 +39,17 @@ function CardOrden({ imagen, nombre, tipo, precio }) {
         src={imagen}
       />
       <CardContent sx={{ bgcolor: "" }}>
+
         <Box height="100%" sx={{ bgcolor: "" }}>
+          
           <Grid container position="relative" height="inherit">
+
             <Grid item {...grid12All} sx={{ bgcolor: "" }}>
               <Typography variant="h6" component="div">
-                {nombre}
+                {nombre}   
+                  <Button sx={{ color: "text.primary",float: "right"}} onClick={borrar}>
+                    <Icon>close</Icon>
+                  </Button> 
               </Typography>
             </Grid>
 
@@ -68,6 +77,7 @@ function CardOrden({ imagen, nombre, tipo, precio }) {
           </Grid>
         </Box>
       </CardContent>
+      
     </Card>
   );
 }

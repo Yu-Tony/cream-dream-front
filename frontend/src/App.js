@@ -1,6 +1,6 @@
 import Home from "./pages/Home";
 import Menu from "./pages/Menu";
-import Login from "./pages/login";
+import Login from "./pages/Login";
 import Create from "./pages/create";
 import Perfil from "./pages/Perfil";
 import Reservacion from "./pages/Reservacion";
@@ -18,7 +18,6 @@ import theme from "./theme";
 import { Fragment } from "react";
 import { Routes, Route } from "react-router-dom";
 import Reportes from "./pages/reportes";
-
 
 const BusquedaDrawer = ({ toggle, isOpen }) =>
   createDrawer(Busqueda, toggle, isOpen);
@@ -48,7 +47,7 @@ function App() {
         <Route exact path="/Reservacion" element={<Reservacion />} />
         <Route exact path="/Sucursales" element={<Sucursales />} />
         <Route exact path="/Pago" element={<Pago />} />
-        <Route exact path="/QrLector" element={<QrLector/>} />
+        <Route exact path="/QrLector" element={<QrLector />} />
       </Routes>
     </ThemeProvider>
   );

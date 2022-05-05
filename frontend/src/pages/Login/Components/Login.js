@@ -9,7 +9,7 @@ import { StyledTextField, labelStyle } from "../styles";
 import { ClienteContext } from "../../../contexts/Cliente";
 
 function Login() {
-  const { Login, clienteId } = useContext(ClienteContext);
+  const { Login } = useContext(ClienteContext);
 
   const [data, setData] = useState({ correo: "", contrasena: "" });
   const handleOnChange = (event) => {
@@ -21,7 +21,7 @@ function Login() {
     //console.log(data);
 
     const res = await Login(data);
-    //console.log(res);
+    console.log(res);
   };
 
   return (

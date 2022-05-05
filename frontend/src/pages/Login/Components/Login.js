@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 import { FormControl, FormLabel } from "@mui/material";
 
@@ -6,10 +6,11 @@ import Boton from "../../../components/Carrito/Boton";
 
 import { StyledTextField, labelStyle } from "../styles";
 
-//Importacion de la API
-import * as API from "../../../services/Cliente";
+import { ClienteContext } from "../../../contexts/Cliente";
 
 function Login() {
+  const { Login, clienteId } = useContext(ClienteContext);
+
   const [data, setData] = useState({ correo: "", contrasena: "" });
   const handleOnChange = (event) => {
     setData((prev) => ({ ...prev, [event.target.name]: event.target.value }));
@@ -19,8 +20,8 @@ function Login() {
     event.preventDefault();
     //console.log(data);
 
-    const res = await API.Login(data);
-    console.log(res);
+    const res = await Login(data);
+    //console.log(res);
   };
 
   return (

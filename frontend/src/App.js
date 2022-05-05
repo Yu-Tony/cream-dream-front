@@ -10,14 +10,14 @@ import Busqueda from "./components/Busqueda";
 import Carrito from "./components/Carrito";
 import Pago from "./pages/pago";
 import QrLector from "./pages/QrLector";
+import Reportes from "./pages/reportes";
 
 import useDrawer from "./hooks/useDrawer";
 import { createDrawer } from "./utils";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
-import { Fragment } from "react";
 import { Routes, Route } from "react-router-dom";
-import Reportes from "./pages/reportes";
+import ClienteState from "./contexts/Cliente";
 
 const BusquedaDrawer = ({ toggle, isOpen }) =>
   createDrawer(Busqueda, toggle, isOpen);
@@ -30,26 +30,28 @@ function App() {
   const carritoDrawer = useDrawer();
 
   return (
-    <ThemeProvider theme={theme}>
-      <Navbar
-        toggleBusqueda={busquedaDrawer.toggle}
-        toggleCarrito={carritoDrawer.toggle}
-      />
-      <BusquedaDrawer {...busquedaDrawer} />
-      <CarritoDrawer {...carritoDrawer} />
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route exact path="/Menu" element={<Menu />} />
-        <Route exact path="/Login" element={<Login />} />
-        <Route exact path="/Create" element={<Create />} />
-        <Route exact path="/Perfil" element={<Perfil />} />
-        <Route exact path="/Reportes" element={<Reportes />} />
-        <Route exact path="/Reservacion" element={<Reservacion />} />
-        <Route exact path="/Sucursales" element={<Sucursales />} />
-        <Route exact path="/Pago" element={<Pago />} />
-        <Route exact path="/QrLector" element={<QrLector />} />
-      </Routes>
-    </ThemeProvider>
+    <ClienteState>
+      <ThemeProvider theme={theme}>
+        <Navbar
+          toggleBusqueda={busquedaDrawer.toggle}
+          toggleCarrito={carritoDrawer.toggle}
+        />
+        <BusquedaDrawer {...busquedaDrawer} />
+        <CarritoDrawer {...carritoDrawer} />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/Menu" element={<Menu />} />
+          <Route exact path="/Login" element={<Login />} />
+          <Route exact path="/Create" element={<Create />} />
+          <Route exact path="/Perfil" element={<Perfil />} />
+          <Route exact path="/Reportes" element={<Reportes />} />
+          <Route exact path="/Reservacion" element={<Reservacion />} />
+          <Route exact path="/Sucursales" element={<Sucursales />} />
+          <Route exact path="/Pago" element={<Pago />} />
+          <Route exact path="/QrLector" element={<QrLector />} />
+        </Routes>
+      </ThemeProvider>
+    </ClienteState>
   );
 }
 

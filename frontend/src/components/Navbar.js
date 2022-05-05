@@ -294,7 +294,7 @@ return (
               </Box>
             </Link>
 
-            <Link to="/" style={{ textDecoration: "none" }}>
+            <Link to="/Ayuda" style={{ textDecoration: "none" }}>
               <Typography
                 sx={{
                   color: "#644838",

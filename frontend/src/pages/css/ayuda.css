@@ -1,0 +1,203 @@
+.tyBtn{
+    font-size: 1.2vw;
+    color: #644838;
+    font-weight: 600;
+    text-transform: none;
+}
+
+.tyTitles{
+    font-size: 1.7vw;
+    color: #FA8466;
+    font-weight: 700;
+}
+
+.tyDesc{
+    font-size: 1.3vw;
+    color: #644838;
+    font-weight: 500;
+}
+
+.btnCont{
+    font-size: 1.3vw;
+    color: #644838;
+    font-weight: 500;
+}
+
+.tyLabel{
+    font-size: 1.2vw;
+    color: #644838;
+    font-weight: 700;
+}
+
+.tyLastS{
+    font-size: 1vw;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .needHelp{
+        font-size: 2.5vw;
+    }
+
+    .tyBtn{
+        font-size: 2.3vw;
+        color: #644838;
+        font-weight: 600;
+        text-transform: none;
+        width: 28.5vw;
+        height: 3.2vw;
+        padding-left: 1.5vw;
+        margin-bottom: 0.36vw;
+        box-shadow: 0.32vw 0.32vw #EFD3C3;
+    }
+
+    .tyBtnBack{
+        font-size: 2.3vw;
+    }
+    
+    .tyTitles{
+        font-size: 2.8vw;
+        color: #FA8466;
+        font-weight: 700;
+    }
+    
+    .tyDesc{
+        font-size: 2.5vw;
+        color: #644838;
+        font-weight: 500;
+    }
+
+    .btnCont{
+        font-size: 2.5vw;
+        color: #644838;
+        font-weight: 500;
+        height: 3.2vw;
+        width: 15vw;
+    }
+
+    .tyLabel{
+        font-size: 2.4vw;
+        color: #644838;
+        font-weight: 700;
+    }
+    
+    .tyLastS{
+        font-size: 2vw;
+    }
+    
+    .ppFinal{
+        height: 2.2vw;
+        margin-right: 2vw;
+    }
+
+    .tyFinal{
+        font-size: 2.2vw;
+        font-weight: 500;
+    }
+
+    .btnFinal{
+        font-size: 2vw;
+    }
+    
+    .boxStepper{
+        width: 58vw;
+        margin-left: 1.8vw;
+    }
+
+    .boxNeedH{
+        padding-top: 4vw;
+    }
+
+    
+    .tyPPortada{
+        font-size: 2.5vw;
+        margin-top: 8vw;
+        margin-bottom: 6vw;
+    }
+
+    .tyPPortada2{
+        font-size: 2.5vw;
+    }
+}
+
+
+@media only screen and (max-width: 450px) {
+    .needHelp{
+        font-size: 3vw;
+    }
+
+    .tyBtn{
+        font-size: 2.5vw;
+        color: #644838;
+        font-weight: 600;
+        text-transform: none;
+        width: 30vw;
+        height: 3.5vw;
+        margin-bottom: 0.4vw;
+        box-shadow: 0.36vw 0.36vw #EFD3C3;
+        text-overflow: clip;
+    }
+
+    .tyBtnBack{
+        font-size: 2.5vw;
+    }
+    
+    .tyTitles{
+        font-size: 3.8vw;
+        color: #FA8466;
+        font-weight: 700;
+    }
+    
+    .tyDesc{
+        font-size: 3.2vw;
+        color: #644838;
+        font-weight: 500;
+        line-height: 3vw;
+    }
+
+    .btnCont{
+        font-size: 2.5vw;
+        color: #644838;
+        font-weight: 500;
+        height: 3.4vw;
+        width: 15vw;
+    }
+
+    .tyLabel{
+        font-size: 3vw;
+        color: #644838;
+        font-weight: 700;
+    }
+    
+    .tyLastS{
+        font-size: 2.5vw;
+    }
+    
+    .ppFinal{
+        height: 2.6vw;
+        margin-right: 0vw;
+    }
+
+    .tyFinal{
+        font-size: 2.45vw;
+        font-weight: 600;
+    }
+
+    .btnFinal{
+        font-size: 2.3vw;
+    }
+    
+    .boxStepper{
+        width: 58vw;
+        margin-left: 1.8vw;
+    }
+
+    .boxNeedH{
+        padding-top: 8vw;
+    }
+
+    .tyPPortada{
+        font-size: 2.8vw;
+    }
+}
+

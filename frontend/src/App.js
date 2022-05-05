@@ -10,6 +10,9 @@ import Busqueda from "./components/Busqueda";
 import Carrito from "./components/Carrito";
 import Pago from "./pages/pago";
 import QrLector from "./pages/QrLector";
+import Producto from "./components/Producto";
+import Ayuda from "./pages/Ayuda";
+
 
 import useDrawer from "./hooks/useDrawer";
 import { createDrawer } from "./utils";
@@ -26,9 +29,14 @@ const BusquedaDrawer = ({ toggle, isOpen }) =>
 const CarritoDrawer = ({ toggle, isOpen }) =>
   createDrawer(Carrito, toggle, isOpen);
 
+  const ProductoDrawer = ({ toggle, isOpen }) =>
+  createDrawer(Producto, toggle, isOpen);
+
 function App() {
   const busquedaDrawer = useDrawer();
   const carritoDrawer = useDrawer();
+  const productoDrawer = useDrawer();
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -38,6 +46,7 @@ function App() {
       />
       <BusquedaDrawer {...busquedaDrawer} />
       <CarritoDrawer {...carritoDrawer} />
+      <ProductoDrawer {...productoDrawer} />
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/Menu" element={<Menu />} />
@@ -49,6 +58,7 @@ function App() {
         <Route exact path="/Sucursales" element={<Sucursales />} />
         <Route exact path="/Pago" element={<Pago />} />
         <Route exact path="/QrLector" element={<QrLector/>} />
+        <Route exact path="/Ayuda" element={<Ayuda />} />
       </Routes>
     </ThemeProvider>
   );

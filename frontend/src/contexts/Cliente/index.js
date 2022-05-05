@@ -7,10 +7,6 @@ export const ClienteContext = createContext();
 const ClienteState = (props) => {
   const [clienteId, setClienteId] = useState("");
 
-  useEffect(() => {
-    console.log(clienteId);
-  }, [clienteId]);
-
   const Delete = async () => {
     const res = await API.Delete(clienteId);
     console.log(res);
@@ -18,8 +14,13 @@ const ClienteState = (props) => {
 
   const Login = async (data) => {
     const res = await API.Login(data);
-    console.log(res);
-    if (res.data) setClienteId(res.data.id);
+
+    if (res.data) {
+      setClienteId(res.data.id);
+      return res;
+    }
+
+    return {};
   };
 
   const Logout = () => {
@@ -27,12 +28,14 @@ const ClienteState = (props) => {
   };
 
   const isLog = () => {
-    if ((clienteId = !"")) return false;
-    return true;
+    if (clienteId != "") return true;
+    return false;
   };
 
   return (
-    <ClienteContext.Provider value={{ clienteId, Login, Logout, Delete }}>
+    <ClienteContext.Provider
+      value={{ clienteId, Login, Logout, Delete, isLog }}
+    >
       {props.children}
     </ClienteContext.Provider>
   );

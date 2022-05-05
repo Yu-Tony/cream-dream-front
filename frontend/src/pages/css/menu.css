@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+
 .cardMenu{
     box-shadow: 6px 6px 0px #EFD3C3;
 }
@@ -6,8 +8,51 @@
     cursor: pointer;
 }
 
-
-#ComidaM, #DesaYAlmuM, #PostresM{
-    visibility:hidden;
-    display: none;
+.title
+{
+  font-family: 'Outfit', sans-serif;
+  color: #644838;
+  font-weight: 700;
 }
+
+.title2
+{
+  font-family: 'Outfit', sans-serif;
+  color: #FA8466;
+  font-weight: 700;
+}
+
+/* Thick red border */
+hr.new1 {
+  border: 1px solid #644838;
+}
+
+
+
+a { 
+    text-decoration: none;
+    font-size: 130%;
+    color: #644838;
+    font-weight: 700;
+    margin: 1%;
+ }
+ 
+ a:hover {
+  text-decoration: underline;
+  text-decoration-color: #FA8466;
+  text-decoration-thickness: 20%;
+  color: #FA8466;
+}
+
+a:active {
+    text-decoration: underline;
+    text-decoration-thickness: 20%;
+    text-decoration-color: #FA8466;
+  }
+
+  a:focus{
+    text-decoration-color: #FA8466;
+    text-decoration: underline;
+    text-decoration-thickness: 20%;
+   
+  }

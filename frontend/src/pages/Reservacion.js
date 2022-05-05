@@ -1,3 +1,4 @@
+  /*--------------------------IMPORTS--------------------- */
 import React, { useState } from "react";
 import "../App.css";
 import {
@@ -12,15 +13,18 @@ import {
   Select,
   Divider,
   Modal,
+  Grid
 } from "@mui/material";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { createTheme } from "@mui/material/styles";
 import { MenuItem } from "@mui/material/";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import TimePicker from "@mui/lab/TimePicker";
 
+import QRCode from 'qrcode.react';
 
+  /*--------------------------STYLE--------------------- */
 const theme = createTheme({
   palette: {
     primary: {
@@ -38,14 +42,30 @@ const theme = createTheme({
   },
 });
 
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+
+  bgcolor: "background.paper",
+  boxShadow: 24,
+};
+
+
 export default function Reservacion() {
-  const [Reservacion, setReservacion] = useState({
+  
+    /*--------------------------FUNCIONES--------------------- */
+  {/* Arreglo de reservacion */}
+    const [Reservacion, setReservacion] = useState({
     Personas: null,
     Fecha: null,
     Hora: null,
     Sucursal: "",
   });
 
+ {/*Ventanas modales */}
   const [open, setOpen] = React.useState(false);
   const handleClose = () => setOpen(false);
 
@@ -61,18 +81,7 @@ export default function Reservacion() {
     setOpen(true);
   };
 
-
-
-  const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: "40%",
-    bgcolor: "background.paper",
-    boxShadow: 24,
-  };
-
+ {/* Handle cambios */}
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -98,287 +107,358 @@ export default function Reservacion() {
     });
   };
 
+ {/* Descargar QR */}
+  const downloadQRCode = () => {
+    const qrCodeURL = document.getElementById('qrCodeEl')
+      .toDataURL("image/png")
+      .replace("image/png", "image/octet-stream");
+    console.log(qrCodeURL)
+    let aEl = document.createElement("a");
+    aEl.href = qrCodeURL;
+    aEl.download = "QR_Code.png";
+    document.body.appendChild(aEl);
+    aEl.click();
+    document.body.removeChild(aEl);
+
+    handleCloseQR();
+  }
+ 
+
+
+ /*--------------------------RETURN--------------------- */
   return (
-    <ThemeProvider theme={theme}>
+
+    
+    <Grid container>
       <CssBaseline />
-      <Box
-        className="backgroundColorReserv"
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          flexWrap: "Wrap",
-          justifyContent: "center",
-          mt: 12,
-          borderBottom: 15,
-          borderColor: "#efd3c3 ",
-        }}
-      >
-        <Box sx={{ width: "38%", mt: 15 }}>
-          <Typography variant="h2" color="primary" sx={{ fontWeight: "bold" }}>
-            HAZ TU <br />
-            RESERVACIÓN
-          </Typography>
 
-          <Divider
-            sx={{
-              border: 7,
-              borderRadius: 10,
-              borderColor: "secondary.main",
-              mt: 2,
-            }}
-          />
 
-          <Typography variant="h3" color="primary" sx={{ mt: 2 }}>
-            Que no te coma el tiempo, <br />
-            reserva y no te quedes <br />
-            sin mesa.
-          </Typography>
-        </Box>
-        <Box sx={{ width: "7%" }}></Box>
-        <Box
-          sx={{
-            width: "28%",
-          }}
-        >
-          <Container sx={{ bgcolor: "#FFFFFF", mt: 5, mb: 5, borderRadius: 1 }}>
-            <form onSubmit={onSubmitReservacion}>
-              <FormControl fullWidth sx={{ mt: 5, minWidth: 120 }}>
-                <InputLabel>Número de Personas</InputLabel>
-                <Select
-                  required
-                  value={Reservacion.Personas}
-                  name="Personas"
-                  label="Número de Personas"
-                  onChange={handleChange}
-                >
-                  <MenuItem value={1}>1 Persona</MenuItem>
-                  <MenuItem value={2}>2 Personas</MenuItem>
-                  <MenuItem value={3}>3 Personas</MenuItem>
-                  <MenuItem value={4}>4 Personas</MenuItem>
-                  <MenuItem value={5}>5 Personas</MenuItem>
-                </Select>
-              </FormControl>
+          <Grid container sx={{backgroundColor: 'secondary.main'}} mt={10}   alignItems="center" justifyContent="center" >
+           {/* ESPACIO */}
+            <Grid item lg={0} sm={12} px={10}></Grid>
+          
+           {/* TEXTO */}
+            <Grid item xs={12} md={5} lg={6} px={10}>
+              <Typography variant="h3" color="text.primary" sx={{ fontWeight: "bold" }}>
+                HAZ TU <br />
+                RESERVACIÓN
+              </Typography>
 
-              <FormControl fullWidth sx={{ mt: 5, minWidth: 120 }}>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DesktopDatePicker
-                    label="Fecha"
-                    name="Fecha"
-                    inputFormat="dd/MM/yyyy"
-                    value={Reservacion.Fecha}
-                    onChange={handleChangeDate}
-                    renderInput={(params) => <TextField {...params} />}
-                    required
-                  />
-                </LocalizationProvider>
-              </FormControl>
+              <Divider
+                sx={{
+                  border: 7,
+                  borderRadius: 10,
+                  borderColor: "primary.main",
+                  mt: 2,
+                }}
+              />
 
-              <FormControl fullWidth sx={{ mt: 5, minWidth: 120 }}>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <TimePicker
-                    label="Hora"
-                    name="Hora"
-                    value={Reservacion.Hora}
-                    onChange={handleChangeHour}
-                    renderInput={(params) => <TextField {...params} />}
-                    required
-                  />
-                </LocalizationProvider>
-              </FormControl>
+              <Typography variant="h4" color="text.primary" sx={{ mt: 2 }}>
+                Que no te coma el tiempo, <br />
+                reserva y no te quedes <br />
+                sin mesa.
+              </Typography>
+           
+            </Grid>
 
-              <FormControl fullWidth sx={{ mt: 5, minWidth: 120 }}>
-                <InputLabel>Sucursal</InputLabel>
-                <Select
-                  value={Reservacion.Sucursal}
-                  name="Sucursal"
-                  label="Sucursal"
-                  onChange={handleChange}
-                  required
-                >
-                  <MenuItem value={"Villa de Santiago"}>
-                    Villa de Santiago
-                  </MenuItem>
-                  <MenuItem value={"Cumbres"}>Cumbres</MenuItem>
-                  <MenuItem value={"Pueblo Serena"}>Pueblo Serena</MenuItem>
-                </Select>
-              </FormControl>
-              <FormControl fullWidth sx={{ mt: 5, mb: 5 }}>
-                <Box
+
+            {/* RESERVACION */}
+
+            <Grid item xs={12} md={7} lg={5} px={6}> 
+              <Grid container sx={{ bgcolor: "#FFFFFF", mt: 5, mb: 5, p:5, borderRadius: 1 }}>
+                <form onSubmit={onSubmitReservacion}>
+                
+                
+                  <FormControl fullWidth sx={{ mt: 5}}>
+                    <InputLabel>Número de Personas</InputLabel>
+                    <Select
+                      required
+                      value={Reservacion.Personas}
+                      name="Personas"
+                      label="Número de Personas"
+                      onChange={handleChange}
+                    >
+                      <MenuItem value={1}>1 Persona</MenuItem>
+                      <MenuItem value={2}>2 Personas</MenuItem>
+                      <MenuItem value={3}>3 Personas</MenuItem>
+                      <MenuItem value={4}>4 Personas</MenuItem>
+                      <MenuItem value={5}>5 Personas</MenuItem>
+                    </Select>
+                  </FormControl>
+                
+
+              
+                <FormControl fullWidth sx={{ mt: 5 }}>
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                      <DesktopDatePicker
+                        label="Fecha"
+                        name="Fecha"
+                        inputFormat="dd/MM/yyyy"
+                        value={Reservacion.Fecha}
+                        onChange={handleChangeDate}
+                        renderInput={(params) => <TextField {...params} />}
+                        required
+                      />
+                    </LocalizationProvider>
+                  </FormControl>
+
+                
+             
+                <FormControl fullWidth sx={{ mt: 5}}>
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                      <TimePicker
+                        label="Hora"
+                        name="Hora"
+                        value={Reservacion.Hora}
+                        onChange={handleChangeHour}
+                        renderInput={(params) => <TextField {...params} />}
+                        required
+                      />
+                    </LocalizationProvider>
+                  </FormControl>
+           
+                
+
+               
+                <FormControl fullWidth sx={{ mt: 5 }}>
+                    <InputLabel>Sucursal</InputLabel>
+                    <Select
+                      value={Reservacion.Sucursal}
+                      name="Sucursal"
+                      label="Sucursal"
+                      onChange={handleChange}
+                      required
+                    >
+                      <MenuItem value={"Villa de Santiago"}>
+                        Villa de Santiago
+                      </MenuItem>
+                      <MenuItem value={"Cumbres"}>Cumbres</MenuItem>
+                      <MenuItem value={"Pueblo Serena"}>Pueblo Serena</MenuItem>
+                    </Select>
+                  </FormControl>
+              
+                  
+                  
+          
+                <FormControl fullWidth sx={{ mt: 5, mb: 5 }}>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <Button
+                        type="submit"
+                        variant="contained"
+                        sx={{ width: "50%", bgcolor: "#FA8466 " }}
+                      >
+                        Buscar disponibilidad
+                      </Button>
+                    </Box>
+                  </FormControl>
+          
+                
+                </form>
+              </Grid>
+            </Grid>
+
+          </Grid>
+
+         
+
+   
+     
+      
+    
+      {/* MODAL DE ESPACIOS DISPONIBLES */}
+      <Modal open={open}   style={{display:'flex',alignItems:'center',justifyContent:'center'}} >
+          <Box sx={style}>
+            
+            <Box sx={{ bgcolor: "#FA8466" }}>
+              <Container>
+                <Typography
+                  variant="h2"
                   sx={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "center",
+                    paddingTop: 2,
+                    paddingBottom: 2,
+                    color: "#FFFFFF",
+                    fontWeight: "bold",
                   }}
                 >
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    sx={{ width: "50%", bgcolor: "#FA8466 " }}
+                  Mesas Disponibles
+                </Typography>
+              </Container>
+            </Box>
+
+            <Container sx={{ mt: 3, mb: 3 }}>
+              <Typography id="modal-modal-title" variant="h4" component="h2">
+                En el horario, sucursal, y con el número de personas seleccionado,
+                se encuentran 5 mesas disponibles
+              </Typography>
+
+              <Typography
+                id="modal-modal-description"
+                variant="h4"
+                sx={{ mt: 3 }}
+              >
+                ¿Desea confirmar su reservación?
+              </Typography>
+
+              <Grid container
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "flex-end",
+                  mt:10
+                }}
+              >
+                <Button
+                  variant="contained"
+                  sx={{
+                    paddingTop: 2,
+                    paddingBottom: 2,
+                    width: "40%",
+                    bgcolor: "#FFFFFF",
+                    color: "#644838",
+                    borderColor: "#644838",
+                    border: 2,
+                  }}
+                  onClick={handleClose}
+                >
+                  <Typography
+                    variant="h5"
+                    sx={{ fontWeight: "bold", color: "#644838" }}
                   >
-                    Buscar disponibilidad
-                  </Button>
-                </Box>
-              </FormControl>
-            </form>
-          </Container>
-        </Box>
-      </Box>
-      <Modal open={open} >
-        <Box sx={style}>
-          <Box sx={{ bgcolor: "#FA8466" }}>
-            <Container>
-              <Typography
-                variant="h2"
-                sx={{
-                  paddingTop: 2,
-                  paddingBottom: 2,
-                  color: "#FFFFFF",
-                  fontWeight: "bold",
-                }}
-              >
-                Mesas Disponibles
-              </Typography>
+                    CANCELAR
+                  </Typography>
+                </Button>
+
+                <Button
+                  variant="contained"
+                  sx={{
+                    paddingTop: 2,
+                    paddingBottom: 2,
+                    ml:3,
+                    width: "40%",
+                    bgcolor: "#FA8466",
+                    color: "#644838",
+                    borderColor: "#644838",
+                    border: 2,
+                  }}
+                  onClick={handleOpenQR}
+                >
+                  <Typography
+                    variant="h5"
+                    sx={{ fontWeight: "bold", color: "#FFFFFF" }}
+                  >
+                    ACEPTAR
+                  </Typography>
+                </Button>
+                
+              </Grid>
+
             </Container>
+
           </Box>
-          <Container sx={{ mt: 3, mb: 3 }}>
-            <Typography id="modal-modal-title" variant="h4" component="h2">
-              En el horario, sucursal, y con el número de personas seleccionado,
-              se encuentran 5 mesas disponibles
-            </Typography>
-
-            <Typography
-              id="modal-modal-description"
-              variant="h4"
-              sx={{ mt: 3 }}
-            >
-              ¿Desea confirmar su reservación?
-            </Typography>
-
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "flex-end",
-                mt:3
-              }}
-            >
-              <Button
-                variant="contained"
-                sx={{
-                  paddingTop: 2,
-                  paddingBottom: 2,
-                  width: "25%",
-                  bgcolor: "#FFFFFF",
-                  color: "#644838",
-                  borderColor: "#644838",
-                  border: 2,
-                }}
-                onClick={handleClose}
-              >
-                <Typography
-                  variant="h5"
-                  sx={{ fontWeight: "bold", color: "#644838" }}
-                >
-                  CANCELAR
-                </Typography>
-              </Button>
-
-              <Button
-                variant="contained"
-                sx={{
-                  paddingTop: 2,
-                  paddingBottom: 2,
-                  ml:3,
-                  width: "25%",
-                  bgcolor: "#FA8466",
-                  color: "#644838",
-                  borderColor: "#644838",
-                  border: 2,
-                }}
-                onClick={handleOpenQR}
-              >
-                <Typography
-                  variant="h5"
-                  sx={{ fontWeight: "bold", color: "#FFFFFF" }}
-                >
-                  ACEPTAR
-                </Typography>
-              </Button>
-            </Box>
-          </Container>
-        </Box>
       </Modal>
+
+      {/* MODAL DE QR */}
       <Modal open={openQR} >
-        <Box sx={style}>
-          <Box sx={{ bgcolor: "#FA8466" }}>
-            <Container>
-              <Typography
-                variant="h2"
-                sx={{
-                  paddingTop: 2,
-                  paddingBottom: 2,
-                  color: "#FFFFFF",
-                  fontWeight: "bold",
-                }}
-              >
-                Mesas Disponibles
-              </Typography>
-            </Container>
-          </Box>
-          <Container sx={{ mt: 0, mb: 3 }}>
+          <Box sx={style}>
 
-          <Box
-              sx={{
-                display: "flex",
-                flexDirection:'row',
-                justifyContent: "center",
-                
-              }}
-            >
-              <Box sx={{display: "flex",
-                flexDirection:'row',
-                justifyContent: "center",
-                }}>
-              <div className="backgroundImageQR">
-
-              </div>
-              </Box>
+            <Box sx={{ bgcolor: "#FA8466" }}>
+              <Container>
+                <Typography
+                  variant="h2"
+                  sx={{
+                    paddingTop: 2,
+                    paddingBottom: 2,
+                    color: "#FFFFFF",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Mesas Disponibles
+                </Typography>
+              </Container>
             </Box>
+
+            <Container sx={{ mt: 0, mb: 3 }}>
 
             <Box
-              sx={{
-                display: "flex",
-                flexDirection:'row',
-                justifyContent: "center",
-                
-              }}
-            >
-              <Button
-                variant="contained"
                 sx={{
-                  paddingTop: 2,
-                  paddingBottom: 2,
-                  ml:3,
-                  width: "35%",
-                  bgcolor: "#FA8466",
-                  color: "#644838",
-                  borderColor: "#644838",
-                  border: 2,
+                  display: "flex",
+                  flexDirection:'row',
+                  justifyContent: "center",
+                  
                 }}
-                onClick={handleCloseQR}
               >
-                <Typography
-                  variant="h5"
-                  sx={{ fontWeight: "bold", color: "#FFFFFF" }}
-                >
-                  DESCARGAR QR
-                </Typography>
-              </Button>
-            </Box>
+                <Box sx={{display: "flex",
+                  flexDirection:'row',
+                  justifyContent: "center",
+                  }}>
+                    
+                <div >
 
-          </Container>
-        </Box>
+              
+                    <div className="HpQrcode">
+                      <QRCode
+                      id="qrCodeEl"
+                      value={`Personas: ${Reservacion.Personas}, Fecha: ${Reservacion.Fecha}, Hora: ${Reservacion.Hora}, Sucursal: ${Reservacion.Sucursal}`}
+                      size={290}
+                      level={"H"}
+                      includeMargin={true}
+                    /></div>
+      
+
+               
+                
+                </div>
+                </Box>
+              </Box>
+
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection:'row',
+                  justifyContent: "center",
+                  
+                }}
+              >
+
+
+
+                <Button
+                  variant="contained"
+                  sx={{
+                    paddingTop: 2,
+                    paddingBottom: 2,
+                    ml:3,
+                    width: "35%",
+                    bgcolor: "#FA8466",
+                    color: "#644838",
+                    borderColor: "#644838",
+                    border: 2,
+                  }}
+                  type="button" onClick={downloadQRCode}
+                >
+                  <Typography
+                    variant="h5"
+                    sx={{ fontWeight: "bold", color: "#FFFFFF" }}
+                  >
+                    DESCARGAR QR
+                  </Typography>
+                </Button>
+
+  
+              </Box>
+
+            </Container>
+          </Box>
       </Modal>
-    </ThemeProvider>
+
+    </Grid>
+     
+
   );
 }

@@ -8,7 +8,8 @@ var theme = createTheme({
       dark: "#DE6D71",
     },
     secondary: {
-      main: "#FFEFB5",
+      main: "#FFEFB5",      
+      secondary: "#FFFFFF",
     },
     background: {
       main: "#FEEEE5",
@@ -17,6 +18,7 @@ var theme = createTheme({
     text: {
       primary: "#644838",
       secondary: "#DE6D71",
+      tertiary: "#FA8466",
     },
   },
   typography: {

@@ -1,0 +1,297 @@
+.tyStar {
+    position: absolute;
+    z-index: 40;
+    margin-left: 1.2vw;
+    margin-top: 1.5vw;
+    font-size: 1.6vw;
+    color:#644838; 
+    font-weight:700;
+}
+
+.tyStarCard {
+    position: absolute;
+    z-index: 40;
+    margin-left: 1vw;
+    margin-top: 1.5vw;
+    font-size: 1.6vw;
+    color:#644838; 
+    font-weight:700;
+}
+
+.starProm{
+    width: 5.7vw;
+}
+
+.TyStyProm{
+    font-size: 1.6vw;
+    color:#644838; 
+    font-weight:700;
+}
+
+.TyStyV3P5{
+    font-size: 1.8vw;
+    color:#644838; 
+    font-weight:500;
+}
+
+.TyStyVP3{
+    font-size: 1.5vw;
+    color:#644838; 
+    font-weight:300;
+}
+
+.TyStyVP5{
+    font-size: 1.5vw;
+    color: #644838; 
+    font-weight:500;
+}
+
+.TyStyVT3{
+    font-size: 1.5vw;
+    color:#FA8466; 
+    font-weight:300;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+
+    .tyStar {
+        position: absolute;
+        z-index: 40;
+        margin-left: 1.2vw;
+        margin-top: 1.6vw;
+        font-size: 1.6vw;
+        color:#644838; 
+        font-weight:700;
+    }
+
+    .Portada{
+        height: 52vw;
+    }
+
+    .tyEPortada{
+        font-size: 6.2vw;
+    }
+
+    .tyFPortada{
+        font-size: 2.7vw;
+    }
+
+    .carousel{
+        height: 41.3vw;
+    }
+
+    .boxTyDD{
+        margin-top: 2vw;
+        margin-bottom: 5vw;
+    }
+
+    .tyDD{
+        font-size: 2.8vw;
+    }
+
+    .itemPromB{
+        display: flex;
+        justify-content: center;
+    }
+
+    .tyPromB{
+        display: none;
+    }
+
+    .cellPromB{
+        display: inline;
+    }
+
+    .itemPromL{
+        margin-top: 3vw;
+    }
+    
+    .tyPromLTitle{
+        font-size: 2.8vw;
+    }
+
+    .iPromL{
+        display: flex;
+        justify-content: center;
+    }
+
+    .cardProm{
+        height: 18vw;
+        width: 18vw;
+    }
+
+    .starProm{
+        width: 7.7vw;
+    }
+
+    .tyPromClick{
+        font-size: 2.3vw;
+    }
+    
+    .imPromClick{
+        height: 3.2vw;
+    }
+
+    .boxTSN{
+        height: 56vw;
+        border-radius: 20px;
+    }
+
+    .tyStarCard {
+        position: absolute;
+        z-index: 40;
+        margin-left: 1vw;
+        margin-top: 1.5vw;
+        font-size: 2.6vw;
+        color:#644838; 
+        font-weight:800;
+    }    
+
+    
+    .TyStyV3P5{
+        font-size: 2.8vw;
+        color:#644838; 
+        font-weight:500;
+    }
+    
+    .TyStyVP3{
+        font-size: 2vw;
+        color:#644838; 
+        font-weight:300;
+    }
+    
+    .TyStyVP5{
+        font-size: 2vw;
+        color: #644838; 
+        font-weight:500;
+    }
+    
+    .TyStyVT3{
+        font-size: 2vw;
+        color:#FA8466; 
+        font-weight:300;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .Portada{
+        height: 54vw;
+    }
+
+    .tyEPortada{
+        font-size: 6.2vw;
+    }
+
+    .tyFPortada{
+        font-size: 2.8vw;
+    }
+
+
+    .carousel{
+        height: 41.3vw;
+    }
+
+    .boxTyDD{
+        margin-top: 2.8vw;
+        margin-bottom: 5.8vw;
+    }
+
+    .tyDD{
+        font-size: 3.6vw;
+    }
+
+    .itemPromB{
+        display: flex;
+        justify-content: center;
+    }
+
+    .tyPromB{
+        display: none;
+    }
+
+    .cellPromB{
+        display: inline;
+    }
+
+    .itemPromL{
+        margin-top: 3.5vw;
+    }
+    
+    .tyPromLTitle{
+        font-size: 3.2vw;
+    }
+
+    .iPromL{
+        display: flex;
+        justify-content: center;
+    }
+
+    .cardProm{
+        height: 22vw;
+        width: 22vw;
+    }
+
+    .starProm{
+        width: 8.6vw;
+    }
+
+    .tyPromClick{
+        font-size: 2.6vw;
+    }
+    
+    .imPromClick{
+        height: 3.6vw;
+    }
+
+    .boxTSN{
+        height: 88vw;
+        border-radius: 18px;
+    }
+
+    .tyStarCard {
+        position: absolute;
+        z-index: 40;
+        margin-left: 1.1vw;
+        margin-top: 1.8vw;
+        font-size: 2.8vw;
+        color:#644838; 
+        font-weight:700;
+    }    
+
+
+    .TyStyProm{
+        font-size: 2.2vw;
+        color:#644838; 
+        font-weight:700;
+    }
+    
+    .TyStyV3P5{
+        font-size: 3.6vw;
+        color:#644838; 
+        font-weight:500;
+    }
+    
+    .TyStyVP3{
+        font-size: 2.7vw;
+        color:#644838; 
+        font-weight:300;
+    }
+    
+    .TyStyVP5{
+        font-size: 2.7vw;
+        color: #644838; 
+        font-weight:500;
+    }
+    
+    .TyStyVT3{
+        font-size: 2.7vw;
+        color:#FA8466; 
+        font-weight:300;
+    }
+
+    .tyEvent{
+        font-size: 3.6vw;
+    }
+}

@@ -4,7 +4,7 @@ import {Card, Typography, Paper, Button, Box, Grid} from '@mui/material';
 import Image from 'mui-image'
 
 import HomeImage from './images/HomeImageL.jpg';
-import LineaRF from './images/LineaRF2.png';
+import FlechaRF from './images/FlechaRF3.png';
 import HamHuevo from './images/HamHuevo.jpg';
 import CakeBolitas from './images/CakeBolitas.jpg';
 import StarProm from './images/starProm.png';
@@ -24,17 +24,21 @@ import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 
 
+import Producto from "../components/Producto";
+import useDrawer from "../hooks/useDrawer";
+import { createDrawer } from "../utils";
+
+import "./css/home.css";
+
+const ProductoDrawer = ({ toggle, isOpen }) =>
+  createDrawer(Producto, toggle, isOpen);
+
 export default function Home(){
 
      /*--------------------------STYLE--------------------- */ 
-    const TyStyProm={ fontSize: 20, color:"#644838", fontWeight:700 };
-
-    const TyStyVP3={fontSize: 20, color:"#644838", fontWeight:300};
-    const TyStyVP5={fontSize: 20, color:"#644838", fontWeight:500};
-    const TyStyV3P5={fontSize: 23, color:"#644838", fontWeight:500};
+    const TyStyProm2={ fontSize: '3vw', color:"#644838", fontWeight:700 };
     const TyStyVP9={fontSize: 20, color:"#644838", fontWeight:900};
-    const TyStyVT3={fontSize: 20, color:"#FA8466", fontWeight:300};
-    const TyStyVT5={fontSize: 20, color:"#FA8466", fontWeight:500};
+
     const TyStyTSS9={fontSize: 35, color:"#FFFFFF", fontWeight:900};
     const TyStyTtSS9={fontSize: 30, color:"#FFFFFF", fontWeight:900};
     const TyStyVSS9={fontSize: 20, color:"#FFFFFF", fontWeight:900};
@@ -42,33 +46,10 @@ export default function Home(){
     const TyStyVSM9={fontSize: 20, color:"#FFEFB5", fontWeight:900};
     const TyStyTP9={fontSize: 35, color:"#644838", fontWeight:900};
 
+    const productoDrawer = useDrawer();
 
-
-  /*--------------------------FUNCIONES--------------------- */
     
-    var items = [
-        {
-            evento: "Halloween",
-            producto: "Marshmallow Ghost Brownies",
-            descricion: "Fantasmalmente adorables, Su sabor te seguira hasta la muerte",
-            precio: "20 rebanadas a $290"
-        }
-    ]
 
-
-    function Item(props){
-    return (
-        <Paper sx={{width:200}}>
-            <Typography>{props.item.evento}</Typography>
-
-            <Button className="CheckButton">
-                Check it out!
-            </Button>
-        </Paper>
-    )
-}
-
-// RESOLVER
 const [isShown, setIsShown] = React.useState(null);
 
   /*--------------------------RETURN--------------------- */
@@ -79,305 +60,275 @@ const [isShown, setIsShown] = React.useState(null);
         justifyContent="center"
         style={{ minHeight: '100vh' }}
         sx={{bgcolor: 'background.main'}}  >
+      <ProductoDrawer {...productoDrawer} />
 
             {/* PRIMERO HEADER */}
             <Grid container >
-               
-                <Grid item xs={12} sm={12} md={7} lg={6} sx={{backgroundColor: 'secondary.main', height:650}}>
-                    <Grid container sx={{ mt:14}}>
-                        <Grid item xs={1} sm={1} md={1} lg={2}>  </Grid>
-                        <Grid item xs={9} sm={10} md={11} lg={10}>
-                        <Typography sx={{ fontSize: 62, color:"text.primary", fontWeight:900}}>
+                <Grid item className="Portada" xs={6} sx={{backgroundColor: 'secondary.main', height:'46vw'}}>
+                    <Box sx={{ml: '5vw', mt:'8vw'}}>
+                        <Typography className="tyEPortada" sx={{ fontSize:'5.7vw', color:"text.primary", fontWeight:900}}>
                             DEVOTOS AL 
                         </Typography>
-                        <Typography sx={{ fontSize: 62, color:"primary.main", fontWeight:900, lineHeight: 0.8}}>
+                        <Typography className="tyEPortada" sx={{fontSize:'5.7vw', color:"text.tertiary", fontWeight:900, lineHeight: 0.8}}>
                             BUEN SABOR
                         </Typography>
-                        <Typography sx={{ mt:5, mr:10, fontSize: 34, color:"text.primary", fontWeight:900, lineHeight: 1}}>
+                        <Typography className="tyFPortada" sx={{fontSize:'2.2vw', mt:'4vw', mr:'4vw', color:"text.primary", fontWeight:900, lineHeight: 1}}>
                             Para cualquier hora de comida, antojo o celebración.
                         </Typography>
-                        </Grid>
-                       
-
-                    </Grid>
-                    
-                    <Grid container display={{xs:"none", sm: "none", md: "block" }}>
-                        <Grid item xs={0} sm={0} md={12} lg={12}>
-                            <Box sx={{display:'flex', justifyContent:'end'}}>
-                            <Image src={FlechaCD} duration={0} width="50%"/>
-                            </Box>
-                        </Grid>
-                    </Grid>
-                    
+                    </Box>
+                    <Box sx={{display:'flex', justifyContent:'end'}}>
+                        <Image src={FlechaCD} duration={0} width="28vw"/>
+                    </Box>
                 </Grid>
-
-                <Grid item xs={12} sm={12} md={5} lg={6} sx={{height:650}}>
+                <Grid className="Portada" item xs={6} sx={{height:"46vw"}}>
                     <Image src={HomeImage} duration={0} fit="cover"/>
                 </Grid>
             </Grid>
 
-            {/* SEGUNDO PROMOCIONES*/}
-            <Grid container pt={10}>
-
-                {/* Texto arriba */}
-                <Grid item lg={12}>
-                    <Typography sx={{textAlign: 'center'}} style={TyStyV3P5}>
+            {/* Texto Arriba */}
+            <Box className="boxTyDD" sx={{pt:"4vw", mb:"4vw"}}>
+                    <Typography sx={{ textAlign: 'center', lineHeight:"1.5vh",  textDecoration: 'underline', 
+                    textUnderlinePosition: "under", textDecorationColor:"#DE6D71", textDecorationThickness: '0.3vw'}}
+                    className="TyStyV3P5">
                         Un 
-                        <Typography sx={{fontSize: 23, color:"primary.main", fontWeight:500, 
-                        display:"inline"}}> descuento </Typography> 
+                        <Typography className="tyDD" sx={{fontSize: '1.8vw', color:"text.tertiary", fontWeight:500, 
+                        display:"inline", lineHeight:"1.5vh", textDecoration: 'underline', 
+                        textUnderlinePosition: "under", textDecorationColor:"#DE6D71", textDecorationThickness: '0.3vw'}}> descuento </Typography> 
                         siempre hace la comida más 
-                        <Typography sx={{fontSize: 23, color:"primary.main", fontWeight:500, 
-                        display:"inline"}}> deliciosa</Typography> 
+                        <Typography className="tyDD" sx={{fontSize: '1.8vw', color:"text.tertiary", fontWeight:500, 
+                        display:"inline", lineHeight:"1.5vh", textDecoration: 'underline', 
+                        textUnderlinePosition: "under", textDecorationColor:"#DE6D71", textDecorationThickness: '0.3vw'}}> deliciosa</Typography> 
                         .
                     </Typography>
-                    
-                    <Box sx={{display: 'inline-flex', justifyContent: 'center', height:"100%", width:"100%", mb:1}}>
-                        <Image src={LineaRF} duration={0} height="10%" width="43%"/>
-                    </Box>
-                </Grid>
+            </Box>
 
-                {/* Imagenes */}
-                <Grid item lg={12}>
-                    <Grid container pt={10}>
+            {/* SEGUNDO PROMOCIONES*/}
+            <Grid container >
+                    <Grid item className="itemPromB" xs={12} sm={5} sx={{height:'35vw'}} >
+                        <Box className="tyPromB" sx={{height:'2.4vw', backgroundColor:'secondary.secondary', position: 'absolute',
+                        zIndex:20, ml:'2.5vw', mt:'1.5vw'}}> 
+                        <Typography  sx={{ml:'0.6vw', mr:'0.6vw',}} className="TyStyProm" >
+                            Hamburguesa de Huevo</Typography> 
+                        </Box>
+                        <Box className="tyPromB" sx={{height:'2.4vw', backgroundColor:'secondary.secondary', position: 'absolute',
+                        zIndex:10, ml:'2.5vw', mt:'0.8vw', opacity:'60%'}}> 
+                        <Typography  sx={{ml:'0.6vw', mr:'1.2vw', 
+                        visibility:'hidden'}} className="TyStyProm" >
+                            Hamburguesa de Huevo</Typography>
+                        </Box>
 
-                        <Grid item sm={'none'} md={1}></Grid>
+                        
+                        <Box className="tyPromB" sx={{ ml:'3.7vw', mt:'3.7vw', position: 'absolute',  zIndex:30}}> 
+                            <Typography id="tyStarPromG" className="tyStar">-15%</Typography>
+                            <Image src={StarProm}  width='5.7vw'/>
+                        </Box>
+                        <Box className="tyPromB" sx={{height:'2.1vw', width:'7.4vw', backgroundColor:'secondary.secondary', position: 'absolute',
+                        zIndex:20,  ml:'2.5vw', mt:'5.6vw'}}>
+                        </Box>
+                        <Box className="tyPromB" sx={{height:'2.1vw', width:'8vw', backgroundColor:'secondary.secondary', position: 'absolute',
+                        zIndex:10,  ml:'2.5vw', mt:'5.2vw', opacity:'60%'}}> 
+                        </Box>
 
-                        {/* Promociones imagen grande */}
-                        <Grid item xs={12} sm={12} md={5} lg={5} sx={{height:460}} >
-                            <Box sx={{height:30, backgroundColor:'background.main', position: 'absolute',
-                            zIndex:20, ml:4, mt:2}}> <Typography sx={{ml:1, mr:1,}} style={TyStyProm}>
+                        <Box sx={{height:"100%",  width:"38vw", ml:'2.8vw'}}>
+                            <Image id="imagePromG" src={HamHuevo} duration={0} fit="cover" />
+                        </Box>
+
+                        <Box className="cellPromB" sx={{height:'8vw', width:"32vw", mt:"20vw", ml:"1vw", 
+                        display:"none"}}>
+                            <Box sx={{height:'5vw', backgroundColor:'secondary.secondary', borderRadius:0.5,
+                        position:"absolute", zIndex:10, ml:"1vw"}}>
+                                <Typography  sx={{ml:'1vw', mr:'1vw',}} style={TyStyProm2}>
+                                Hamburguesa de Huevo</Typography> 
+                            </Box>
+                            <Box sx={{height:'5vw', backgroundColor:'background.dark', borderRadius:0.5, position:"absolute",
+                        opacity:"60%", mt:'1.1vw', ml:"1.8vw"}}>
+                                <Typography  sx={{ml:'1vw', mr:'1.3vw', opacity:"0%"}} style={TyStyProm2}>
                                 Hamburguesa de Huevo</Typography> 
                             </Box>
 
-                            <Box sx={{height:30, backgroundColor:'background.main', position: 'absolute',
-                            zIndex:10, ml:4, mt:1, opacity:'60%'}}> <Typography sx={{ml:1, mr:2, visibility:'hidden'}}
-                            style={TyStyProm}>
-                                Hamburguesa de Huevo</Typography>
+                            <Box sx={{height:'4vw', width:"13vw",backgroundColor:'secondary.secondary', borderRadius:0.5,
+                        position:"absolute", zIndex:10, mt:'7.8vw', ml:"1vw"}}>
                             </Box>
-
-                            
-                            <Box sx={{ ml:6, mt:6, position: 'absolute',  zIndex:30}}> 
-                                <Typography sx={{position: 'absolute', zIndex:40, ml:2, mt:2.5}} style={TyStyProm}>
-                                    -15%
-                                </Typography>
-                                <Image src={StarProm}  width='18%'/>
+                            <Box sx={{height:'4vw',width:"13vw", backgroundColor:'background.dark', borderRadius:0.5, position:"absolute",
+                        opacity:"60%", mt:'8.8vw', ml:"1.8vw"}}>
                             </Box>
-
-                            <Box sx={{height:26, width:100, backgroundColor:'background.main', position: 'absolute',
-                            zIndex:20, ml:4, mt:9}}>
+                            <Box sx={{ position: 'absolute',  mt:'5.8vw', ml:"3.5vw", zIndex:30}}> 
+                                <Typography id="tyStarPromG" className="tyStar" style={TyStyProm2}>-15%</Typography>
+                                <Image src={StarProm} duration={0} width='9vw'/>
                             </Box>
-
-                            <Box sx={{height:26, width:108, backgroundColor:'background.main', position: 'absolute',
-                            zIndex:10, ml:4, mt:8, opacity:'60%'}}> 
-                            </Box>
-
-                            <Box sx={{height:"100%",  width:"92%", pl:3}}>
-                                <Image src={HamHuevo} duration={0} fit="cover" />
-                            </Box>
-                            
-                        </Grid>
-
-                        {/* Promociones cuadricula */}
-                        <Grid item xs={12} sm={12} md={6} lg={5} >
-                            <Typography sx={{textAlign:'center', fontSize: 32, color:"text.primary", fontWeight:900, letterSpacing:5, lineHeight:1, mb:3}}>
-                                PROMOCIONES
-                            </Typography>
-
-                            <Grid container>
-                                <Grid item xs={6} sm={4} md={5} lg={4} mb={4} >
-                                    <Box container >
-                                        <Box sx={{position: 'absolute',  zIndex:20, width:200}}> 
-                                            <Typography sx={{position: 'absolute', zIndex:40, ml:1.8, mt:2.5}} 
-                                            style={TyStyProm}>
-                                                -30%
-                                            </Typography>
-                                            <Image src={StarProm}  width='37%'/>
-                                        </Box>
-                                        <Card sx={{width:186, height:186, ml:3}}> 
-                                            <Image src={CakeBolitas} duration={0} fit="cover"/>
-                                        </Card>
-                                    </Box>
-                                </Grid>
-
-                                <Grid item s={6} sm={4} md={5} lg={4} mb={4} >
-                                    <Box container >
-                                        <Box sx={{position: 'absolute',  zIndex:20, width:200}}> 
-                                            <Typography sx={{position: 'absolute', zIndex:40, ml:1.8, mt:2.5}} 
-                                            style={TyStyProm}>
-                                                -35%
-                                            </Typography>
-                                            <Image src={StarProm}  width='37%'/>
-                                        </Box>
-                                        <Card sx={{width:186, height:186, ml:3}}> 
-                                            <Image src={GalletasB} duration={0} fit="cover"/>
-                                        </Card>
-                                    </Box>
-                                </Grid>
-
-                                <Grid item xs={6} sm={4} md={5} lg={4} mb={4} >
-                                    <Box container >
-                                        <Box sx={{position: 'absolute',  zIndex:20, width:200}}> 
-                                            <Typography sx={{position: 'absolute', zIndex:40, ml:1.8, mt:2.5}} 
-                                            style={TyStyProm}>
-                                                -12%
-                                            </Typography>
-                                            <Image src={StarProm}  width='37%'/>
-                                        </Box>
-                                        <Card sx={{width:186, height:186, ml:3}}> 
-                                            <Image src={PayG} duration={0} fit="cover"/>
-                                        </Card>
-                                    </Box>
-                                </Grid>
-
-                                <Grid item xs={6} sm={4} md={5} lg={4} mb={4} >
-                                    <Box container >
-                                        <Box sx={{position: 'absolute',  zIndex:20, width:200}}> 
-                                            <Typography sx={{position: 'absolute', zIndex:40, ml:1.8, mt:2.5}} 
-                                            style={TyStyProm}>
-                                                -15%
-                                            </Typography>
-                                            <Image src={StarProm}  width='37%'/>
-                                        </Box>
-                                        <Card sx={{width:186, height:186, ml:3}}> 
-                                            <Image  src={HamHuevo} duration={0} fit="cover"/>
-                                        </Card>
-                                    </Box>
-                                </Grid>
-
-                                <Grid item xs={6} sm={4} md={5} lg={4} mb={4} >
-                                    <Box container >
-                                        <Box sx={{position: 'absolute',  zIndex:20, width:200}}> 
-                                            <Typography sx={{position: 'absolute', zIndex:40, ml:1.8, mt:2.5}} 
-                                            style={TyStyProm}>
-                                                -16%
-                                            </Typography>
-                                            <Image src={StarProm}  width='37%'/>
-                                        </Box>
-                                        <Card sx={{width:186, height:186, ml:3}}> 
-                                            <Image src={PastelPB} duration={0} fit="cover"/>
-                                        </Card>
-                                    </Box>
-                                </Grid>
-
-                                <Grid item xs={6} sm={4} md={5} lg={4} mb={4} >
-                                    <Box container >
-                                        <Box sx={{position: 'absolute',  zIndex:20, width:200}}> 
-                                            <Typography sx={{position: 'absolute', zIndex:40, ml:1.8, mt:2.5}} 
-                                            style={TyStyProm}>
-                                                -10%
-                                            </Typography>
-                                            <Image src={StarProm}  width='37%'/>
-                                        </Box>
-                                        <Card sx={{width:186, height:186, ml:3}}> 
-                                            <Image src={Cupcake} duration={0} fit="cover"/>
-                                        </Card>
-                                    </Box>
-                                </Grid>
-                            </Grid>   
-
-           
-                            
-                        </Grid>
-
-                        <Grid item sm={0} md={1}></Grid>
-
-                        {/* Mira mas */}
-                        <Grid container spacing={0} alignItems="center"  justifyContent="center"> 
-                        
-                            <Box sx={{mt:3, display:"flex", justifyContent:'center', pb:6}}>
-                                <Typography sx={{fontSize: 20, color:"text.primary", fontWeight:500, textAlign: 'center', display:"inline",fontStyle:'italic'}}>
-                                    Mira más.
-                                </Typography> 
-
-                                <Typography sx={{fontSize: 15, color:"text.secondary",  fontStyle:'italic', display:"inline"}}> 
-                                    <a href="#">Haz click aquí! </a>
-                                </Typography>
-
-                                
-                            </Box>
-
-                 
-
-                        </Grid>
-                       
-                
+                    
+                        </Box>
 
                     </Grid>
-                </Grid>
+                    <Grid item className="itemPromL" xs={12} sm={7} sx={{pl:'0.9vw'}}>
+                        <Typography className="tyPromLTitle" sx={{textAlign:'center', fontSize:'2.3vw', 
+                        color:"text.primary", fontWeight:900, letterSpacing:5, lineHeight:1, 
+                        mb:'2vw'}}>PROMOCIONES</Typography>
+                        <Grid container >
+                            <Grid item className="iPromL" xs={4} >
+                                <Box container>
+                                    <Box sx={{position: 'absolute',  zIndex:20, width:'11vw'}}> 
+                                        <Typography className="tyStarCard" >
+                                            -08%
+                                        </Typography>
+                                        <Box className="starProm" sx={{position: 'absolute', width:'5.7vw'}} >
+                                            <Image src={StarProm}  duration={0} fit="cover"/>
+                                        </Box>
+                                    </Box>
+                                    <Card className="cardProm" sx={{width:'14.2vw', height:'14.2vw', ml:'1.9vw'}}> 
+                                        <Image src={CakeBolitas} duration={0} fit="cover"/>
+                                    </Card>
+                                </Box>
+                            </Grid>
+                            <Grid item className="iPromL" xs={4} >
+                                <Box container >
+                                    <Box sx={{position: 'absolute',  zIndex:20, width:'11vw'}}> 
+                                        <Typography className="tyStarCard" >
+                                            -35%
+                                        </Typography>
+                                        <Box className="starProm" sx={{position: 'absolute', width:'5.7vw'}} >
+                                            <Image src={StarProm}  duration={0} fit="cover"/>
+                                        </Box>
+                                    </Box>
+                                    <Card className="cardProm" sx={{width:'14.2vw', height:'14.2vw', ml:'1.9vw'}}> 
+                                        <Image  src={GalletasB} duration={0} fit="cover"/>
+                                    </Card>
+                                </Box>
+                            </Grid>
+                            <Grid item className="iPromL" xs={4} >
+                                <Box container >
+                                    <Box sx={{position: 'absolute',  zIndex:20, width:'11vw'}}> 
+                                        <Typography className="tyStarCard">
+                                            -12%
+                                        </Typography>
+                                        <Box className="starProm" sx={{position: 'absolute', width:'5.7vw'}} >
+                                            <Image src={StarProm}  duration={0} fit="cover"/>
+                                        </Box>
+                                    </Box>
+                                    <Card className="cardProm" sx={{width:'14.2vw', height:'14.2vw', ml:'1.9vw'}}> 
+                                        <Image src={PayG} duration={0} fit="cover"/>
+                                    </Card>
+                                </Box>
+                            </Grid>
+                        </Grid>   
+                        <Grid container sx={{pt:'2.4vw'}}>
+                            <Grid item className="iPromL"  xs={4} >
+                                <Box container>
+                                    <Box sx={{position: 'absolute',  zIndex:20, width:'11vw'}}> 
+                                        <Typography className="tyStarCard">
+                                            -15%
+                                    </Typography>
+                                    <Box className="starProm" sx={{position: 'absolute', width:'5.7vw'}} >
+                                            <Image src={StarProm}  duration={0} fit="cover"/>
+                                        </Box>
+                                    </Box>
+                                    <Card className="cardProm" sx={{width:'14.2vw', height:'14.2vw', ml:'1.9vw'}}> 
+                                        <Image src={HamHuevo} duration={0} fit="cover"/>
+                                    </Card>
+                                </Box>
+                            </Grid>
+                            <Grid item className="iPromL" xs={4} >
+                                <Box container>
+                                    <Box sx={{position: 'absolute',  zIndex:20, width:'11vw'}}> 
+                                        <Typography className="tyStarCard">
+                                            -23%
+                                    </Typography>
+                                    <Box className="starProm" sx={{position: 'absolute', width:'5.7vw'}} >
+                                            <Image src={StarProm}  duration={0} fit="cover"/>
+                                        </Box>
+                                    </Box>
+                                    <Card className="cardProm" sx={{width:'14.2vw', height:'14.2vw', ml:'1.9vw'}}> 
+                                        <Image src={PastelPB} duration={0} fit="cover"/>
+                                    </Card>
+                                </Box>
+                            </Grid>
+                            <Grid item className="iPromL" xs={4} >
+                                <Box container>
+                                    <Box sx={{position: 'absolute',  zIndex:20, width:'11vw'}}> 
+                                        <Typography className="tyStarCard">
+                                            -10%
+                                        </Typography>
+                                        <Box className="starProm" sx={{position: 'absolute', width:'5.7vw'}} >
+                                            <Image src={StarProm}  duration={0} fit="cover"/>
+                                        </Box>
+                                    </Box>
+                                    <Card className="cardProm" sx={{width:'14.2vw', height:'14.2vw', ml:'1.9vw'}}> 
+                                        <Image src={Cupcake} duration={0} fit="cover"/>
+                                    </Card>
+                                </Box>
+                            </Grid>
+                        </Grid> 
+                    </Grid>
             </Grid>
+
+            {/* Texto Click */}
+            <Box sx={{mt:'2.4vw', display:"flex", justifyContent:'center', pb:'3.5vw'}}>
+                    <Typography className="tyPromClick" sx={{fontSize: '1.6vw', color:"text.primary", fontWeight:500, textAlign: 'center',
+                    display:"inline",fontStyle:'italic'}}>
+                        Mira más.  </Typography> 
+                    <Typography className="tyPromClick" sx={{fontSize: '1.6vw', color:"text.secondary", fontWeight:500, fontStyle:'italic',
+                    display:"inline", textDecoration: 'underline', textUnderlinePosition: "under"}}>  Haz click! 
+                    </Typography>
+                    <Box className="imPromClick" sx={{display:'inline', height:"2vw"}}>
+                        <Image src={FlechaRF} duration={0} fit="cover"/>
+                    </Box>
+            </Box>
 
             {/* TERCERO SOBRE NOSOTROS*/}
-            <Grid container>
-                <Grid item xs={'none'} sm={1}></Grid>
+            <Box container sx={{ justifyContent:'center', display:'flex'}}>
+                    <Box className="boxTSN" sx={{backgroundColor:'secondary.secondary', height:'45vw', width:"87vw", borderRadius:8,
+                    position:'absolute', ml:'1.8vw'}}>
+                        <Grid container>
+                            <Grid item xs={6}>
+                                <Typography sx={{fontSize:'3.2vw', color:"text.primary", fontWeight:900,
+                                mt:'5vw',ml:'4.7vw'}}>TODO SOBRE</Typography>
+                                <Typography sx={{fontSize: '3.2vw', color:"text.tertiary", fontWeight:900,
+                                ml:'4.7vw', lineHeight:1}}>NOSOTROS</Typography>
+                                <Typography className="TyStyVP3" sx={{ mt:'2.5vw',ml:'4.7vw'}}>
+                                    En <span className="TyStyVP5"> CreamDream </span> creemos que un trabajo en 
+                                    <span className="TyStyVT3"> equipo </span> hace que un 
+                                    <span className="TyStyVP5"> sueño funcione</span>.
+                                </Typography>
+                                <Typography className="TyStyVP3" sx={{ mt:'0.4vw', ml:'4.7vw'}}>
+                                    Nuestras sucursales y cocinas están formadas por grupos de
+                                    <span className="TyStyVP5"> amantes del buen sabor</span> y lo dulce, 
+                                    transmiten su <span className="TyStyVP5"> compromiso</span> y 
+                                    <span className="TyStyVP5"> perspectivas </span>
+                                    únicas en cada platillo que preparan.
+                                </Typography>
+                                <Typography className="TyStyVP3" sx={{ mt:'0.4vw', ml:'4.7vw'}}>
+                                    Cada uno de nosotros nos comprometemos a ofrecerle a nuestros clientes
+                                    una <span className="TyStyVP5"> experiencia unica </span> y  
+                                    <span className="TyStyVP5"> satisfactoria</span>.
+                                </Typography>
+                                <Typography className="TyStyVP5" sx={{ mt:'2.3vw', ml:'4.7vw'}}>
+                                    Disfruta como en un <span className="TyStyVT5">sueño</span>.
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <Box container sx={{ml:"6vw", mt:'1.5vw', height:"100%", width:"33vw", display:"flex",
+                            alignContent:"center"}}>
+                                    <Image src={MoSa} duration={0} fit="cover" />
+                                </Box>
+                            </Grid>
+                        </Grid>
+                    </Box>
+                    <Box className="boxTSN" sx={{backgroundColor:'background.dark', height:'45vw', width:"87vw",borderRadius:8,
+                    mt:'1.7vw', mr:'2.2vw'}}></Box>
+            </Box>
 
-                <Grid item xs={11} sm={10} lg={10}>
-
-                    
-                    <Grid container justifyContent="center" alignItems="center" sx={{backgroundColor:'white', borderRadius:8, ml:3, boxShadow: "-20px 20px #efd3c3"}} p={6}>
-                   
-                       <Grid item md={12} lg={6} px={3}>
-                                    <Typography sx={{fontSize: 40, color:"text.primary", fontWeight:900}}>TODO SOBRE</Typography>
-
-                                    <Typography sx={{fontSize: 40, color:"text.tertiary", fontWeight:900}}>NOSOTROS</Typography>
-
-                                    <Typography style={TyStyVP3}>
-                                        En <span style={TyStyVP5}> CreamDream </span> creemos que un trabajo en 
-                                        <span style={TyStyVT3}> equipo </span> hace que un 
-                                        <span style={TyStyVP5}> sueño funcione</span>.
-                                    </Typography>
-
-                                    <Typography style={TyStyVP3} >
-                                        Nuestras sucursales y cocinas están formadas por grupos de
-                                        <span style={TyStyVP5}> amantes del buen sabor</span> y lo dulce, 
-                                        transmiten su <span style={TyStyVP5}> compromiso</span> y 
-                                        <span style={TyStyVP5}> perspectivas </span>
-                                        únicas en cada platillo que preparan.
-                                    </Typography>
-
-                                    <Typography style={TyStyVP3} >
-                                        Cada uno de nosotros nos comprometemos a ofrecerle a nuestros clientes
-                                        una <span style={TyStyVP5}> experiencia unica </span> y  
-                                        <span style={TyStyVP5}> satisfactoria</span>.
-                                    </Typography>
-
-                                    <Typography style={TyStyVP5}>
-                                        Disfruta como en un <span style={TyStyVT5}>sueño</span>.
-                                    </Typography>
-                                    
-                       </Grid>
-
-                       <Grid item xs={12} sm={'none'} md={'none'} lg={2} pt={5}></Grid>
-
-                       <Grid item  md={12} lg={4} px={3} >
-                          
-                            <Image src={MoSa} duration={0} height="70%" width="100%" />
-                          
-                       </Grid>
-                     
-                     
-
-                       
-                    </Grid>
-
-                  
-                                
-                    
-                </Grid>
-
-                <Grid item xs={'none'} sm={1}></Grid>
-            </Grid>
-
-            {/* CUARTO EVENTOS*/}
-            <Grid container pt={10}>
-                <Grid item xl={12} lg={12}>
-
-
-                    <Typography sx={{fontSize: 40, color:"text.primary", fontWeight:900, textAlign:'center', mb:3}}>
+            {/* Texto Eventos */}
+            <Box sx={{pt:'3.2vw'}}>
+                    <Typography className="tyEvent" sx={{fontSize: '3.1vw', color:"text.primary", fontWeight:900, textAlign:'center', 
+                mb:'1.6vw'}}>
                         EVENTOS
                     </Typography>
+            </Box>
 
 
-                 
+            {/* CUARTO EVENTOS*/}
+            <Grid container pt={2}>
+                <Grid item xl={12} lg={12}>
 
                     <Carousel cols={4} rows={1} gap={10}  responsiveLayout={[
                         {
@@ -398,10 +349,8 @@ const [isShown, setIsShown] = React.useState(null);
 
                         <Carousel.Item>
                             <Card >
-                                <CardContent>
-
+                                <CardContent onClick={productoDrawer.toggle}>
                                     
-                                    <a href="#">
                                         <Box sx={{ position:"relative"}}  onMouseEnter={() => setIsShown(1)} onMouseLeave={() => setIsShown(null)}>
                                             <Typography style={TyStyTSS9} sx={{position:'absolute', zIndex:2,
                                                 pl:1, pt:55.5, width:260}}> 
@@ -451,7 +400,7 @@ const [isShown, setIsShown] = React.useState(null);
 
 
                                         </Box>  
-                                    </a>
+                               
 
                                    
                                 </CardContent>
@@ -461,9 +410,7 @@ const [isShown, setIsShown] = React.useState(null);
 
                         <Carousel.Item>
                             <Card>
-                                <CardContent>
-
-                                    <a href="#">
+                                <CardContent onClick={productoDrawer.toggle}>
                                     <Box sx={{ position:"relative"}}  onMouseEnter={() => setIsShown(2)} onMouseLeave={() => setIsShown(null)}>
                                             <Typography style={TyStyTSS9} sx={{position:'absolute', zIndex:2,
                                                                                     pl:1, pt:55.5, width:260}}> 
@@ -509,13 +456,7 @@ const [isShown, setIsShown] = React.useState(null);
                                                     </Box>
                                                 </Box>
                                             )}
-                                        </Box>
-
-</a>
-                                    
-                                        
-                                  
-
+                                    </Box>                                  
                                 </CardContent>
                                 
                             </Card>
@@ -523,8 +464,8 @@ const [isShown, setIsShown] = React.useState(null);
 
                         <Carousel.Item>
                             <Card>
-                                <CardContent>
-                                <a href="#">
+                                <CardContent onClick={productoDrawer.toggle}>
+                            
                                     <Box sx={{ position:"relative"}}  onMouseEnter={() => setIsShown(3)} onMouseLeave={() => setIsShown(null)}> 
 
                                         <Typography style={TyStyTSS9} sx={{position:'absolute', zIndex:2,
@@ -577,11 +518,7 @@ const [isShown, setIsShown] = React.useState(null);
 
                                             
                                     </Box>
-                                        
-                                  
-                                </a>
-                               
-
+        
                                 </CardContent>
                          
                             </Card>
@@ -589,8 +526,7 @@ const [isShown, setIsShown] = React.useState(null);
 
                         <Carousel.Item>
                             <Card>
-                                <CardContent>
-                                    <a href="#">
+                                <CardContent onClick={productoDrawer.toggle}>
                                         <Box sx={{ position:"relative"}}  onMouseEnter={() => setIsShown(4)} onMouseLeave={() => setIsShown(null)}> 
                                             <Typography style={TyStyTSS9} sx={{position:'absolute', zIndex:30,
                                                 pl:1, pt:55.5, width:260}}> 
@@ -638,12 +574,6 @@ const [isShown, setIsShown] = React.useState(null);
                                             )}
 
                                         </Box>
-
-                                    </a>
-
-                            
-                    
-
                                 </CardContent>
                              
                             </Card>
@@ -651,9 +581,7 @@ const [isShown, setIsShown] = React.useState(null);
 
                         <Carousel.Item>
                             <Card>
-                                <CardContent>
-
-                                    <a href="#">
+                                <CardContent onClick={productoDrawer.toggle}>
                                     <Box sx={{ position:"relative"}}  onMouseEnter={() => setIsShown(2)} onMouseLeave={() => setIsShown(null)}>
                                             <Typography style={TyStyTSS9} sx={{position:'absolute', zIndex:2,
                                                                                     pl:1, pt:55.5, width:260}}> 
@@ -699,43 +627,25 @@ const [isShown, setIsShown] = React.useState(null);
                                                     </Box>
                                                 </Box>
                                             )}
-                                        </Box>
-
-</a>
-                                    
-                                        
-                                  
-
+                                    </Box>
                                 </CardContent>
                                 
                             </Card>
                         </Carousel.Item>
 
-
-             
                     </Carousel>
-
-                                        
 
                 </Grid>
             </Grid>
 
             {/* QUINTO*/}
-            <Grid container py={10}>
-                <Grid item lg={12}>
-                    <Typography sx={{textAlign: 'center', lineHeight:0.1}} style={TyStyV3P5}>
+
+            <Typography sx={{textAlign: 'center', textDecoration: 'underline', mt:"3vw", mb:"2vw",
+                textUnderlinePosition: "under", textDecorationColor:"#DE6D71", textDecorationThickness: '0.3vw'}}
+                className="TyStyV3P5">
                         Platillos especiales para momentos especiales
-                    </Typography>
-                    <Box sx={{display: 'inline-flex', justifyContent: 'center', height:"100%", width:"100%", mb:1}}>
-                        <Image src={LineaRF} duration={0} height="10%" width="38%"/>
-                    </Box>
-                </Grid>
-            </Grid>
-  
+            </Typography>
 
-
-
-      
         </Grid>
     );
 }

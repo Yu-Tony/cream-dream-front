@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 import {
   Button,
@@ -10,11 +10,13 @@ import {
 
 import { StyledTextField, labelStyle } from "../styles";
 import Boton from "../../../components/Carrito/Boton";
+import { ClienteContext } from "../../../contexts/Cliente";
+import * as API from "../../../services/Cliente";
 
 function InfoPers(props) {
   const [data, setData] = useState({
     correo: "",
-    contrasena: "",
+    contrasena: "contrasena",
     nombre: "",
     apellido: "",
   });
@@ -24,6 +26,25 @@ function InfoPers(props) {
       ...prev,
       [event.target.name]: event.target.value,
     }));
+  };
+
+  const { clienteId } = useContext(ClienteContext);
+  useEffect(() => {
+    const fetchCliente = async () => {
+      const res = await API.GetById(clienteId);
+      if (res.data) {
+        let { data } = res;
+        setData((prev) => ({ ...prev, ...data }));
+      }
+    };
+
+    fetchCliente();
+  }, []);
+
+  const handleOnUpdate = async () => {
+    console.log(data);
+    const res = await API.Update(clienteId, data);
+    console.log(res);
   };
 
   /*--------------------------RETURN--------------------- */
@@ -46,6 +67,7 @@ function InfoPers(props) {
               InputLabelProps={{ shrink: true }}
               name="correo"
               onChange={handleOnChange}
+              value={data.correo}
             />
           </FormControl>
         </Grid>
@@ -63,6 +85,7 @@ function InfoPers(props) {
               InputLabelProps={{ shrink: true }}
               name="contrasena"
               onChange={handleOnChange}
+              value={data.contrasena}
             />
           </FormControl>
         </Grid>
@@ -79,6 +102,7 @@ function InfoPers(props) {
               InputLabelProps={{ shrink: true }}
               name="nombre"
               onChange={handleOnChange}
+              value={data.nombre}
             />
           </FormControl>
         </Grid>
@@ -95,6 +119,7 @@ function InfoPers(props) {
               InputLabelProps={{ shrink: true }}
               name="apellido"
               onChange={handleOnChange}
+              value={data.apellido}
             />
           </FormControl>
         </Grid>
@@ -108,12 +133,7 @@ function InfoPers(props) {
         >
           <Grid item>
             <Button p={0}>
-              <Boton
-                bgcolor="secondary.main"
-                onClick={() => {
-                  console.log(data);
-                }}
-              >
+              <Boton bgcolor="secondary.main" onClick={handleOnUpdate}>
                 Guardar
               </Boton>
             </Button>

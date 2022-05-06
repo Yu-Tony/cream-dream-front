@@ -1,6 +1,6 @@
 import Home from "./pages/Home";
 import Menu from "./pages/Menu";
-import Login from "./pages/login";
+import Login from "./pages/Login";
 import Create from "./pages/create";
 import Perfil from "./pages/Perfil";
 import Reservacion from "./pages/Reservacion";
@@ -12,16 +12,15 @@ import Pago from "./pages/pago";
 import QrLector from "./pages/QrLector";
 import Producto from "./components/Producto";
 import Ayuda from "./pages/Ayuda";
+import Reportes from "./pages/reportes";
 
 
 import useDrawer from "./hooks/useDrawer";
 import { createDrawer } from "./utils";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
-import { Fragment } from "react";
 import { Routes, Route } from "react-router-dom";
-import Reportes from "./pages/reportes";
-
+import ClienteState from "./contexts/Cliente";
 
 const BusquedaDrawer = ({ toggle, isOpen }) =>
   createDrawer(Busqueda, toggle, isOpen);
@@ -39,6 +38,7 @@ function App() {
 
 
   return (
+    <ClienteState>
     <ThemeProvider theme={theme}>
       <Navbar
         toggleBusqueda={busquedaDrawer.toggle}
@@ -61,6 +61,7 @@ function App() {
         <Route exact path="/Ayuda" element={<Ayuda />} />
       </Routes>
     </ThemeProvider>
+    </ClienteState>
   );
 }
 

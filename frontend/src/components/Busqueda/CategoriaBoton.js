@@ -1,6 +1,6 @@
 import { Chip } from "@mui/material";
 
-function CategoriaBoton({ sx, label }) {
+function CategoriaBoton({ sx, key, label, onClick }) {
   return (
     <Chip
       label={label}
@@ -8,7 +8,7 @@ function CategoriaBoton({ sx, label }) {
       variant="categoria"
       sx={{ color: "common.white", ...sx }}
       onClick={() => {
-        alert(label);
+        onClick(label);
       }}
     />
   );

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import {
   Box,
@@ -14,9 +14,21 @@ import Latte from "../../assets/latte.jpg";
 import Macchiato from "../../assets/macchiato.jpg";
 import Moka from "../../assets/moka.jpg";
 
-function Carousel({ height, width = "100%", padding = "0" }) {
+const prepareImagesArray = (imgsArray) => {
+  const array = [];
+
+  imgsArray.map((img) => array.push({ show: false, img: img }));
+  array[0].show = true;
+
+  console.log(array);
+
+  return array;
+};
+
+function Carousel({ height, width = "100%", padding = "0", imgsArray }) {
   const [dir, setDir] = useState(true);
   const [imgs, setImgs] = useState([
+    /*
     {
       show: true,
       img: Latte,
@@ -28,8 +40,13 @@ function Carousel({ height, width = "100%", padding = "0" }) {
     {
       show: false,
       img: Moka,
-    },
+    },*/
   ]);
+
+  useEffect(() => {
+    console.log(imgsArray);
+    setImgs(prepareImagesArray(imgsArray));
+  }, []);
 
   const handleNext = () => {
     var array = [...imgs];

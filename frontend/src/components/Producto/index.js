@@ -1,6 +1,11 @@
-import { Paper, Box, Grid, Button, Typography } from "@mui/material";
+import { useEffect, useState, useContext } from "react";
+
+import { Paper, Grid, Button, Typography } from "@mui/material";
 
 import Carousel from "./Carousel";
+
+import { ProductoContext } from "../../contexts/Producto";
+import * as API from "../../services/Comida";
 
 import { drawerWidths } from "../../responsiveConst";
 import { grid12All } from "../../responsiveConst";
@@ -30,13 +35,39 @@ const respContador = { xs: 4, sm: 4, md: 4, lg: 4, xl: 4 };
 const respBoton = { xs: 8, sm: 8, md: 8, lg: 8, xl: 8 };
 
 function Producto() {
+  const [producto, setProducto] = useState();
+  const { productoId, selectProducto } = useContext(ProductoContext);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await API.GetById(productoId);
+      //console.log(res);
+      setProducto(res.data);
+    };
+
+    if (productoId && productoId !== "") {
+      fetchData();
+    }
+
+    return () => {
+      selectProducto("");
+    };
+  }, []);
+
   return (
     <>
       <Paper sx={paperParentStyle}>
         <Grid container spacing={2}>
-          <Grid item {...grid12All} bgcolor="">
-            <Carousel width="100%" height="350px" padding="0" />
-          </Grid>
+          {producto && producto.imagenes.length > 0 ? (
+            <Grid item {...grid12All} bgcolor="">
+              <Carousel
+                width="100%"
+                height="350px"
+                padding="0"
+                imgsArray={producto.imagenes}
+              />
+            </Grid>
+          ) : null}
 
           <Grid item {...grid12All}>
             <Grid container spacing={2} padding="0 2rem">
@@ -44,7 +75,7 @@ function Producto() {
                 <Grid container>
                   <Grid item {...respTitulo}>
                     <Typography variant="h5" fontWeight={600}>
-                      Latte
+                      {producto ? producto.nombre : ""}
                     </Typography>
                   </Grid>
                   <Grid item {...respPrecio} textAlign="end">
@@ -53,16 +84,16 @@ function Producto() {
                       color="primary.main"
                       fontWeight={600}
                     >
-                      $ 68
+                      {producto ? producto.precio.unidad : "$ 68"}
                     </Typography>
                   </Grid>
                 </Grid>
               </Grid>
               <Grid item {...grid12All} textAlign="center">
                 <Typography variant="body1" fontWeight={500}>
-                  Bebida con un mayor sabor dulce con la presencia de un sutil a
-                  espresso (250ml). Está compuesto por 1oz de espresso y 7oz de
-                  leche cremada
+                  {producto
+                    ? producto.descripcion
+                    : "Bebida con un mayor sabor dulce con la presencia de un sutil a espresso (250ml). Está compuesto por 1oz de espresso y 7oz de leche cremada"}
                 </Typography>
               </Grid>
               <Grid item {...grid12All}>

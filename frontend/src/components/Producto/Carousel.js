@@ -20,7 +20,7 @@ const prepareImagesArray = (imgsArray) => {
   imgsArray.map((img) => array.push({ show: false, img: img }));
   array[0].show = true;
 
-  console.log(array);
+  //console.log(array);
 
   return array;
 };
@@ -44,7 +44,7 @@ function Carousel({ height, width = "100%", padding = "0", imgsArray }) {
   ]);
 
   useEffect(() => {
-    console.log(imgsArray);
+    //console.log(imgsArray);
     setImgs(prepareImagesArray(imgsArray));
   }, []);
 

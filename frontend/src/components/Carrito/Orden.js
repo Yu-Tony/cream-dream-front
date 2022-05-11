@@ -1,41 +1,10 @@
 import { Grid, Button, Typography, Icon } from "@mui/material";
+import { useContext, useEffect } from "react";
+import { CarritoContext } from "../../contexts/Carrito";
 
 import CardOrden from "./CardOrden";
 import Boton from "./Boton";
-import confetti from "../../assets/cakes/confetti.jpg";
-import vainilla from "../../assets/cakes/vainilla.jpg";
 import { grid12All } from "../../responsiveConst";
-
-const ordenes = [
-  {
-    key: 1,
-    imagen: confetti,
-    nombre: "Pastel Confetti",
-    tipo: "Rebanada",
-    precio: 50,
-  },
-  {
-    key: 2,
-    imagen: vainilla,
-    nombre: "Pastel Vainilla",
-    tipo: "Completo",
-    precio: 390,
-  },
-  /*{
-    key: 3,
-    imagen: confetti,
-    nombre: "Pastel Confetti",
-    tipo: "Rebanada",
-    precio: 50,
-  },
-  {
-    key: 4,
-    imagen: vainilla,
-    nombre: "Pastel Vainilla",
-    tipo: "Completo",
-    precio: 390,
-  },*/
-];
 
 const scrollStyle = (theme) => ({
   overflowY: "auto",
@@ -44,6 +13,14 @@ const scrollStyle = (theme) => ({
 });
 
 function Orden() {
+  const { stateCarrito, removeFromCarrito, updateCantidad, ordenar } =
+    useContext(CarritoContext);
+
+  const handleOnClickOrdenar = () => {
+    //console.log(stateOrden);
+    ordenar();
+  };
+
   return (
     <>
       <Grid item {...grid12All} textAlign="center">
@@ -54,16 +31,24 @@ function Orden() {
 
       <Grid item {...grid12All} margin="0 2rem">
         <Grid container spacing={1} maxHeight="65vh" sx={scrollStyle}>
-          {ordenes.map((orden) => (
-            <Grid item {...grid12All} key={orden.key}>
-              <CardOrden {...orden} />
-            </Grid>
-          ))}
+          {stateCarrito.comidas.map((orden, index) => {
+            return !orden.ordenado ? (
+              <Grid item {...grid12All} key={index}>
+                <CardOrden
+                  {...orden}
+                  onRemove={removeFromCarrito}
+                  updateCantidad={updateCantidad}
+                />
+              </Grid>
+            ) : null;
+          })}
         </Grid>
       </Grid>
 
       <Grid item {...grid12All}>
-        <Boton bgcolor="secondary.main">Ordenar</Boton>
+        <Boton bgcolor="secondary.main" onClick={handleOnClickOrdenar}>
+          Ordenar
+        </Boton>
       </Grid>
     </>
   );

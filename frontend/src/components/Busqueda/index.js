@@ -11,13 +11,13 @@ import confetti from "../../assets/cakes/confetti.jpg";
 import vainilla from "../../assets/cakes/vainilla.jpg";
 import chocolate from "../../assets/cakes/chocolate.jpg";
 
-import {ProductoContext} from "../../contexts/Producto";
+import { ProductoContext } from "../../contexts/Producto";
 import * as API from "../../services/Comida";
 
 const paperParentStyle = {
   bgcolor: "background.main",
   ...drawerWidths,
-  height: "100vh"
+  height: "100vh",
 };
 
 const dividerStyle = {
@@ -33,7 +33,7 @@ const busquedaItems = [
     nombre: "Pastel Confetti",
     descripcion:
       "Pastel de vainilla con confetti doblado en cada capa, cubierto con crema de mantequilla",
-    precio: {porcion:"50"},
+    precio: { porcion: "50" },
     imagen: confetti,
   },
   {
@@ -41,7 +41,7 @@ const busquedaItems = [
     nombre: "Pastel de vainilla",
     descripcion:
       "Delicioso pastel de vainilla, rico y mantecoso con una miga ligera, cubierto con crema de mantequilla",
-    precio: {porcion:"65"},
+    precio: { porcion: "65" },
     imagen: vainilla,
   },
   {
@@ -49,56 +49,59 @@ const busquedaItems = [
     nombre: "Pastel de chocolate",
     descripcion:
       "Tres capas de cremosa mantequilla de chocolate sedosa con chispas de vainilla",
-    precio: {porcion: "55"},
+    precio: { porcion: "55" },
     imagen: chocolate,
   },
 ];
 
 function Busqueda({ toggleDrawer }) {
-
   var timer;
   var noTyping = 0;
-  const [searchText, setSearchText]= useState("");
+  const [searchText, setSearchText] = useState("");
   const handleOnSearchTextChange = (event) => setSearchText(event.target.value);
 
   const [searchRes, setSearchRes] = useState([]);
 
   const handleOnSearchByText = async () => {
     const res = await API.GetByQuery(searchText, "N");
-    console.log(res);
-    if(res.data) setSearchRes(res.data)
+    //console.log(res);
+    if (res.data) setSearchRes(res.data);
     else setSearchRes([]);
-  }
+  };
 
   const handleOnClickCategoryChange = async (selected) => {
     //alert(selected);
     const res = await API.GetByQuery(selected, "C");
-    if(res.data) setSearchRes(res.data)
+    if (res.data) setSearchRes(res.data);
     else setSearchRes([]);
-  }
+  };
 
   useEffect(() => {
-    if(searchText != ""){
+    if (searchText != "") {
       timer = setInterval(() => {
-        noTyping += 1
+        noTyping += 1;
         console.log(noTyping);
-        if(noTyping === 1) {
-          handleOnSearchByText(); 
+        if (noTyping === 1) {
+          handleOnSearchByText();
           clearInterval(timer);
         }
-      },1000)
+      }, 1000);
     }
     return () => {
       clearInterval(timer);
-    }
+    };
   }, [searchText]);
-  
-  const {selectProducto, productoId, toggleDrawer: toggleProducto} = useContext(ProductoContext);
+
+  const {
+    selectProducto,
+    productoId,
+    toggleDrawer: toggleProducto,
+  } = useContext(ProductoContext);
   const handleOnClickProducto = (id) => {
     selectProducto(id);
     toggleDrawer();
     toggleProducto();
-  }
+  };
 
   return (
     <>
@@ -123,8 +126,12 @@ function Busqueda({ toggleDrawer }) {
                 padding: "0 2rem",
               }}
             >
-              <BarraBusqueda sx={{ paddingBottom: "2rem" }} value={searchText} onChange={handleOnSearchTextChange}/>
-              <Categorias onClick={handleOnClickCategoryChange}/>
+              <BarraBusqueda
+                sx={{ paddingBottom: "2rem" }}
+                value={searchText}
+                onChange={handleOnSearchTextChange}
+              />
+              <Categorias onClick={handleOnClickCategoryChange} />
             </Grid>
           </Grid>
         </Box>
@@ -135,7 +142,7 @@ function Busqueda({ toggleDrawer }) {
           <Grid container spacing={2}>
             {searchRes.map((item) => (
               <Grid {...grid12All} item sx={{ padding: "0 0" }} key={item._id}>
-                <CardBusqueda {...item} onClick={handleOnClickProducto}/>
+                <CardBusqueda {...item} onClick={handleOnClickProducto} />
               </Grid>
             ))}
           </Grid>

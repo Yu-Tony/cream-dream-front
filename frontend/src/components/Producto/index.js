@@ -6,6 +6,7 @@ import Carousel from "./Carousel";
 
 import { ProductoContext } from "../../contexts/Producto";
 import * as API from "../../services/Comida";
+import { CarritoContext } from "../../contexts/Carrito";
 
 import { drawerWidths } from "../../responsiveConst";
 import { grid12All } from "../../responsiveConst";
@@ -35,14 +36,30 @@ const respContador = { xs: 4, sm: 4, md: 4, lg: 4, xl: 4 };
 const respBoton = { xs: 8, sm: 8, md: 8, lg: 8, xl: 8 };
 
 function Producto() {
-  const [producto, setProducto] = useState();
+  const [producto, setProducto] = useState({
+    _id: "",
+    nombre: "",
+    descripcion: "",
+    imagenes: [],
+    precio: {},
+    opcion: "",
+    cantidad: 0,
+    costo: 0,
+  });
   const { productoId, selectProducto } = useContext(ProductoContext);
+
+  const handleOnChangeCantidad = (value) => {
+    setProducto((prev) => ({
+      ...prev,
+      cantidad: value,
+    }));
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       const res = await API.GetById(productoId);
       //console.log(res);
-      setProducto(res.data);
+      setProducto((prev) => ({ ...prev, ...res.data }));
     };
 
     if (productoId && productoId !== "") {
@@ -53,6 +70,24 @@ function Producto() {
       selectProducto("");
     };
   }, []);
+
+  const { addToCarrito } = useContext(CarritoContext);
+  const handleOnClickCarrito = () => {
+    const { _id, nombre, opcion, cantidad, imagenes, precio } = producto;
+    addToCarrito({
+      _id,
+      nombre,
+      opcion,
+      cantidad,
+      imagen: imagenes[0],
+      precio: precio[opcion],
+      ordenado: false,
+    });
+  };
+
+  const hadleOnChangeOpcion = (opcion) => {
+    setProducto((prev) => ({ ...prev, opcion }));
+  };
 
   return (
     <>
@@ -84,7 +119,9 @@ function Producto() {
                       color="primary.main"
                       fontWeight={600}
                     >
-                      {producto ? producto.precio.unidad : "$ 68"}
+                      {producto
+                        ? `$ ${producto.precio[producto.opcion]}`
+                        : "$ 88"}
                     </Typography>
                   </Grid>
                 </Grid>
@@ -97,7 +134,7 @@ function Producto() {
                 </Typography>
               </Grid>
               <Grid item {...grid12All}>
-                <TipoSelector />
+                <TipoSelector onChange={hadleOnChangeOpcion} precios={[]} />
               </Grid>
               <Grid item {...grid12All}>
                 <Grid container spacing="0">
@@ -110,10 +147,13 @@ function Producto() {
                     <Contador
                       bgcolor="background.dark"
                       justifyContent="center"
+                      onChange={handleOnChangeCantidad}
                     />
                   </Grid>
                   <Grid item {...respBoton} textAlign="right">
-                    <Button sx={botonStyle}>Añadir al carrito</Button>
+                    <Button sx={botonStyle} onClick={handleOnClickCarrito}>
+                      Añadir al carrito
+                    </Button>
                   </Grid>
                 </Grid>
               </Grid>

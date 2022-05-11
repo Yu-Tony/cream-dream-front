@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { Box, Typography, Icon, Button } from "@mui/material";
 
@@ -10,11 +10,16 @@ const iconStyle = {
   fontWeight: "700",
 };
 
-function Contador({ bgcolor, justifyContent }) {
-  const [piezas, setPiezas] = useState(1);
+function Contador({ bgcolor, justifyContent, initialValue = 1, onChange }) {
+  const [piezas, setPiezas] = useState(initialValue);
 
-  const handleOnClick = (value) =>
-    setPiezas((prev) => clamp(prev + value, 0, 100));
+  const handleOnClick = (value) => {
+    setPiezas((prev) => clamp(prev + value, 1, 100));
+  };
+
+  useEffect(() => {
+    onChange(piezas);
+  }, [piezas]);
 
   return (
     <Box

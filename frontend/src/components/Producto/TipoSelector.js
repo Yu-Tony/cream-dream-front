@@ -11,7 +11,7 @@ import {
 
 import { deepmerge } from "@mui/utils";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const labelStyle = (theme) => ({
   color: "text.primary",
@@ -37,13 +37,22 @@ const setStyleSelected = (value, newValue, theme) => {
   else return labelStyle(theme);
 };
 
-function TipoSelector() {
-  const [selected, setSelected] = useState("r");
+const preciosAux = [
+  { key: 0, label: "porcion", peso: "250 gr", precio: "5" },
+  { key: 1, label: "unidad", precio: "20" },
+];
+
+function TipoSelector({ onChange, precios }) {
+  const [selected, setSelected] = useState("unidad");
 
   const handleOnChange = (event) => {
     console.log(event.target.value);
     setSelected(event.target.value);
   };
+
+  useEffect(() => {
+    onChange(selected);
+  }, [selected]);
 
   const Option = ({ value, label }) => (
     <Grid xl={6} lg={6} md={6} sm={6} xs={12} item>
@@ -54,7 +63,7 @@ function TipoSelector() {
         <Typography variant="h5" fontWeight={600}>
           {label.text}
           <br />
-          {label.unit ? `(${label.unit})` : null}
+          {label.peso ? `(${label.peso})` : null}
         </Typography>
         <Radio value={value} id={value} sx={{ display: "none" }} />
       </FormLabel>
@@ -64,8 +73,16 @@ function TipoSelector() {
   return (
     <RadioGroup onChange={handleOnChange}>
       <Grid container spacing={2}>
-        <Option value="r" label={{ text: "Rebanada", unit: "120 g" }} />
-        <Option value="p" label={{ text: "Pastel" }} />
+        {preciosAux.map((precio, index) => (
+          <Option
+            key={index}
+            value={precio.label}
+            label={{
+              text: String(precio.label),
+              peso: precio.peso ? precio.peso : null,
+            }}
+          />
+        ))}
       </Grid>
     </RadioGroup>
   );

@@ -11,7 +11,7 @@ import {
 import { StyledTextField, labelStyle } from "../styles";
 import Boton from "../../../components/Carrito/Boton";
 import { ClienteContext } from "../../../contexts/Cliente";
-import * as API from "../../../services/Cliente";
+import * as API from "../../../services/Usuario";
 
 function InfoPers(props) {
   const [data, setData] = useState({
@@ -28,10 +28,10 @@ function InfoPers(props) {
     }));
   };
 
-  const { clienteId } = useContext(ClienteContext);
+  const { cliente } = useContext(ClienteContext);
   useEffect(() => {
     const fetchCliente = async () => {
-      const res = await API.GetById(clienteId);
+      const res = await API.GetById(cliente.id);
       if (res.data) {
         let { data } = res;
         setData((prev) => ({ ...prev, ...data }));
@@ -43,7 +43,7 @@ function InfoPers(props) {
 
   const handleOnUpdate = async () => {
     console.log(data);
-    const res = await API.Update(clienteId, data);
+    const res = await API.Update(cliente.id, data);
     console.log(res);
   };
 

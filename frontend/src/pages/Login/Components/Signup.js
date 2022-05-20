@@ -6,7 +6,7 @@ import Boton from "../../../components/Carrito/Boton";
 import { StyledTextField, labelStyle } from "../styles";
 
 //Importacion de la API
-import * as API from "../../../services/Cliente";
+import * as API from "../../../services/Usuario";
 
 function Signup() {
   const [data, setData] = useState({
@@ -14,6 +14,7 @@ function Signup() {
     contrasena: "",
     nombre: "",
     apellido: "",
+    tipo: 0,
   });
 
   const handleOnChange = (event) => {
@@ -24,7 +25,7 @@ function Signup() {
     event.preventDefault();
     //console.log(data);
 
-    const res = await API.Signup(data);
+    const res = await API.Create(data);
     console.log(res);
   };
 

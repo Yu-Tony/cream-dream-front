@@ -27,33 +27,6 @@ const dividerStyle = {
   borderRadius: "5px",
 };
 
-const busquedaItems = [
-  {
-    id: 1,
-    nombre: "Pastel Confetti",
-    descripcion:
-      "Pastel de vainilla con confetti doblado en cada capa, cubierto con crema de mantequilla",
-    precio: { porcion: "50" },
-    imagen: confetti,
-  },
-  {
-    id: 2,
-    nombre: "Pastel de vainilla",
-    descripcion:
-      "Delicioso pastel de vainilla, rico y mantecoso con una miga ligera, cubierto con crema de mantequilla",
-    precio: { porcion: "65" },
-    imagen: vainilla,
-  },
-  {
-    id: 3,
-    nombre: "Pastel de chocolate",
-    descripcion:
-      "Tres capas de cremosa mantequilla de chocolate sedosa con chispas de vainilla",
-    precio: { porcion: "55" },
-    imagen: chocolate,
-  },
-];
-
 function Busqueda({ toggleDrawer }) {
   var timer;
   var noTyping = 0;
@@ -64,7 +37,7 @@ function Busqueda({ toggleDrawer }) {
 
   const handleOnSearchByText = async () => {
     const res = await API.GetByQuery(searchText, "N");
-    //console.log(res);
+    console.log(res);
     if (res.data) setSearchRes(res.data);
     else setSearchRes([]);
   };

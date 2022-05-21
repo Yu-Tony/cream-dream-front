@@ -23,7 +23,7 @@ const ClienteState = (props) => {
       return res;
     }
 
-    return {};
+    return false;
   };
 
   const Logout = () => {

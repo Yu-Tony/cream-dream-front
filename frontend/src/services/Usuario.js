@@ -8,7 +8,7 @@ export const Create = async (data) => {
       return res.data;
     }
   } catch (e) {
-    return e;
+    return false;
   }
 };
 

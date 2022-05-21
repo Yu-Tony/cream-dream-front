@@ -1,7 +1,7 @@
 import Home from "./pages/Home";
 import Menu from "./pages/Menu";
 import Login from "./pages/Login";
-import Create from "./pages/create";
+import Create from "./pages/Create";
 import Perfil from "./pages/Perfil";
 import Reservacion from "./pages/Reservacion";
 import Sucursales from "./pages/Sucursales";
@@ -27,13 +27,11 @@ const BusquedaDrawer = ({ toggle, isOpen }) =>
 const CarritoDrawer = ({ toggle, isOpen }) =>
   createDrawer(Carrito, toggle, isOpen);
 
-  const ProductoDrawer = ({ toggle, isOpen }) =>
-  createDrawer(Producto, toggle, isOpen);
 
 function App() {
   const busquedaDrawer = useDrawer();
   const carritoDrawer = useDrawer();
-  const productoDrawer = useDrawer();
+
 
 
   return (
@@ -56,10 +54,10 @@ function App() {
           <Route exact path="/Sucursales" element={<Sucursales />} />
           <Route exact path="/Pago" element={<Pago />} />
           <Route exact path="/QrLector" element={<QrLector />} />
+          <Route exact path="/Ayuda" element={<Ayuda />} />
         </Routes>
       </ThemeProvider>
     </ClienteState>
-        <Route exact path="/Ayuda" element={<Ayuda />} />
   );
 }
 

@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from "react";
-import {Button,Typography,Grid,FormControl,FormLabel,Select,MenuItem,InputAdornment} from "@mui/material";
+import {Button,Typography,Grid,FormControl,FormLabel,Select,MenuItem,InputAdornment, Alert} from "@mui/material";
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Boton from "../../../components/Carrito/Boton";
@@ -11,6 +11,7 @@ import * as API_M from "../../../services/Mesa";
 
  function Mesa()
  {
+    const [formErrors, setformErrors] = useState({ });
     const [sucursal, setSucursal] = React.useState([]);
     const [empleado, setEmpleado] = React.useState([]);
 
@@ -20,6 +21,8 @@ import * as API_M from "../../../services/Mesa";
         _empleado: null,
         _sucursal:null,
     });
+
+    const [isSubmitMesa, setIsSubmitMesa] = useState(false);
 
     const handleAlignment = (event, newAlignment) => {
         setData({
@@ -58,10 +61,19 @@ import * as API_M from "../../../services/Mesa";
         const onSubmitMesa = async (event) => {
             event.preventDefault();
             //console.log(data);
-        
+             setformErrors(ValidateMesa(data));
+             setIsSubmitMesa(true);
             const res = await API_M.Create(data);
             console.log(res);
           };
+
+          const ValidateMesa = (values) =>
+          {
+            const errors={}
+            if(!values.sillas){errors.sillas = "Ingresa un numero de sillas";}
+            else if(values.sillas < 1 || values.sillas > 7){errors.sillas = "El numero de sillas debe estar entre 1 y 6";}
+            return errors;
+          }
 
      return(  <form>
          <Typography  variant="h4">AGREGAR MESA</Typography>
@@ -83,6 +95,8 @@ import * as API_M from "../../../services/Mesa";
                      name="sillas"
                      InputLabelProps={{ shrink: true }}  
                      onChange={handleOnChange}/>
+                    {formErrors.sillas && <Alert severity="error">{formErrors.sillas}</Alert>}       
+
                  </FormControl>
              </Grid>
 

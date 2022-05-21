@@ -1,5 +1,5 @@
 import React, { useState,createRef } from "react";
-import { Button,Typography, Grid, FormControl,InputAdornment, FormLabel } from "@mui/material";
+import { Button,Typography, Grid, FormControl,InputAdornment, FormLabel,Alert } from "@mui/material";
 import { Box } from "@mui/system";
 import { FileUploader } from "react-drag-drop-files";
 import Boton from "../../../components/Carrito/Boton";
@@ -8,6 +8,8 @@ import { StyledTextField,useStyles } from "../styles";
 import * as API from "../../../services/Comida";
 
 function Comida() {
+  const [formErrors, setformErrors] = useState({ });
+
   const [data, setData] = useState({
     nombre: "",
     descripcion: "",
@@ -17,6 +19,7 @@ function Comida() {
     categoria: "",
     imagenes: [],
   });
+
 
   const imgs = createRef();
 
@@ -30,13 +33,27 @@ function Comida() {
     setData((prev) => ({ ...prev, [event.target.name]: event.target.value }));
   };
 
+  const [isSubmitComida, setIsSubmitComida] = useState(false);
   const onSubmitFood = async (event) => {
     event.preventDefault();
     console.log(data);
-
+    setformErrors(ValidateComida(data));
+    setIsSubmitComida(true);
     const res = await API.Create(data);
     console.log(res);
   };
+
+  const ValidateComida = (values) =>
+  {
+    const errors={}
+    if(!values.nombre){errors.nombre = "Ingresar un nombre";}
+    if(!values.cantidad){errors.cantidad = "Ingresar una cantidad de comida";}
+    if(!values.descripcion){errors.descripcion = "Ingresar una descripcion de comida";}
+    if(!values.precio){errors.precio = "Ingresar el precio de la comida";}
+    if(!values.categoria){errors.categoria = "Ingresar una categoria";}
+    return errors;
+  }
+
 
   return (
     <form>
@@ -61,6 +78,7 @@ function Comida() {
               InputLabelProps={{ shrink: true }}
               onChange={handleOnChange}
             />
+              {formErrors.nombre && <Alert severity="error">{formErrors.nombre}</Alert>}    
           </FormControl>
         </Grid>
 
@@ -85,6 +103,7 @@ function Comida() {
               InputLabelProps={{ shrink: true }}
               onChange={handleOnChange}
             />
+               {formErrors.descripcion && <Alert severity="error">{formErrors.descripcion}</Alert>}    
           </FormControl>
         </Grid>
 
@@ -107,6 +126,7 @@ function Comida() {
               onChange={handleOnChange}
               InputLabelProps={{ shrink: true }}
             />
+             {formErrors.cantidad && <Alert severity="error">{formErrors.cantidad}</Alert>}    
           </FormControl>
         </Grid>
 
@@ -134,6 +154,7 @@ function Comida() {
               onChange={handleOnChange}
               InputLabelProps={{ shrink: true }}
             />
+             {formErrors.precio && <Alert severity="error">{formErrors.precio}</Alert>} 
           </FormControl>
         </Grid>
 
@@ -165,6 +186,7 @@ function Comida() {
                 ),
               }}
             />
+             {formErrors.categoria && <Alert severity="error">{formErrors.categoria}</Alert>} 
           </FormControl>
         </Grid>
 

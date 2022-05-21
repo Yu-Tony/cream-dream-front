@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from "react";
-import {Button,Typography,Grid,FormControl,FormLabel,Select,MenuItem} from "@mui/material";
+import {Button,Typography,Grid,FormControl,FormLabel,Select,MenuItem, Alert} from "@mui/material";
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Boton from "../../../components/Carrito/Boton";
@@ -11,6 +11,7 @@ import * as API_S from "../../../services/Sucursal";
 function Empleado()
 {   
 
+    const [formErrors, setformErrors] = useState({ });
     const [sucursal, setSucursal] = React.useState([]);
 
     useEffect(()=>{const fetch =async()=>{const res = await API_S.GetAll()
@@ -27,6 +28,9 @@ function Empleado()
         });
     }
 
+
+    const [isSubmitEmpleado, setIsSubmitEmpleado] = useState(false);
+
     const [data, setData] = useState({
         nombre: "",
         apellido:"",
@@ -39,12 +43,26 @@ function Empleado()
     const onSubmitEmpleado = async (event) => {
         event.preventDefault();
         //console.log(data);
-    
+        setformErrors(ValidateEmpleado(data));
+        setIsSubmitEmpleado(true);
         const res = await API.Create(data);
         console.log(data);
         console.log(res);
       };
-
+      const ValidateEmpleado = (values) =>
+      {
+          
+          const errors={}
+          const regexMail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+          const regexPassword = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/i;
+          if(!values.nombre){errors.nombre = "Ingresar un nombre";}
+          if(!values.apellido){errors.apellido = "Ingresar un nombre";}
+          if(!values.correo){errors.correo = "Ingresar un correo";}
+          else if(!regexMail.test(values.correo)){errors.correo = "Ingresar un formato de correo correcto";}
+          if(!values.contrasena){errors.contrasena = "Ingresar una contraseña";}
+          else if (!regexPassword.test(values.contrasena)) {errors.contrasena = "La contraseña debe de tener minimo 8 caracteres, una letra, 1 numero y un caracter especial";} 
+          return errors;
+      }
 
     const handleOnChange = (event) => {
         setData((prev) => ({ ...prev, [event.target.name]: event.target.value }));
@@ -79,6 +97,7 @@ function Empleado()
                     name="nombre"
                     InputLabelProps={{ shrink: true }}
                     onChange={handleOnChange}  />
+                    {formErrors.nombre && <Alert severity="error">{formErrors.nombre}</Alert>}  
                 </FormControl>
             </Grid>
 
@@ -94,6 +113,7 @@ function Empleado()
                     name="apellido"
                     InputLabelProps={{ shrink: true }}
                     onChange={handleOnChange}  />
+                       {formErrors.apellido && <Alert severity="error">{formErrors.apellido}</Alert>}  
                 </FormControl>
             </Grid>
 
@@ -109,6 +129,7 @@ function Empleado()
                 name="correo"
                 InputLabelProps={{ shrink: true }}
                 onChange={handleOnChange}  />
+                {formErrors.correo && <Alert severity="error">{formErrors.correo}</Alert>}  
                 </FormControl>
             </Grid>
 
@@ -125,6 +146,7 @@ function Empleado()
             name="contrasena"
             InputLabelProps={{ shrink: true }}
             onChange={handleOnChange}  />
+             {formErrors.contrasena && <Alert severity="error">{formErrors.contrasena}</Alert>}  
                 </FormControl>
         
             </Grid>

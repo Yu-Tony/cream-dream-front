@@ -22,3 +22,14 @@ export const GetAll = async (id) => {
       return e;
     }
   };
+
+  export const GetOne = async (id) => {
+    try {
+      const res = await axios.get("/mesa");
+      if (res.status === 200) return res.data;
+  
+      return {};
+    } catch (e) {
+      return e;
+    }
+  };

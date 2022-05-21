@@ -65,6 +65,7 @@
       Fecha: null,
       Hora: null,
       Sucursal: "",
+      Mesa: null
     });
   
    {/*Ventanas modales */}
@@ -73,20 +74,25 @@
   
     const [openQR, setOpenQR] = React.useState(false);
     const [sucursal, setSucursal] = React.useState([]);
+    const [mesa, setMesa] = React.useState([]);
 
     useEffect(()=>{const fetch =async()=>{const res = await API.GetAll()
       setSucursal(res.data)}
       fetch()},[]);
 
+    useEffect(()=>{const fetch =async()=>{const res = await API.GetOne()
+      setMesa(res[0].data)}
+      fetch()},[]);
+
     const handleOpenQR = async () => {
     
-
+      Reservacion.Mesa = mesa;
       const res = await API.Create(Reservacion);
       if(res===false)
       {
         
         setOpen(true);
-      setOpenQR(false);
+        setOpenQR(false);
       
       }
       else{

@@ -31,14 +31,15 @@ function Login() {
     setformErrors(ValidateLogin(data));
 
     const res = await Login(data);
-    if(res.lenght === undefined)
+    if(res)
     {
-      //console.log("Error");
+     
       setIsSubmitLogin(true);
       setIsSubmitLoginRight(false);
      
     }
     else{
+     
       setIsSubmitLogin(true);
       setIsSubmitLoginRight(true);
     }

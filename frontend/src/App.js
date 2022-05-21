@@ -23,6 +23,7 @@ import { Routes, Route, Prompt } from "react-router-dom";
 import ClienteState from "./contexts/Cliente";
 import ProductoState from "./contexts/Producto";
 import CarritoState from "./contexts/Carrito";
+import SucursalState from "./contexts/Sucursal";
 
 import { useEffect } from "react";
 
@@ -44,6 +45,7 @@ function App() {
       <CarritoState>
         <ClienteState>
           <ProductoState>
+          <SucursalState>
             <Navbar
               toggleBusqueda={busquedaDrawer.toggle}
               toggleCarrito={carritoDrawer.toggle}
@@ -63,6 +65,7 @@ function App() {
               <Route exact path="/QrLector" element={<QrLector />} />
               <Route exact path="/Ayuda" element={<Ayuda />} />
             </Routes>
+            </SucursalState>
           </ProductoState>
         </ClienteState>
       </CarritoState>

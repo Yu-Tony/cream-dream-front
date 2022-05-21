@@ -32,7 +32,7 @@ function Orden() {
       <Grid item {...grid12All} margin="0 2rem">
         <Grid container spacing={1} maxHeight="65vh" sx={scrollStyle}>
           {stateCarrito.comidas.map((orden, index) => {
-            return !orden.ordenado ? (
+            return !orden.pedido ? (
               <Grid item {...grid12All} key={index}>
                 <CardOrden
                   {...orden}

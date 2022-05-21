@@ -62,7 +62,7 @@ function Cuenta() {
         </Grid>
 
         {stateCarrito.comidas.map((item) => {
-          return item.ordenado ? <Item {...item} /> : null;
+          return item.pedido ? <Item {...item} /> : null;
         })}
 
         <Item

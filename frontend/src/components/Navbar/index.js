@@ -1,107 +1,48 @@
 import React, { useContext } from "react";
-import Box from "@mui/material/Box";
-//import BottomNavigation from "@mui/material/BottomNavigation";
-//import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import {
   AccountCircle,
   Search,
   ShoppingCartOutlined,
-  StickyNote2Outlined,
-  QrCode2Outlined,
 } from "@mui/icons-material";
-//import { bgcolor, borderRadius, fontSize } from "@mui/system";
-import { Container, Typography, Button, Grid } from "@mui/material";
+import { Container, Typography, Button, Grid, Box } from "@mui/material";
 import { Link } from "react-router-dom";
 
 import { Image } from "mui-image";
-import logoCD from "../pages/images/logoCD.png";
+import logoCD from "../../pages/images/logoCD.png";
 
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Menu from "@mui/material/Menu";
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  Menu,
+  Avatar,
+  Tooltip,
+  MenuItem,
+} from "@mui/material";
+
 import MenuIcon from "@mui/icons-material/Menu";
-import Avatar from "@mui/material/Avatar";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
 
-import { ClienteContext } from "../contexts/Cliente";
+import { ClienteContext } from "../../contexts/Cliente";
+import LinkButton from "./LinkButton";
+import useNavbar from "../../hooks/useNavbar";
 
-const pages = [
-  "Sucursales",
-  "Menu",
-  "Reservacion",
-  "Ayuda",
-  "Buscar",
-  "Carrito",
-];
+const pages = ["Sucursales", "Menu", "Reservacion", "Ayuda"];
 const pages2 = ["Buscar", "Carrito"];
 
-/*const loggedSettings = {perfil: "Perfil", reportes: "Reportes", qrLector: "QrLector", salir: "Salir"};
-const unloggedSettings = {"Iniciar Sesion": "Loi"};*/
-
-const loggedSettings = [
-  { label: "Perfil", path: "Perfil" },
-  { label: "Reportes", path: "Reportes" },
-  { label: "QrLector", path: "QrLector" },
-];
-
-const unloggedSettings = [{ label: "Iniciar Sesion", path: "Login" }];
+const appbarStyle = {
+  width: "100%",
+  display: "flex",
+  justifyContent: "flex-start",
+  bgcolor: "primary.dark",
+};
 
 export default function Navbar({ toggleBusqueda, toggleCarrito }) {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const { user, nav } = useNavbar();
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
-
-  const { isLog, Logout } = useContext(ClienteContext);
-  const settings = isLog() ? [...loggedSettings] : [...unloggedSettings];
-
-  /*
-
-  OTRA FORMA DE HACERLO,PERO NO ME CONVENCIO
-
-  const [value, setValue] = React.useState(0);
-  
-  <BottomNavigation
-  showLabels
-  value={value}
-  onChange={(event, newValue) => {
-    setValue(newValue);
-  }}
-  sx={{ bgcolor:'#de6d71'}}
->
-  <BottomNavigationAction icon={<AccountCircle/>}  sx={{color:'#644838', fontFamily:'Outfit',}}/>
-  <BottomNavigationAction label="Sucursales"  sx={{color:'#644838',fontFamily:'Outfit',fontWeight:'bold'}} />
-  <BottomNavigationAction label="Menu" sx={{color:'#644838',fontFamily:'Outfit',fontWeight:'bold',border:2,borderRadius:16, m:1}} />
-
-  <BottomNavigationAction label="Reservaciones" sx={{color:'#644838',fontFamily:'Outfit',fontWeight:'bold',border:2,borderRadius:16, paddingRight:3,paddingLeft:3,mt:1,mb:1  }}/>
-  <BottomNavigationAction label="Ayuda" sx={{color:'#644838',fontFamily:'Outfit',fontWeight:'bold'}} />
-</BottomNavigation>*/
+  const { isLog, Logout, settings } = useContext(ClienteContext);
 
   return (
-    <AppBar
-      position="static"
-      sx={{
-        width: "100%",
-        display: "flex",
-        justifyContent: "flex-start",
-        bgcolor: "#de6d71 ",
-      }}
-    >
+    <AppBar position="static" sx={appbarStyle}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -110,14 +51,15 @@ export default function Navbar({ toggleBusqueda, toggleCarrito }) {
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              sx={{ color: "#644838" }}
+              onClick={nav.handleOpen}
+              sx={{ color: "text.main" }}
             >
               <MenuIcon />
             </IconButton>
+
             <Menu
               id="menu-appbar"
-              anchorEl={anchorElNav}
+              anchorEl={nav.anchor}
               anchorOrigin={{
                 vertical: "bottom",
                 horizontal: "left",
@@ -127,47 +69,41 @@ export default function Navbar({ toggleBusqueda, toggleCarrito }) {
                 vertical: "top",
                 horizontal: "left",
               }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
+              open={Boolean(nav.anchor)}
+              onClose={nav.handleClose}
               sx={{
                 display: { xs: "block", md: "none" },
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={`/${page}`} onClick={handleCloseNavMenu}>
-                  {page === "Buscar" && (
-                    <Button onClick={toggleBusqueda}>
-                      <Search
-                        sx={{
-                          color: "#644838",
-                          fontFamily: "Outfit",
-                          fontSize: 50,
-                          m: 1,
-                        }}
-                      />
-                    </Button>
-                  )}
-
-                  {page === "Carrito" && (
-                    <Button onClick={toggleCarrito}>
-                      <ShoppingCartOutlined
-                        sx={{
-                          color: "#644838",
-                          fontFamily: "Outfit",
-                          fontSize: 50,
-                          m: 1,
-                        }}
-                      />
-                    </Button>
-                  )}
-
-                  {page != "Buscar" && page != "Carrito" && (
-                    <Link to={`/${page}`} style={{ textDecoration: "none" }}>
-                      <Typography textAlign="center">{page}</Typography>
-                    </Link>
-                  )}
+                <MenuItem key={`/${page}`} onClick={nav.handleClose}>
+                  <Link to={`/${page}`} style={{ textDecoration: "none" }}>
+                    <Typography textAlign="center">{page}</Typography>
+                  </Link>
                 </MenuItem>
               ))}
+
+              <MenuItem onClick={nav.handleClose}>
+                <Button onClick={toggleBusqueda}>
+                  <Search
+                    sx={{
+                      color: "text.primary",
+                      fontSize: 35,
+                    }}
+                  />
+                </Button>
+              </MenuItem>
+
+              <MenuItem onClick={nav.handleClose}>
+                <Button onClick={toggleCarrito}>
+                  <ShoppingCartOutlined
+                    sx={{
+                      color: "text.primary",
+                      fontSize: 35,
+                    }}
+                  />
+                </Button>
+              </MenuItem>
             </Menu>
           </Box>
 
@@ -193,7 +129,7 @@ export default function Navbar({ toggleBusqueda, toggleCarrito }) {
           <Box sx={{ paddingRight: { md: 0, lg: "5%" } }}>
             <Tooltip title="Opciones de Usuario">
               <AccountCircle
-                onClick={handleOpenUserMenu}
+                onClick={user.handleOpen}
                 sx={{
                   color: "#644838",
                   fontFamily: "Outfit",
@@ -207,7 +143,7 @@ export default function Navbar({ toggleBusqueda, toggleCarrito }) {
             <Menu
               sx={{ mt: "45px" }}
               id="menu-appbar"
-              anchorEl={anchorElUser}
+              anchorEl={user.anchor}
               anchorOrigin={{
                 vertical: "top",
                 horizontal: "right",
@@ -217,8 +153,8 @@ export default function Navbar({ toggleBusqueda, toggleCarrito }) {
                 vertical: "top",
                 horizontal: "right",
               }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
+              open={Boolean(user.anchor)}
+              onClose={user.handleClose}
             >
               {settings.map((setting, i) => (
                 <Link
@@ -226,7 +162,7 @@ export default function Navbar({ toggleBusqueda, toggleCarrito }) {
                   to={`/${setting.path}`}
                   style={{ textDecoration: "none", padding: 0, margin: 0 }}
                 >
-                  <MenuItem onClick={handleCloseUserMenu}>
+                  <MenuItem onClick={user.handleClose}>
                     <Typography textAlign="center">{setting.label}</Typography>
                   </MenuItem>
                 </Link>
@@ -235,7 +171,7 @@ export default function Navbar({ toggleBusqueda, toggleCarrito }) {
               {isLog() ? (
                 <MenuItem
                   onClick={() => {
-                    handleCloseUserMenu();
+                    user.handleClose();
                     Logout();
                   }}
                 >
@@ -251,43 +187,8 @@ export default function Navbar({ toggleBusqueda, toggleCarrito }) {
               display: { xs: "none", md: "flex" },
             }}
           >
-            <Link to="/Sucursales" style={{ textDecoration: "none" }}>
-              <Typography
-                sx={{
-                  color: "#644838",
-                  fontFamily: "Outfit",
-                  fontSize: 30,
-                  m: 1,
-                  fontWeight: "bold",
-                }}
-              >
-                Sucursales
-              </Typography>
-            </Link>
-
-            <Link to="/Menu" style={{ textDecoration: "none" }}>
-              <Box
-                sx={{
-                  border: 2,
-                  borderColor: "#644838",
-                  borderRadius: 16,
-                  mt: 1,
-                }}
-              >
-                <Typography
-                  sx={{
-                    color: "#644838",
-                    fontFamily: "Outfit",
-                    fontSize: 30,
-                    ml: 1,
-                    mr: 1,
-                    fontWeight: "bold",
-                  }}
-                >
-                  Menu
-                </Typography>
-              </Box>
-            </Link>
+            <LinkButton page="Sucursales" label="Sucursales" />
+            <LinkButton page="Menu" label="Menu" bordered />
           </Box>
 
           <Box
@@ -315,43 +216,8 @@ export default function Navbar({ toggleBusqueda, toggleCarrito }) {
           </Box>
 
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            <Link to="/Reservacion" style={{ textDecoration: "none" }}>
-              <Box
-                sx={{
-                  border: 2,
-                  borderColor: "#644838",
-                  borderRadius: 16,
-                  mt: 1,
-                }}
-              >
-                <Typography
-                  sx={{
-                    color: "#644838",
-                    fontFamily: "Outfit",
-                    fontSize: 30,
-                    ml: 1,
-                    mr: 1,
-                    fontWeight: "bold",
-                  }}
-                >
-                  Reservaciones
-                </Typography>
-              </Box>
-            </Link>
-
-            <Link to="/Ayuda" style={{ textDecoration: "none" }}>
-              <Typography
-                sx={{
-                  color: "#644838",
-                  fontFamily: "Outfit",
-                  fontSize: 30,
-                  m: 1,
-                  fontWeight: "bold",
-                }}
-              >
-                Ayuda
-              </Typography>
-            </Link>
+            <LinkButton page="Reservacion" label="Reservaciones" bordered />
+            <LinkButton page="Ayuda" label="Ayuda" />
           </Box>
 
           <Box
@@ -366,7 +232,7 @@ export default function Navbar({ toggleBusqueda, toggleCarrito }) {
                   color: "#644838",
                   fontFamily: "Outfit",
                   fontSize: 50,
-                  m: 1,
+                  m: 0,
                 }}
               />
             </Button>
@@ -377,7 +243,7 @@ export default function Navbar({ toggleBusqueda, toggleCarrito }) {
                   color: "#644838",
                   fontFamily: "Outfit",
                   fontSize: 50,
-                  m: 1,
+                  m: 0,
                 }}
               />
             </Button>
@@ -396,14 +262,14 @@ export default function Navbar({ toggleBusqueda, toggleCarrito }) {
               aria-label="account of current user"
               aria-controls="menu2-appbar"
               aria-haspopup="true"
-              onClick={handleOpenNavMenu}
+              onClick={nav.handleOpen}
               sx={{ color: "#644838" }}
             >
               <MenuIcon />
             </IconButton>
             <Menu
               id="menu2-appbar"
-              anchorEl={anchorElNav}
+              anchorEl={nav.anchor}
               anchorOrigin={{
                 vertical: "bottom",
                 horizontal: "left",
@@ -413,14 +279,14 @@ export default function Navbar({ toggleBusqueda, toggleCarrito }) {
                 vertical: "top",
                 horizontal: "left",
               }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
+              open={Boolean(nav.anchor)}
+              onClose={nav.handleClose}
               sx={{
                 display: { xs: "none", md: "block", lg: "none" },
               }}
             >
               {pages2.map((page) => (
-                <MenuItem key={`/${page}`} onClick={handleCloseNavMenu}>
+                <MenuItem key={`/${page}`} onClick={nav.handleClose}>
                   {page === "Buscar" && (
                     <Button onClick={toggleBusqueda}>
                       <Search

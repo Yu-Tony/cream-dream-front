@@ -48,11 +48,11 @@ function Login() {
   {
     const errors={}
     const regexMail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-    const regexPassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/i;
+    const regexPassword = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/i;
     if(!values.correo){errors.correo = "Ingresar un correo";}
     else if(!regexMail.test(values.correo)){errors.correo = "Ingresar un formato de correo correcto";}
     if(!values.contrasena){errors.contrasena = "Ingresar una contraseña";}
-    else if (!regexPassword.test(values.contrasena)) {errors.contrasena = "La contraseña debe de tener minimo 8 caracteres, una letra y 1 numero";} 
+    else if (!regexPassword.test(values.contrasena)) {errors.contrasena = "La contraseña debe de tener minimo 8 caracteres, una letra, 1 numero y un caracter especial";} 
     return errors;
   }
 

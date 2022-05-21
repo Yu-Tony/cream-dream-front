@@ -23,7 +23,7 @@ export const Signup = async (data) => {
 
     return {};
   } catch (e) {
-    return e;
+    return false;
   }
 };
 

@@ -1,14 +1,17 @@
 import { createContext, useState, useEffect } from "react";
 
-import * as API from "../../services/Cliente";
+//import * as API from "../../services/Cliente";
+import * as API from "../../services/Usuario";
 
 export const ClienteContext = createContext();
 
+const initialState = { id: "", tipo: -1 };
+
 const ClienteState = (props) => {
-  const [clienteId, setClienteId] = useState("");
+  const [cliente, setCliente] = useState(initialState);
 
   const Delete = async () => {
-    const res = await API.Delete(clienteId);
+    const res = await API.Delete(cliente.id);
     console.log(res);
   };
 
@@ -16,26 +19,24 @@ const ClienteState = (props) => {
     const res = await API.Login(data);
 
     if (res.data) {
-      setClienteId(res.data.id);
+      setCliente(res.data);
       return res;
     }
 
-    return {};
+    return false;
   };
 
   const Logout = () => {
-    setClienteId("");
+    setCliente(initialState);
   };
 
   const isLog = () => {
-    if (clienteId != "") return true;
+    if (cliente.id != "") return true;
     return false;
   };
 
   return (
-    <ClienteContext.Provider
-      value={{ clienteId, Login, Logout, Delete, isLog }}
-    >
+    <ClienteContext.Provider value={{ cliente, Login, Logout, Delete, isLog }}>
       {props.children}
     </ClienteContext.Provider>
   );

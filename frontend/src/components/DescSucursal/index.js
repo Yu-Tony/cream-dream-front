@@ -14,6 +14,10 @@ import Comentarios from "./Comentarios";
 
 import Santiago from "../../assets/Santiago.jpg";
 
+import { SucursalContext } from "../../contexts/Sucursal";
+
+import { useState, useContext, useEffect } from "react";
+
 const paperParentStyle = {
   ...drawerWidths,
   bgcolor: "background.main",
@@ -49,7 +53,17 @@ const BotonClose = ({ toggleDrawer }) => (
 );
 
 function DescSucursal({ toggleDrawer }) {
-  return (
+  const { sucursal, selectSucursal } = useContext(SucursalContext);
+  //const sucursal = undefined;
+
+  useEffect(() => {
+    return () => {
+      console.log("cerrar");
+      selectSucursal({});
+    };
+  }, []);
+
+  return sucursal ? (
     <Paper sx={paperParentStyle}>
       <Grid container spacing={3}>
         <Grid item>
@@ -59,21 +73,26 @@ function DescSucursal({ toggleDrawer }) {
         <Grid item lg={12}>
           <Grid container spacing={2}>
             <Grid item {...grid12All} textAlign="center">
-              <Typography variant="h4">Villa de Santiago</Typography>
+              <Typography variant="h4">{sucursal.nombre}</Typography>
             </Grid>
             <Grid item {...imgsResponsive}>
-              <CardMedia component="img" image={Santiago} height="100%" />
+              <CardMedia
+                component="img"
+                image={sucursal.imagenes[0]}
+                height="100%"
+                alt="imagen"
+              />
             </Grid>
             <Grid item {...domiResponsive} margin={domiResponsivePadd}>
               <Typography fontWeight="600" paddingBottom="0.2rem">
-                Morelos 114, Santiago, 67300 Santiago, N.L.
+                {sucursal.direccion}
               </Typography>
               <Typography>Horario:</Typography>
               <Typography paddingBottom="0.2rem">
                 Lunes a Domingo de 9:30 - 23:00 hrs
               </Typography>
               <Typography paddingBottom="0.2rem">
-                Teléfono: 81 2474 4950
+                Teléfono: {sucursal.telefono}
               </Typography>
             </Grid>
           </Grid>
@@ -99,7 +118,7 @@ function DescSucursal({ toggleDrawer }) {
         </Grid>
       </Grid>
     </Paper>
-  );
+  ) : null;
 }
 
 export default DescSucursal;

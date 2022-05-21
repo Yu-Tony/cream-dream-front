@@ -13,11 +13,11 @@ const boxStyle = {
   right: "6px",
 };
 
-function Boton({ children, bgcolor }) {
+function Boton({ children, bgcolor, onClick }) {
   return (
     <Box position="relative" width="fit-content" margin="0 auto">
       <Box sx={boxStyle} bgcolor={bgcolor}></Box>
-      <Button sx={botonStyle} variant="outlined">
+      <Button sx={botonStyle} variant="outlined" onClick={onClick}>
         {children}
       </Button>
     </Box>

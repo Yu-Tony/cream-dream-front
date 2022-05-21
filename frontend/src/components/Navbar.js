@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useContext } from "react";
 import Box from "@mui/material/Box";
 //import BottomNavigation from "@mui/material/BottomNavigation";
 //import BottomNavigationAction from "@mui/material/BottomNavigationAction";
@@ -7,7 +7,7 @@ import {
   Search,
   ShoppingCartOutlined,
   StickyNote2Outlined,
-  QrCode2Outlined
+  QrCode2Outlined,
 } from "@mui/icons-material";
 //import { bgcolor, borderRadius, fontSize } from "@mui/system";
 import { Container, Typography, Button, Grid } from "@mui/material";
@@ -16,23 +16,39 @@ import { Link } from "react-router-dom";
 import { Image } from "mui-image";
 import logoCD from "../pages/images/logoCD.png";
 
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Avatar from '@mui/material/Avatar';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Menu from "@mui/material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
+import Avatar from "@mui/material/Avatar";
+import Tooltip from "@mui/material/Tooltip";
+import MenuItem from "@mui/material/MenuItem";
 
+import { ClienteContext } from "../contexts/Cliente";
 
-const pages = ['Sucursales', 'Menu', 'Reservacion', 'Ayuda', 'Buscar', 'Carrito'];
-const pages2 = ['Buscar', 'Carrito'];
-const settings = ['Perfil', 'Reportes', 'QrLector', 'Salir'];
+const pages = [
+  "Sucursales",
+  "Menu",
+  "Reservacion",
+  "Ayuda",
+  "Buscar",
+  "Carrito",
+];
+const pages2 = ["Buscar", "Carrito"];
+
+/*const loggedSettings = {perfil: "Perfil", reportes: "Reportes", qrLector: "QrLector", salir: "Salir"};
+const unloggedSettings = {"Iniciar Sesion": "Loi"};*/
+
+const loggedSettings = [
+  { label: "Perfil", path: "Perfil" },
+  { label: "Reportes", path: "Reportes" },
+  { label: "QrLector", path: "QrLector" },
+];
+
+const unloggedSettings = [{ label: "Iniciar Sesion", path: "Login" }];
 
 export default function Navbar({ toggleBusqueda, toggleCarrito }) {
-  
-
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -50,6 +66,9 @@ export default function Navbar({ toggleBusqueda, toggleCarrito }) {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const { isLog, Logout } = useContext(ClienteContext);
+  const settings = isLog() ? [...loggedSettings] : [...unloggedSettings];
 
   /*
 
@@ -73,30 +92,26 @@ export default function Navbar({ toggleBusqueda, toggleCarrito }) {
   <BottomNavigationAction label="Ayuda" sx={{color:'#644838',fontFamily:'Outfit',fontWeight:'bold'}} />
 </BottomNavigation>*/
 
-
-
-return (
-  <AppBar position="static"
-    sx={{
-      width: "100%",
-      display: "flex",
-      justifyContent: "flex-start",
-      bgcolor: "#de6d71 ",
-    }}>
-      <Container maxWidth="xl" >
+  return (
+    <AppBar
+      position="static"
+      sx={{
+        width: "100%",
+        display: "flex",
+        justifyContent: "flex-start",
+        bgcolor: "#de6d71 ",
+      }}
+    >
+      <Container maxWidth="xl">
         <Toolbar disableGutters>
-     
-    
-
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
-              sx={{color: "#644838"}}
-              
+              sx={{ color: "#644838" }}
             >
               <MenuIcon />
             </IconButton>
@@ -104,45 +119,53 @@ return (
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
+                vertical: "bottom",
+                horizontal: "left",
               }}
               keepMounted
               transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
+                vertical: "top",
+                horizontal: "left",
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: 'block', md: 'none' },
+                display: { xs: "block", md: "none" },
               }}
             >
               {pages.map((page) => (
                 <MenuItem key={`/${page}`} onClick={handleCloseNavMenu}>
-                  
-                  {page === 'Buscar' && 
-                   <Button onClick={toggleBusqueda}>
-                   <Search
-                     sx={{ color: "#644838", fontFamily: "Outfit", fontSize: 50, m: 1 }}
-                   />
-                 </Button>}
-                 
-                 {page === 'Carrito' &&
-                 
-                  <Button onClick={toggleCarrito}>
-                  <ShoppingCartOutlined
-                    sx={{ color: "#644838", fontFamily: "Outfit", fontSize: 50, m: 1 }}
-                  />
-                </Button>}
+                  {page === "Buscar" && (
+                    <Button onClick={toggleBusqueda}>
+                      <Search
+                        sx={{
+                          color: "#644838",
+                          fontFamily: "Outfit",
+                          fontSize: 50,
+                          m: 1,
+                        }}
+                      />
+                    </Button>
+                  )}
 
-                {page != 'Buscar' && page != 'Carrito' &&
-                 <Link to={`/${page}`} style={{ textDecoration: "none" }}>
-                 <Typography textAlign="center">{page}</Typography>
-                 </Link>
-                }
-                 
-                
+                  {page === "Carrito" && (
+                    <Button onClick={toggleCarrito}>
+                      <ShoppingCartOutlined
+                        sx={{
+                          color: "#644838",
+                          fontFamily: "Outfit",
+                          fontSize: 50,
+                          m: 1,
+                        }}
+                      />
+                    </Button>
+                  )}
+
+                  {page != "Buscar" && page != "Carrito" && (
+                    <Link to={`/${page}`} style={{ textDecoration: "none" }}>
+                      <Typography textAlign="center">{page}</Typography>
+                    </Link>
+                  )}
                 </MenuItem>
               ))}
             </Menu>
@@ -152,64 +175,82 @@ return (
             variant="h6"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
+            sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
           >
-              <Link to="/" style={{ textDecoration: "none" }}>
-   
-
-       <Image
-                          src={logoCD}
-                          fit="cover"
-                          duration={0}
-                          height={70}
-                          width={150}
-                        />
-
-        </Link>
-          
+            <Link to="/" style={{ textDecoration: "none" }}>
+              <Image
+                src={logoCD}
+                fit="cover"
+                duration={0}
+                height={70}
+                width={150}
+              />
+            </Link>
           </Box>
 
+          {/* */}
 
-{/* */}
-
-
-          <Box sx={{ paddingRight: { md:0, lg: "5%"} }}>
+          <Box sx={{ paddingRight: { md: 0, lg: "5%" } }}>
             <Tooltip title="Opciones de Usuario">
-              <AccountCircle onClick={handleOpenUserMenu} sx={{ color: "#644838", fontFamily: "Outfit", fontSize: 50, m: 1 }}>
+              <AccountCircle
+                onClick={handleOpenUserMenu}
+                sx={{
+                  color: "#644838",
+                  fontFamily: "Outfit",
+                  fontSize: 50,
+                  m: 1,
+                }}
+              >
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
               </AccountCircle>
             </Tooltip>
             <Menu
-              sx={{ mt: '45px' }}
+              sx={{ mt: "45px" }}
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+                vertical: "top",
+                horizontal: "right",
               }}
               keepMounted
               transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+                vertical: "top",
+                horizontal: "right",
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                   <Link to={`/${setting}`} style={{ textDecoration: "none", padding: 0, margin: 0 }}>
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                 
-                  <Typography textAlign="center">{setting}</Typography>
-                  
-                 
-                </MenuItem>
+              {settings.map((setting, i) => (
+                <Link
+                  key={i}
+                  to={`/${setting.path}`}
+                  style={{ textDecoration: "none", padding: 0, margin: 0 }}
+                >
+                  <MenuItem onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center">{setting.label}</Typography>
+                  </MenuItem>
                 </Link>
               ))}
+
+              {isLog() ? (
+                <MenuItem
+                  onClick={() => {
+                    handleCloseUserMenu();
+                    Logout();
+                  }}
+                >
+                  <Typography textAlign="center">Salir</Typography>
+                </MenuItem>
+              ) : null}
             </Menu>
           </Box>
 
-          <Box sx={{ paddingRight: { md: "1%", lg: "15%"}, display: { xs: 'none', md: 'flex' } }}>       
-
+          <Box
+            sx={{
+              paddingRight: { md: "1%", lg: "15%" },
+              display: { xs: "none", md: "flex" },
+            }}
+          >
             <Link to="/Sucursales" style={{ textDecoration: "none" }}>
               <Typography
                 sx={{
@@ -225,59 +266,63 @@ return (
             </Link>
 
             <Link to="/Menu" style={{ textDecoration: "none" }}>
-            <Box
-              sx={{
-                border: 2,
-                borderColor: "#644838",
-                borderRadius: 16,
-                mt: 1,
-              }}
-            >
-              <Typography
+              <Box
                 sx={{
-                  color: "#644838",
-                  fontFamily: "Outfit",
-                  fontSize: 30,
-                  ml: 1,
-                  mr: 1,
-                  fontWeight: "bold",
+                  border: 2,
+                  borderColor: "#644838",
+                  borderRadius: 16,
+                  mt: 1,
                 }}
               >
-                Menu
-              </Typography>
-            </Box>
+                <Typography
+                  sx={{
+                    color: "#644838",
+                    fontFamily: "Outfit",
+                    fontSize: 30,
+                    ml: 1,
+                    mr: 1,
+                    fontWeight: "bold",
+                  }}
+                >
+                  Menu
+                </Typography>
+              </Box>
             </Link>
-
-           
           </Box>
 
-          <Box sx={{ paddingRight: {md: 0, lg: "5%"}, display: { xs: 'none', md: 'flex' } }}>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
+          <Box
+            sx={{
+              paddingRight: { md: 0, lg: "5%" },
+              display: { xs: "none", md: "flex" },
+            }}
           >
-           <Link to="/" style={{ textDecoration: "none" }}>
-   
-
-   <Image
-                      src={logoCD}
-                      fit="cover"
-                      duration={0}
-                      height={70}
-                      width={150}
-                    />
-
-    </Link>
-          </Typography>
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
+            >
+              <Link to="/" style={{ textDecoration: "none" }}>
+                <Image
+                  src={logoCD}
+                  fit="cover"
+                  duration={0}
+                  height={70}
+                  width={150}
+                />
+              </Link>
+            </Typography>
           </Box>
-       
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             <Link to="/Reservacion" style={{ textDecoration: "none" }}>
               <Box
-                sx={{ border: 2, borderColor: "#644838", borderRadius: 16, mt: 1 }}
+                sx={{
+                  border: 2,
+                  borderColor: "#644838",
+                  borderRadius: 16,
+                  mt: 1,
+                }}
               >
                 <Typography
                   sx={{
@@ -307,42 +352,52 @@ return (
                 Ayuda
               </Typography>
             </Link>
-
-           
-
-
           </Box>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md:'none', lg: 'flex' } }}>
-        
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "none", lg: "flex" },
+            }}
+          >
             <Button onClick={toggleBusqueda}>
               <Search
-                sx={{ color: "#644838", fontFamily: "Outfit", fontSize: 50, m: 1 }}
+                sx={{
+                  color: "#644838",
+                  fontFamily: "Outfit",
+                  fontSize: 50,
+                  m: 1,
+                }}
               />
             </Button>
 
             <Button onClick={toggleCarrito}>
               <ShoppingCartOutlined
-                sx={{ color: "#644838", fontFamily: "Outfit", fontSize: 50, m: 1 }}
+                sx={{
+                  color: "#644838",
+                  fontFamily: "Outfit",
+                  fontSize: 50,
+                  m: 1,
+                }}
               />
             </Button>
-
-           
-
-
           </Box>
 
-    
-{/* */}
+          {/* */}
 
-<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', lg: 'none' } }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex", lg: "none" },
+            }}
+          >
             <IconButton
               size="large"
               aria-label="account of current user"
               aria-controls="menu2-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
-              sx={{color: "#644838"}}
+              sx={{ color: "#644838" }}
             >
               <MenuIcon />
             </IconButton>
@@ -350,56 +405,59 @@ return (
               id="menu2-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
+                vertical: "bottom",
+                horizontal: "left",
               }}
               keepMounted
               transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
+                vertical: "top",
+                horizontal: "left",
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: 'none', md: 'block', lg: 'none' },
+                display: { xs: "none", md: "block", lg: "none" },
               }}
             >
               {pages2.map((page) => (
                 <MenuItem key={`/${page}`} onClick={handleCloseNavMenu}>
-                  
-                  {page === 'Buscar' && 
-                   <Button onClick={toggleBusqueda}>
-                   <Search
-                     sx={{ color: "#644838", fontFamily: "Outfit", fontSize: 50, m: 1 }}
-                   />
-                 </Button>}
-                 
-                 {page === 'Carrito' &&
-                 
-                  <Button onClick={toggleCarrito}>
-                  <ShoppingCartOutlined
-                    sx={{ color: "#644838", fontFamily: "Outfit", fontSize: 50, m: 1 }}
-                  />
-                </Button>}
+                  {page === "Buscar" && (
+                    <Button onClick={toggleBusqueda}>
+                      <Search
+                        sx={{
+                          color: "#644838",
+                          fontFamily: "Outfit",
+                          fontSize: 50,
+                          m: 1,
+                        }}
+                      />
+                    </Button>
+                  )}
 
-                {page != 'Buscar' && page != 'Carrito' &&
-                 <Link to={`/${page}`} style={{ textDecoration: "none" }}>
-                 <Typography textAlign="center">{page}</Typography>
-                 </Link>
-                }
-                 
-                
+                  {page === "Carrito" && (
+                    <Button onClick={toggleCarrito}>
+                      <ShoppingCartOutlined
+                        sx={{
+                          color: "#644838",
+                          fontFamily: "Outfit",
+                          fontSize: 50,
+                          m: 1,
+                        }}
+                      />
+                    </Button>
+                  )}
+
+                  {page != "Buscar" && page != "Carrito" && (
+                    <Link to={`/${page}`} style={{ textDecoration: "none" }}>
+                      <Typography textAlign="center">{page}</Typography>
+                    </Link>
+                  )}
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-
         </Toolbar>
       </Container>
     </AppBar>
-
-
-  
-);
-
+  );
 }

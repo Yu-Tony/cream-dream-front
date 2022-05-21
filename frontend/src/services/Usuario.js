@@ -28,7 +28,7 @@ export const Update = async (id, data) => {
   try {
     const res = await axios.put("/usuario/" + id, data);
   } catch (e) {
-    return e;
+    return false;
   }
 };
 
@@ -40,7 +40,7 @@ export const Delete = async (id) => {
 
     return {};
   } catch (e) {
-    return e;
+    return false;
   }
 };
 

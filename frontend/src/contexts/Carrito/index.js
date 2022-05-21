@@ -18,8 +18,8 @@ const CarritoState = (props) => {
 
   /* ORDEN / PEDIDO */
   const initialStateCarrito = {
+    id: "",
     comidas: [],
-    combos: [],
     mesa: "",
     cliente: "",
   };
@@ -41,6 +41,14 @@ const CarritoState = (props) => {
       type: "UPDATE_CANTIDAD",
       payload: { productoId, opcion, cantidad },
     });
+  };
+
+  const setMesaCliente = (mesa, cliente) => {
+    dispatchCarrito({ type: "SET_MESA_CLIENTE", payload: { mesa, cliente } });
+  };
+
+  const setIdPedido = (id) => {
+    dispatchCarrito({ type: "SET_ID", payload: id });
   };
 
   const ordenar = () => {
@@ -76,6 +84,8 @@ const CarritoState = (props) => {
         updateCantidad,
         ordenar,
         cuenta,
+        setMesaCliente,
+        setIdPedido,
       }}
     >
       {props.children}

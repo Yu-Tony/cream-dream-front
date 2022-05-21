@@ -5,18 +5,6 @@ import { Grid, Box, Container } from "@mui/material";
 import Opciones from "./Opciones";
 import ListaProductos from "./ListaProductos";
 
-import Espresso from "../images/espresso.jpg";
-import Americano from "../images/americano.jpg";
-import Latte from "../images/latte.jpg";
-import Cappuccino from "../images/cappuccino.jpg";
-import Jazmin from "../images/Jazmin.jpg";
-import FrutaPasion from "../images/FrutaPasión.jpg";
-import NegroFR from "../images/NegroFR.jpg";
-import Oolong from "../images/Oolong.jpg";
-import FrappeC from "../images/FrappeC.jpg";
-import FrappeCT from "../images/FrappeCT.jpg";
-import FrappeT from "../images/FrappeT.jpg";
-
 import * as API from "../../services/Comida";
 
 const opciones = ["café", "Pasteles", "prueba-categoria2", "prueba-categoria3"];

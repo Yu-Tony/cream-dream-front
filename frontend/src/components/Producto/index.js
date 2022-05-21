@@ -71,7 +71,7 @@ function Producto() {
       opcion,
       cantidad,
       imagen: imagenes[0],
-      precio: precio.find((element) => element.label === opcion).precio,
+      precio: precio,
       ordenado: false,
     });
   };
@@ -111,13 +111,7 @@ function Producto() {
                         color="primary.main"
                         fontWeight={600}
                       >
-                        {producto.opcion
-                          ? `$ ${
-                              producto.precio.find(
-                                (element) => element.label === producto.opcion
-                              ).precio
-                            }`
-                          : "---"}
+                        $ {producto.precio}
                       </Typography>
                     </Grid>
                   </Grid>
@@ -129,12 +123,12 @@ function Producto() {
                       : "Bebida con un mayor sabor dulce con la presencia de un sutil a espresso (250ml). Está compuesto por 1oz de espresso y 7oz de leche cremada"}
                   </Typography>
                 </Grid>
-                <Grid item {...grid12All}>
+                {/*<Grid item {...grid12All}>
                   <TipoSelector
                     onChange={hadleOnChangeOpcion}
                     precios={producto.precio}
                   />
-                </Grid>
+                </Grid>*/}
                 <Grid item {...grid12All}>
                   <Grid container spacing="0">
                     <Grid

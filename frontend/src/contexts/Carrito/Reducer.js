@@ -1,3 +1,5 @@
+import * as API from "../../services/Pedido";
+
 export default (state, action) => {
   const { payload, type } = action;
 
@@ -56,6 +58,14 @@ export default (state, action) => {
 
     case "EMPTY_ORDEN": {
       return { ...state, comidas: [] };
+    }
+
+    case "SET_MESA_CLIENTE": {
+      return { ...state, mesa: payload.mesa, cliente: payload.cliente };
+    }
+
+    case "SET_ID": {
+      return { ...state, id: payload };
     }
 
     default:

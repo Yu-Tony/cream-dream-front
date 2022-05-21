@@ -24,7 +24,7 @@
   
   import QRCode from 'qrcode.react';
 
-  import * as API from "../services/Reservacion";
+  import * as API from "../services/Reservacion"
   
     /*--------------------------STYLE--------------------- */
   const theme = createTheme({
@@ -61,11 +61,9 @@
       /*--------------------------FUNCIONES--------------------- */
     {/* Arreglo de reservacion */}
       const [Reservacion, setReservacion] = useState({
-      Personas: null,
-      Fecha: null,
-      Hora: null,
-      Sucursal: "",
-      Mesa: null
+      no_personas: null,
+      fecha: null,
+      _mesa: "6288d467a1f6204515251ad5"
     });
   
    {/*Ventanas modales */}
@@ -86,8 +84,10 @@
 
     const handleOpenQR = async () => {
     
-      Reservacion.Mesa = mesa;
+      Reservacion._mesa = "6288d467a1f6204515251ad5";
+      console.log(Reservacion);
       const res = await API.Create(Reservacion);
+      console.log(res);
       if(res===false)
       {
         
@@ -116,6 +116,7 @@
       const max = 6;
       //  return Math.floor(Math.random() * (max - min + 1)) + min;
       setRandom(Math.floor(Math.random() * (max - min + 1)) + min) ;
+
       //this.setState({ random: this.state.random + rand });
     };
   
@@ -134,7 +135,7 @@
     const handleChangeDate = (newValue) => {
       setReservacion({
         ...Reservacion,
-        Fecha: newValue,
+        fecha: newValue,
       });
     };
   
@@ -212,7 +213,7 @@
                       <Select
                         required
                         value={Reservacion.Personas}
-                        name="Personas"
+                        name="no_personas"
                         label="Número de Personas"
                         onChange={handleChange}
                       >
@@ -231,9 +232,9 @@
                       <LocalizationProvider dateAdapter={AdapterDateFns}>
                         <DesktopDatePicker
                           label="Fecha"
-                          name="Fecha"
+                          name="fecha"
                           inputFormat="dd/MM/yyyy"
-                          value={Reservacion.Fecha}
+                          value={Reservacion.fecha}
                           onChange={handleChangeDate}
                           renderInput={(params) => <TextField {...params} />}
                           required
@@ -458,7 +459,7 @@
                       <div className="HpQrcode">
                         <QRCode
                         id="qrCodeEl"
-                        value={`Personas: ${Reservacion.Personas}, Fecha: ${Reservacion.Fecha}, Hora: ${Reservacion.Hora}, Sucursal: ${Reservacion.Sucursal}`}
+                        value={`no_personas: ${Reservacion.no_personas}, fecha: ${Reservacion.fecha}`}
                         size={290}
                         level={"H"}
                         includeMargin={true}

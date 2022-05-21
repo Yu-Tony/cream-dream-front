@@ -8,7 +8,7 @@ import {
 
 const inputFontSize = "1.5rem";
 
-function BarraBusqueda({ sx }) {
+function BarraBusqueda({ sx, value, onChange }) {
   return (
     <Box sx={{ textAlign: "center", ...sx }}>
       <FormControl fullWidth>
@@ -24,6 +24,8 @@ function BarraBusqueda({ sx }) {
             style: { fontSize: inputFontSize },
           }}
           InputLabelProps={{ style: { fontSize: inputFontSize } }}
+          value={value}
+          onChange={onChange}
         />
       </FormControl>
     </Box>

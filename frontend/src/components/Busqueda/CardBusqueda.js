@@ -19,9 +19,23 @@ const descrStyle = {
   "-webkit-box-orient": "vertical",
 };
 
-function CardBusqueda({ nombre, descr, precio, imagen }) {
+const precioMasBajo = (precios) => {
+  var precioBajo = 999;
+  for (let i = 0; i < precios.length; i++) {
+    if (precioBajo > precios[i].precio) precioBajo = precios[i].precio;
+  }
+
+  return precioBajo;
+};
+
+function CardBusqueda({ _id, nombre, descripcion, precio, imagen, onClick }) {
   return (
-    <Card sx={{ display: "flex" }}>
+    <Card
+      sx={{ display: "flex" }}
+      onClick={() => {
+        onClick(_id);
+      }}
+    >
       <CardMedia
         component="img"
         sx={{ width: 165, ...cardHeigth, padding: "0.8rem" }}
@@ -36,7 +50,7 @@ function CardBusqueda({ nombre, descr, precio, imagen }) {
             {nombre}
           </Typography>
           <Typography variant="body1" component="div" sx={descrStyle}>
-            {descr}
+            {descripcion}
           </Typography>
           <Typography
             variant="subtitle1"
@@ -49,7 +63,7 @@ function CardBusqueda({ nombre, descr, precio, imagen }) {
               margin: "0.8rem 0",
             }}
           >
-            Desde ${precio}
+            Desde $ {precioMasBajo(precio)}
           </Typography>
         </CardContent>
       </Box>

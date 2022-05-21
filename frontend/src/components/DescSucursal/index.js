@@ -21,6 +21,7 @@ import { useState, useContext, useEffect } from "react";
 const paperParentStyle = {
   ...drawerWidths,
   bgcolor: "background.main",
+  height:"100vh"
 };
 
 const imgsResponsive = {
@@ -57,11 +58,15 @@ function DescSucursal({ toggleDrawer }) {
   //const sucursal = undefined;
 
   useEffect(() => {
-    return () => {
+    console.log(sucursal);
+    /*return () => {
       console.log("cerrar");
       selectSucursal({});
-    };
+      
+    };*/
   }, []);
+
+  //console.log(sucursal);
 
   return sucursal ? (
     <Paper sx={paperParentStyle}>
@@ -98,20 +103,7 @@ function DescSucursal({ toggleDrawer }) {
           </Grid>
         </Grid>
 
-        <Grid item {...grid12All}>
-          <Grid container padding="0 3rem">
-            <Grid item lg={12}>
-              <Typography variant="h6">Ubicacion</Typography>
-            </Grid>
-            <Grid item {...grid12All}>
-              <Skeleton
-                variant="rectangular"
-                width="100%"
-                height="300px"
-              ></Skeleton>
-            </Grid>
-          </Grid>
-        </Grid>
+      
 
         <Grid item lg={12}>
           <Comentarios />

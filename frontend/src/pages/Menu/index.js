@@ -7,7 +7,7 @@ import ListaProductos from "./ListaProductos";
 
 import * as API from "../../services/Comida";
 
-const opciones = ["café", "Pasteles", "prueba-categoria2", "prueba-categoria3"];
+const opciones = ["prueba", "Pasteles", "prueba", "prueba-categoria3"];
 
 function Menu() {
   const [items, setItems] = useState([]);

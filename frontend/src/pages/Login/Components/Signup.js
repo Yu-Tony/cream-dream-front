@@ -67,8 +67,8 @@ function Signup() {
 
   return (
     <Container>
-      {(Object.keys(formErrors).length === 0 && isSubmitSign && isSubmitSignRight) &&  <Alert severity="success">Inicio de sesion hecho exitosamente</Alert>}
-      {(Object.keys(formErrors).length === 0 && isSubmitSign && !isSubmitSignRight) &&  <Alert severity="error">Error al hacer inicio de sesion, intente de nuevo</Alert>}
+      {(Object.keys(formErrors).length === 0 && isSubmitSign && isSubmitSignRight) &&  <Alert severity="success">Creación de usuario exitoso</Alert>}
+      {(Object.keys(formErrors).length === 0 && isSubmitSign && !isSubmitSignRight) &&  <Alert severity="error">Error al crear usuario, intente de nuevo</Alert>}
 
       <form>
         <FormControl fullWidth sx={{ m: 1 }}>

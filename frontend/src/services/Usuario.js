@@ -58,7 +58,7 @@ export const GetById = async (id) => {
 export const GetBySucursal = async (id_sucursal) => {
   try {
     const params = { s: id_sucursal };
-    const res = await axios.get("/usuario", { params });
+    const res = await axios.get("/usuario_empleado", { params });
     if (res.status === 200) return res.data;
     return {};
   } catch (e) {

@@ -1,30 +1,39 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import {Button,Typography,Grid,FormControl,FormLabel,Select,MenuItem} from "@mui/material";
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Boton from "../../../components/Carrito/Boton";
 import { StyledTextField } from "../styles";
 
-import * as API from "../../../services/Empleado";
+import * as API from "../../../services/Usuario";
+import * as API_S from "../../../services/Sucursal";
 
 function Empleado()
 {   
+
+    const [sucursal, setSucursal] = React.useState([]);
+
+    useEffect(()=>{const fetch =async()=>{const res = await API_S.GetAll()
+    console.log(res)
+    setSucursal(res.data)}
+    fetch()},[])
 
     const [selected, setSelected] = React.useState('left');
   
     const handleAlignment = (event, newAlignment) => {
         setData({
             ...data,
-            admin:newAlignment,
+            tipo:newAlignment,
         });
     }
 
     const [data, setData] = useState({
         nombre: "",
-        apellido:"Granados",
+        apellido:"",
         correo: "",
         contrasena: "",
-        admin:false
+        _sucursal:null,
+        tipo:1
     });
 
     const onSubmitEmpleado = async (event) => {
@@ -44,7 +53,11 @@ function Empleado()
     const [local, setLocal] = React.useState('');
 
     const handleChangeSelect = (event) => {
-        setLocal(event.target.value);
+        setData({...data,
+            _sucursal:event.target.value
+        })
+
+        console.log(data);
         
     };
 
@@ -64,6 +77,21 @@ function Empleado()
                 <FormControl fullWidth sx={{ m: 1 }}>
                     <StyledTextField id="nombreEmpleado" 
                     name="nombre"
+                    InputLabelProps={{ shrink: true }}
+                    onChange={handleOnChange}  />
+                </FormControl>
+            </Grid>
+
+             {/*APELLIDO DE EMPLEADO*/}
+             <Grid item xs={12} xl={2} p={"10px"}>
+                <FormControl fullWidth sx={{ m: 1 }}>
+                    <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Apellido</FormLabel>
+                </FormControl>
+            </Grid>
+            <Grid item xs={12} xl={10} p={"10px"} >
+                <FormControl fullWidth sx={{ m: 1 }}>
+                    <StyledTextField id="apellidoEmpleado" 
+                    name="apellido"
                     InputLabelProps={{ shrink: true }}
                     onChange={handleOnChange}  />
                 </FormControl>
@@ -110,17 +138,14 @@ function Empleado()
             <Grid item xs={12} xl={10} p={"10px"} >
                 <FormControl fullWidth sx={{ m: 1 }}>
                 <Select
-                    value={local}
+                    value={data._sucursal}
                     onChange={handleChangeSelect}
                     displayEmpty
                     inputProps={{ 'aria-label': 'Without label' }}
                     >
-                    <MenuItem value="">
-                    <em>None</em>
-                    </MenuItem>
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
+
+                    {sucursal.map((item,index)=>( <MenuItem key={index} value={item._id}>{item.nombre}</MenuItem>))}
+
                     </Select>
                 </FormControl>
             </Grid>
@@ -135,12 +160,12 @@ function Empleado()
                 <FormControl fullWidth sx={{ m: 1 }}>
                 <ToggleButtonGroup
                         color="primary"
-                        value={data.admin}
+                        value={data.tipo}
                         exclusive
                         onChange={handleAlignment}
                         >
-                        <ToggleButton value={true}>Si</ToggleButton>
-                        <ToggleButton value={false}>No</ToggleButton>
+                        <ToggleButton value={2}>Si</ToggleButton>
+                        <ToggleButton value={1}>No</ToggleButton>
                     </ToggleButtonGroup>
                 </FormControl>
             </Grid>

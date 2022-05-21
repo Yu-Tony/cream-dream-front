@@ -14,6 +14,8 @@
   import EmpleadoComp from "./components/Empleado";
   
   import ComidaComp from "./components/Comida";
+
+  import MesaComp from "./components/Mesa";
   
   export default function Create()
   {
@@ -30,100 +32,7 @@
       }
   
       const [mesa, setMesa] = React.useState(false);
-      function Mesa(props)
-      {
-          return(  <form>
-              <Typography  variant="h4">AGREGAR MESA</Typography>
-  
-              <Grid container>
-  
-                  {/*Numero de sillas*/ }
-                  <Grid item xs={12} xl={2} p={"10px"}>
-                      <FormControl fullWidth sx={{ m: 1 }}>
-                          <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Sillas</FormLabel>
-                      </FormControl>
-                  </Grid>
-                  <Grid item xs={12} xl={10} p={"10px"}>
-                      <FormControl fullWidth sx={{ m: 1 }}>
-                          <StyledTextField  InputProps={{startAdornment: <InputAdornment position="start"></InputAdornment>,}} type="number" id="numeroSillas" InputLabelProps={{ shrink: true }}  />
-                      </FormControl>
-                  </Grid>
-  
-                  {/*Sucursal de sillas */}
-                  <Grid item xs={12} xl={2} p={"10px"} >
-                      <FormControl fullWidth sx={{ m: 1 }}>
-                          <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Sucursal</FormLabel>
-                      </FormControl>
-                  </Grid>
-                  <Grid item xs={12} xl={10} p={"10px"} >
-                      <FormControl fullWidth sx={{ m: 1 }}>
-                      <Select
-                          value={local}
-                          onChange={handleChangeSelect}
-                          displayEmpty
-                          inputProps={{ 'aria-label': 'Without label' }}
-                          >
-                          <MenuItem value="">
-                          <em>None</em>
-                          </MenuItem>
-                          <MenuItem value={10}>Ten</MenuItem>
-                          <MenuItem value={20}>Twenty</MenuItem>
-                          <MenuItem value={30}>Thirty</MenuItem>
-                          </Select>
-                      </FormControl>
-                  </Grid>
-  
-                  {/*Empleado */}
-                  <Grid item xs={12} xl={2} p={"10px"} >
-                      <FormControl fullWidth sx={{ m: 1 }}>
-                          <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Empleado</FormLabel>
-                      </FormControl>
-                  </Grid>
-                  <Grid item xs={12} xl={10} p={"10px"} >
-                      <FormControl fullWidth sx={{ m: 1 }}>
-                      <Select
-                          value={local}
-                          onChange={handleChangeSelect}
-                          displayEmpty
-                          inputProps={{ 'aria-label': 'Without label' }}
-                          >
-                          <MenuItem value="">
-                          <em>None</em>
-                          </MenuItem>
-                          <MenuItem value={10}>Ten</MenuItem>
-                          <MenuItem value={20}>Twenty</MenuItem>
-                          <MenuItem value={30}>Thirty</MenuItem>
-                          </Select>
-                      </FormControl>
-                  </Grid>
-  
-                  {/*Disponible Mesa */}
-                  <Grid item  xs={12} xl={2} p={"10px"}  >
-                      <FormControl fullWidth sx={{ m: 1 }}>
-                          <FormLabel sx={{ color: '#644838',fontFamily: 'Outfit',fontSize: 20,}}>Disponible</FormLabel>
-                      </FormControl>
-                  </Grid>
-                  <Grid item  xs={12} xl={10} p={"10px"}  >
-                      <FormControl fullWidth sx={{ m: 1 }}>
-                          <ToggleButtonGroup
-                              color="primary"
-                              value={selected}
-                              exclusive
-                              onChange={handleAlignment}
-                              >
-                              <ToggleButton value="web">Si</ToggleButton>
-                              <ToggleButton value="android">No</ToggleButton>
-                          </ToggleButtonGroup>
-                      </FormControl>
-                  </Grid>
-  
-                  <Boton bgcolor="secondary.main">Guardar</Boton>
-  
-              </Grid>
-           
-          </form>)
-        
-      }
+     
   
       function mesas()
       {
@@ -211,7 +120,7 @@
                       <Box item sx={{p:8,bgcolor: 'white', paddingTop: "60px", paddingBottom: "60px",  boxShadow: "-20px 20px #efd3c3"}}  >
          
                       {comida && <ComidaComp/>}
-                      {mesa && <Mesa></Mesa> }
+                      {mesa && <MesaComp/> }
                       {empleado && <EmpleadoComp/>}
   
                         

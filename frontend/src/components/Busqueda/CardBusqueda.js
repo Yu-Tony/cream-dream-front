@@ -19,6 +19,15 @@ const descrStyle = {
   "-webkit-box-orient": "vertical",
 };
 
+const precioMasBajo = (precios) => {
+  var precioBajo = 999;
+  for (let i = 0; i < precios.length; i++) {
+    if (precioBajo > precios[i].precio) precioBajo = precios[i].precio;
+  }
+
+  return precioBajo;
+};
+
 function CardBusqueda({ _id, nombre, descripcion, precio, imagen, onClick }) {
   return (
     <Card
@@ -54,7 +63,7 @@ function CardBusqueda({ _id, nombre, descripcion, precio, imagen, onClick }) {
               margin: "0.8rem 0",
             }}
           >
-            Desde ${precio.porcion}
+            Desde $ {precioMasBajo(precio)}
           </Typography>
         </CardContent>
       </Box>

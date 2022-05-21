@@ -43,16 +43,20 @@ const preciosAux = [
 ];
 
 function TipoSelector({ onChange, precios }) {
-  const [selected, setSelected] = useState("unidad");
+  const [selected, setSelected] = useState(precios[0].label);
 
   const handleOnChange = (event) => {
-    console.log(event.target.value);
+    //console.log(event.target.value);
     setSelected(event.target.value);
   };
 
   useEffect(() => {
     onChange(selected);
   }, [selected]);
+
+  useEffect(() => {
+    console.log(precios);
+  }, []);
 
   const Option = ({ value, label }) => (
     <Grid xl={6} lg={6} md={6} sm={6} xs={12} item>
@@ -73,7 +77,7 @@ function TipoSelector({ onChange, precios }) {
   return (
     <RadioGroup onChange={handleOnChange}>
       <Grid container spacing={2}>
-        {preciosAux.map((precio, index) => (
+        {precios.map((precio, index) => (
           <Option
             key={index}
             value={precio.label}

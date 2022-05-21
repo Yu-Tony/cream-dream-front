@@ -1,3 +1,9 @@
+import { useContext } from "react";
+
+import { CarritoContext } from "../../contexts/Carrito";
+
+import { calcularSubtotal } from "../../utils";
+
 import { Grid, Typography } from "@mui/material";
 import Boton from "./Boton";
 import { grid12All } from "../../responsiveConst";
@@ -5,14 +11,14 @@ import { grid12All } from "../../responsiveConst";
 const info = [
   {
     nombre: "Pastel Confetti",
-    unidad: 2,
-    tipo: "R",
+    cantidad: 2,
+    opcion: "R",
     precio: 100,
   },
   {
     nombre: "Pastel de Vainilla",
-    unidad: 1,
-    tipo: "C",
+    cantidad: 1,
+    opcion: "C",
     precio: 390,
   },
 ];
@@ -27,21 +33,25 @@ const itemResponsive = {
   xl: 10,
 };
 
-const Item = ({ nombre, precio, unidad, tipo, sx }) => (
+const Item = ({ nombre, precio, cantidad, opcion, sx }) => (
   <>
     <Grid item {...itemResponsive} sx={sx}>
       <Typography variant="h6">
-        {nombre} {tipo ? `${tipo}.` : null} {unidad > 1 ? `(${unidad})` : null}{" "}
-        {}
+        {nombre} {opcion ? `${opcion}.` : null}{" "}
+        {cantidad > 1 ? `(${cantidad})` : null} {}
       </Typography>
     </Grid>
     <Grid item textAlign="end" sx={sx}>
-      <Typography variant="h6">${precio}</Typography>
+      <Typography variant="h6">
+        $ {cantidad ? precio * cantidad : precio}
+      </Typography>
     </Grid>
   </>
 );
 
 function Cuenta() {
+  const { stateCarrito } = useContext(CarritoContext);
+
   return (
     <>
       <Grid container padding="0 2rem">
@@ -51,11 +61,15 @@ function Cuenta() {
           </Typography>
         </Grid>
 
-        {info.map((item) => (
-          <Item {...item} />
-        ))}
+        {stateCarrito.comidas.map((item) => {
+          return item.pedido ? <Item {...item} /> : null;
+        })}
 
-        <Item {...subtotal} sx={{ marginTop: "1rem" }} />
+        <Item
+          nombre={"Subtotal"}
+          precio={calcularSubtotal(stateCarrito.comidas)}
+          sx={{ marginTop: "1rem" }}
+        />
 
         <Grid item {...grid12All}>
           <Boton bgcolor="primary.main">Pagar</Boton>

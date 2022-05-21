@@ -57,9 +57,6 @@ export default function Perfil() {
               <Boton bgcolor="primary.main">Informacion personal</Boton>
             </Button>
 
-            <Button p={0} onClick={() => pago()}>
-              <Boton bgcolor="primary.main">Información de Pago</Boton>
-            </Button>
           </Grid>
         </Grid>
 
@@ -82,7 +79,7 @@ export default function Perfil() {
           >
             {infoPersonal && <InfoPers />}
 
-            {infoPago && <InfoPago />}
+           
           </Box>
         </Grid>
       </Grid>

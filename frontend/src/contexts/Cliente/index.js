@@ -1,7 +1,7 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useReducer } from "react";
 
-//import * as API from "../../services/Cliente";
 import * as API from "../../services/Usuario";
+import Reducer from "./Reducer";
 
 export const ClienteContext = createContext();
 
@@ -9,6 +9,12 @@ const initialState = { id: "", tipo: -1 };
 
 const ClienteState = (props) => {
   const [cliente, setCliente] = useState(initialState);
+
+  const settingsInitialState = [{ label: "Iniciar Sesion", path: "Login" }];
+  const [settings, dispatchSettings] = useReducer(
+    Reducer,
+    settingsInitialState
+  );
 
   const Delete = async () => {
     const res = await API.Delete(cliente.id);
@@ -19,6 +25,7 @@ const ClienteState = (props) => {
     const res = await API.Login(data);
 
     if (res.data) {
+      dispatchSettings({ type: res.data.tipo });
       setCliente(res.data);
       return res;
     }
@@ -28,6 +35,7 @@ const ClienteState = (props) => {
 
   const Logout = () => {
     setCliente(initialState);
+    dispatchSettings({ type: -1 });
   };
 
   const isLog = () => {
@@ -36,7 +44,9 @@ const ClienteState = (props) => {
   };
 
   return (
-    <ClienteContext.Provider value={{ cliente, Login, Logout, Delete, isLog }}>
+    <ClienteContext.Provider
+      value={{ cliente, Login, Logout, Delete, isLog, settings }}
+    >
       {props.children}
     </ClienteContext.Provider>
   );

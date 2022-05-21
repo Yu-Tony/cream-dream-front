@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FormControl, FormLabel } from "@mui/material";
+import { FormControl, FormLabel, Alert, Container } from "@mui/material";
 
 import Boton from "../../../components/Carrito/Boton";
 
@@ -21,61 +21,107 @@ function Signup() {
     setData((prev) => ({ ...prev, [event.target.name]: event.target.value }));
   };
 
+  const [formErrors, setformErrors] = useState({ });
+  const handleInputChange = (e) => {
+    setData({
+      ...data,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const [isSubmitSign, setIsSubmitSign] = useState(false);
+  const [isSubmitSignRight, setIsSubmitSignRight] = useState(false);
+
   const onSubmitSign = async (event) => {
     event.preventDefault();
-    //console.log(data);
+    setformErrors(ValidateSign(data));
 
     const res = await API.Create(data);
+    if(res.lenght === undefined)
+    {
+      //console.log("Error");
+      setIsSubmitSign(true);
+      setIsSubmitSignRight(false);
+     
+    }
+    else{
+      setIsSubmitSign(true);
+      setIsSubmitSignRight(true);
+    }
     console.log(res);
   };
 
+  const ValidateSign = (values) =>
+  {
+    const errors={}
+    const regexMail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    const regexPassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/i;
+    if(!values.nombre){errors.nombre = "Ingresar un nombre";}
+    if(!values.apellido){errors.apellido = "Ingresar un apellido";}
+    if(!values.correo){errors.correo = "Ingresar un correo";}
+    else if(!regexMail.test(values.correo)){errors.correo = "Ingresar un formato de correo correcto";}
+    if(!values.contrasena){errors.contrasena = "Ingresar una contraseña";}
+    else if (!regexPassword.test(values.contrasena)) {errors.contrasena = "La contraseña debe de tener minimo 8 caracteres, una letra y 1 numero";} 
+    return errors;
+  };
+
   return (
-    <form>
-      <FormControl fullWidth sx={{ m: 1 }}>
-        <FormLabel sx={labelStyle}>Correo Electrónico</FormLabel>
-        <StyledTextField
-          id="emailSign"
-          name="correo"
-          InputLabelProps={{ shrink: true }}
-          onChange={handleOnChange}
-        />
-      </FormControl>
+    <Container>
+      {(Object.keys(formErrors).length === 0 && isSubmitSign && isSubmitSignRight) &&  <Alert severity="success">Inicio de sesion hecho exitosamente</Alert>}
+      {(Object.keys(formErrors).length === 0 && isSubmitSign && !isSubmitSignRight) &&  <Alert severity="error">Error al hacer inicio de sesion, intente de nuevo</Alert>}
 
-      <FormControl fullWidth sx={{ m: 1 }}>
-        <FormLabel sx={labelStyle}>Contraseña</FormLabel>
-        <StyledTextField
-          type="password"
-          name="contrasena"
-          id="passwordSign"
-          InputLabelProps={{ shrink: true }}
-          onChange={handleOnChange}
-        />
-      </FormControl>
+      <form>
+        <FormControl fullWidth sx={{ m: 1 }}>
+          <FormLabel sx={labelStyle}>Correo Electrónico</FormLabel>
+          <StyledTextField
+            id="emailSign"
+            name="correo"
+            InputLabelProps={{ shrink: true }}
+            onChange={handleOnChange}
+          />
+          {formErrors.correo && <Alert severity="error">{formErrors.correo}</Alert>} 
+        </FormControl>
 
-      <FormControl fullWidth sx={{ m: 1 }}>
-        <FormLabel sx={labelStyle}>Nombre</FormLabel>
-        <StyledTextField
-          id="nameSign"
-          name="nombre"
-          InputLabelProps={{ shrink: true }}
-          onChange={handleOnChange}
-        />
-      </FormControl>
+        <FormControl fullWidth sx={{ m: 1 }}>
+          <FormLabel sx={labelStyle}>Contraseña</FormLabel>
+          <StyledTextField
+            type="password"
+            name="contrasena"
+            id="passwordSign"
+            InputLabelProps={{ shrink: true }}
+            onChange={handleOnChange}
+          />
+            {formErrors.contrasena && <Alert severity="error">{formErrors.contrasena}</Alert>} 
+        </FormControl>
 
-      <FormControl fullWidth sx={{ m: 1 }}>
-        <FormLabel sx={labelStyle}>Apellido</FormLabel>
-        <StyledTextField
-          id="lastnameSign"
-          name="apellido"
-          InputLabelProps={{ shrink: true }}
-          onChange={handleOnChange}
-        />
-      </FormControl>
+        <FormControl fullWidth sx={{ m: 1 }}>
+          <FormLabel sx={labelStyle}>Nombre</FormLabel>
+          <StyledTextField
+            id="nameSign"
+            name="nombre"
+            InputLabelProps={{ shrink: true }}
+            onChange={handleOnChange}
+          />
+            {formErrors.nombre && <Alert severity="error">{formErrors.nombre}</Alert>} 
+        </FormControl>
 
-      <Boton bgcolor="secondary.main" onClick={onSubmitSign}>
-        Registrarse
-      </Boton>
-    </form>
+        <FormControl fullWidth sx={{ m: 1 }}>
+          <FormLabel sx={labelStyle}>Apellido</FormLabel>
+          <StyledTextField
+            id="lastnameSign"
+            name="apellido"
+            InputLabelProps={{ shrink: true }}
+            onChange={handleOnChange}
+          />
+            {formErrors.apellido && <Alert severity="error">{formErrors.apellido}</Alert>} 
+        </FormControl>
+
+        <Boton bgcolor="secondary.main" onClick={onSubmitSign}>
+          Registrarse
+        </Boton>
+      </form>
+    </Container>
+  
   );
 }
 

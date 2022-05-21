@@ -7,3 +7,18 @@ export const createDrawer = (Component, toggle, isOpen) => (
     <Component toggleDrawer={toggle} />
   </Drawer>
 );
+
+export const objectToFormData = (data) => {
+  const formData = new FormData();
+  for (var key in data) {
+    if (key === "imagenes") {
+      let i = 0;
+      for (const img of data.imagenes) {
+        formData.append(key, img);
+        i++;
+      }
+    } else formData.append(key, JSON.stringify(data[key]));
+  }
+
+  return formData;
+};

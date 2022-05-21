@@ -31,7 +31,7 @@ function Login() {
     setformErrors(ValidateLogin(data));
 
     const res = await Login(data);
-    if(res)
+    if(res===false)
     {
      
       setIsSubmitLogin(true);

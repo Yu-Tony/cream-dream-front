@@ -37,7 +37,7 @@ function Signup() {
     setformErrors(ValidateSign(data));
 
     const res = await API.Create(data);
-    if(res)
+    if(res===false)
     {
       
       setIsSubmitSign(true);

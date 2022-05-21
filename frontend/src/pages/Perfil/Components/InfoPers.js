@@ -7,13 +7,27 @@ import {
   FormLabel,
   Typography,
   Alert,
-  Container
+  Container,
+  Modal,
+  Box
 } from "@mui/material";
 
 import { StyledTextField, labelStyle } from "../styles";
 import Boton from "../../../components/Carrito/Boton";
 import { ClienteContext } from "../../../contexts/Cliente";
 import * as API from "../../../services/Usuario";
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 function InfoPers(props) {
   const [data, setData] = useState({
@@ -74,6 +88,9 @@ function InfoPers(props) {
     console.log(res);
    
   };
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
 
   const [formErrors, setformErrors] = useState({ });
@@ -193,6 +210,24 @@ function InfoPers(props) {
                   <Boton bgcolor="secondary.main" onClick={handleOnUpdate}>
                     Guardar
                   </Boton>
+
+                  <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                  >
+                      <Box sx={style}>
+                      <Typography id="modal-modal-title" variant="h6" component="h2">
+                        ¿Está seguro de querer borrar la cuenta?
+                      </Typography>
+                      <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                        <Boton bgcolor="primary.main" onClick={handleDelete}>
+                          Borrar Cuenta
+                        </Boton>
+                      </Typography>
+                    </Box>
+                  </Modal>
                 </Button>
               </Grid>
             </Grid>
@@ -206,18 +241,25 @@ function InfoPers(props) {
             >
               <Grid item>
                 <Button p={0}>
-                  <Boton bgcolor="primary.main" onClick={handleDelete}>
+                 {/* <Boton bgcolor="primary.main" onClick={handleDelete}>
                     Borrar Cuenta
-                  </Boton>
+                  </Boton>*/} 
+                     <Button onClick={handleOpen}>Open modal</Button>
                 </Button>
               </Grid>
             </Grid>
 
           </Grid>
+
+          
         </form>
+
+      
     </Container>
+    
   
   );
+  
 }
 
 export default InfoPers;

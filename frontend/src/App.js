@@ -1,7 +1,7 @@
 import Home from "./pages/Home";
 import Menu from "./pages/Menu";
 import Login from "./pages/Login";
-import Create from "./pages/create";
+import Create from "./pages/Create";
 import Perfil from "./pages/Perfil";
 import Reservacion from "./pages/Reservacion";
 import Sucursales from "./pages/Sucursales";
@@ -10,9 +10,9 @@ import Busqueda from "./components/Busqueda";
 import Carrito from "./components/Carrito";
 import Pago from "./pages/pago";
 import QrLector from "./pages/QrLector";
-import Producto from "./components/Producto";
-import Ayuda from "./pages/Ayuda";
 import Reportes from "./pages/reportes";
+import Ayuda from "./pages/Ayuda";
+
 
 import useDrawer from "./hooks/useDrawer";
 import { createDrawer } from "./utils";
@@ -32,9 +32,12 @@ const BusquedaDrawer = ({ toggle, isOpen }) =>
 const CarritoDrawer = ({ toggle, isOpen }) =>
   createDrawer(Carrito, toggle, isOpen);
 
+
 function App() {
   const busquedaDrawer = useDrawer();
   const carritoDrawer = useDrawer();
+
+
 
   return (
     <ThemeProvider theme={theme}>

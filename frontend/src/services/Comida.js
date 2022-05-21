@@ -74,10 +74,9 @@ export const GetByQuery = async (query, filter) => {
     return e;
   }
 };
-export const GetMenu = async (categoria) => {
+export const GetMenu = async () => {
   try {
-    const params = { categoria: categoria };
-    const res = await axios.get("/comidas-menu", { params });
+    const res = await axios.get("/comidas-menu");
     if (res.status === 200) return res.data;
 
     return {};

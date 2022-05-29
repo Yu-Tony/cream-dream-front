@@ -27,9 +27,9 @@ export const Create = async (data) => {
     const res = await axios.post("/comida", formData, { headers });
     if (res.status === 200) return res.data;
 
-    return {};
+    return true;
   } catch (e) {
-    return e;
+    return false;
   }
 };
 export const Update = async (id, data) => {

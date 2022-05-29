@@ -1,5 +1,5 @@
 import React, { useState,createRef } from "react";
-import { Button,Typography, Grid, FormControl,InputAdornment, FormLabel,Alert } from "@mui/material";
+import { Button,Typography, Grid, FormControl,InputAdornment, FormLabel,Alert, Container } from "@mui/material";
 import { Box } from "@mui/system";
 import { FileUploader } from "react-drag-drop-files";
 import Boton from "../../../components/Carrito/Boton";
@@ -34,13 +34,26 @@ function Comida() {
   };
 
   const [isSubmitComida, setIsSubmitComida] = useState(false);
+  const [isSubmitComidaRight, setIsSubmitComidaRight] = useState(false);
   const onSubmitFood = async (event) => {
     event.preventDefault();
     console.log(data);
     setformErrors(ValidateComida(data));
-    setIsSubmitComida(true);
     const res = await API.Create(data);
     console.log(res);
+
+    if(res===false)
+    {
+     
+      setIsSubmitComida(true);
+      setIsSubmitComidaRight(false);
+     
+    }
+    else{
+     
+      setIsSubmitComida(true);
+      setIsSubmitComidaRight(true);
+    }
   };
 
   const ValidateComida = (values) =>
@@ -56,7 +69,13 @@ function Comida() {
 
 
   return (
-    <form>
+    <Container>
+
+      {(Object.keys(formErrors).length === 0 &&isSubmitComida && isSubmitComidaRight) &&  <Alert severity="success">Comida creada exitosamente</Alert>}
+      {(Object.keys(formErrors).length === 0 &&isSubmitComida && !isSubmitComidaRight) &&  <Alert severity="error">Error al crear comida, intente de nuevo</Alert>}
+
+
+       <form>
       <Typography variant="h4">AGREGAR COMIDA</Typography>
 
       <Grid container>
@@ -212,6 +231,8 @@ function Comida() {
             </Button>
       </Grid>
     </form>
+    </Container>
+   
   );
 }
 

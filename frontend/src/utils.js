@@ -26,7 +26,7 @@ export const objectToFormData = (data) => {
 export const calcularSubtotal = (cuenta) => {
   var subtotal = 0;
   for (let i = 0; i < cuenta.length; i++) {
-    if (cuenta[i].pedido) subtotal += cuenta[i].precio * cuenta[i].cantidad;
+    if (cuenta[i].ordenado) subtotal += cuenta[i].precio * cuenta[i].cantidad;
   }
 
   return subtotal;

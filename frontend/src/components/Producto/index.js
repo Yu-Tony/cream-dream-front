@@ -64,11 +64,10 @@ function Producto() {
 
   const { addToCarrito } = useContext(CarritoContext);
   const handleOnClickCarrito = () => {
-    const { _id, nombre, opcion, cantidad, imagenes, precio } = producto;
+    const { _id, nombre, cantidad, imagenes, precio } = producto;
     addToCarrito({
       _id,
       nombre,
-      opcion,
       cantidad,
       imagen: imagenes[0],
       precio: precio,

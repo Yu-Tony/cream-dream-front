@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { CarritoContext } from "../../contexts/Carrito";
 
@@ -51,6 +52,7 @@ const Item = ({ nombre, precio, cantidad, opcion, sx }) => (
 
 function Cuenta() {
   const { stateCarrito } = useContext(CarritoContext);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -62,7 +64,7 @@ function Cuenta() {
         </Grid>
 
         {stateCarrito.comidas.map((item) => {
-          return item.pedido ? <Item {...item} /> : null;
+          return item.ordenado ? <Item {...item} /> : null;
         })}
 
         <Item
@@ -72,7 +74,9 @@ function Cuenta() {
         />
 
         <Grid item {...grid12All}>
-          <Boton bgcolor="primary.main">Pagar</Boton>
+          <Boton bgcolor="primary.main" onClick={() => navigate("/Pago")}>
+            Pagar
+          </Boton>
         </Grid>
       </Grid>
     </>

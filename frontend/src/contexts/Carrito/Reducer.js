@@ -1,7 +1,14 @@
 import * as API from "../../services/Pedido";
+import * as API_cuenta from "../../services/Cuenta";
 
 export default (state, action) => {
   const { payload, type } = action;
+
+  const updatePedido = () => {
+    if (state.id !== "") {
+      API.Update(state.id, { comidas: state.comidas });
+    }
+  };
 
   switch (type) {
     case "ADD_TO_CARRITO": {
@@ -50,7 +57,7 @@ export default (state, action) => {
     case "ORDENAR": {
       const newArray = [...state.comidas];
       for (let i = 0; i < newArray.length; i++) {
-        newArray[i].pedido = true;
+        newArray[i].ordenado = true;
       }
 
       return { ...state, comidas: newArray };

@@ -28,6 +28,8 @@ import { CarritoContext } from "../contexts/Carrito";
 
 import { calcularSubtotal } from "../utils";
 
+import * as API from "../services/Cuenta";
+
 import "./css/menu.css";
 
 /*--------------------------Marcas para slider--------------------- */
@@ -47,6 +49,7 @@ export default function Pago() {
   const [NumeroPersonas, setNumeroPersonas] = useState(1);
   const [propina, setPropina] = useState(0);
   const [openModal, setOpenModal] = useState(false);
+  const [metodo, setMetodo] = useState("");
 
   const { stateCarrito } = useContext(CarritoContext);
 
@@ -59,7 +62,17 @@ export default function Pago() {
     return `${value}`;
   }
 
-  const handleOnClickPagar = () => {
+  const handleOnChangeMetodo = (event) => setMetodo(event.target.value);
+
+  const handleOnClickPagar = async () => {
+    const res = await API.Create({
+      pedido: stateCarrito.id,
+      total: calcularSubtotal(stateCarrito.comidas) + propina,
+      propina: propina,
+      metodo: metodo,
+      cliente: stateCarrito.cliente,
+    });
+    console.log(res);
     setOpenModal(true);
   };
 
@@ -302,6 +315,7 @@ export default function Pago() {
             <RadioGroup
               aria-labelledby="demo-row-radio-buttons-group-label"
               name="row-radio-buttons-group"
+              onChange={handleOnChangeMetodo}
             >
               <FormControlLabel
                 value="efectivo"

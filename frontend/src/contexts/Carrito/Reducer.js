@@ -55,6 +55,22 @@ export default (state, action) => {
     }
 
     case "ORDENAR": {
+      const updatePedido = async () => {
+        const newOrder = [];
+        for (let i = 0; i < state.comidas.length; i++) {
+          if (!state.comidas[i].ordenado)
+            newOrder.push({
+              comida_id: state.comidas[i]._id,
+              cantidad: state.comidas[i].cantidad,
+            });
+        }
+        console.log(newOrder);
+        const res = await API.Update(state.id, { comidas: newOrder });
+        console.log(res);
+      };
+
+      updatePedido();
+
       const newArray = [...state.comidas];
       for (let i = 0; i < newArray.length; i++) {
         newArray[i].ordenado = true;
